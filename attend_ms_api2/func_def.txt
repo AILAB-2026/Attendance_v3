@@ -1,0 +1,134 @@
+CREATE OR REPLACE FUNCTION public.hr_leave_sync_to_mobile()
+ RETURNS trigger
+ LANGUAGE plpgsql
+AS $function$
+DECLARE
+  v_conn text := 'host=15.235.210.115 port=5432 dbname=attendance_db user=openpg password=openpgpwd';
+  v_emp_no text;
+  v_type_name text;
+  v_type_code text;
+  v_status_mobile text;
+  v_reason text;
+  v_sql text;
+  v_start_date date;
+  v_end_date date;
+  v_state text;
+  v_emp_id integer;
+BEGIN
+  -- If change originated from mobile, do nothing (prevents ping-pong)
+  IF current_setting('app.sync_origin', true) = 'mobile' THEN
+    IF TG_OP = 'DELETE' THEN RETURN OLD; END IF;
+    RETURN NEW;
+  END IF;
+
+  -- Decide which record to read
+  v_state := CASE WHEN TG_OP = 'DELETE' THEN OLD.state ELSE NEW.state END;
+  v_emp_id := CASE WHEN TG_OP = 'DELETE' THEN OLD.employee_id ELSE NEW.employee_id END;
+
+  -- Dates: prefer request_date_*, else fallback to casted timestamps
+  IF TG_OP = 'DELETE' THEN
+    v_start_date := COALESCE(OLD.request_date_from, (OLD.date_from AT TIME ZONE 'UTC')::date);
+    v_end_date   := COALESCE(OLD.request_date_to,   (OLD.date_to   AT TIME ZONE 'UTC')::date);
+    v_reason     := COALESCE(OLD.private_name, OLD.notes, '');
+  ELSE
+    v_start_date := COALESCE(NEW.request_date_from, (NEW.date_from AT TIME ZONE 'UTC')::date);
+    v_end_date   := COALESCE(NEW.request_date_to,   (NEW.date_to   AT TIME ZONE 'UTC')::date);
+    v_reason     := COALESCE(NEW.private_name, NEW.notes, '');
+  END IF;
+
+  -- Map ERP state -> mobile status
+  v_status_mobile := CASE v_state
+    WHEN 'validate' THEN 'approved'
+    WHEN 'confirm'  THEN 'pending'
+    WHEN 'refuse'   THEN 'rejected'
+    ELSE 'pending'
+  END;
+
+  -- Resolve emp_no for employee
+  SELECT COALESCE(he."x_Emp_No", he.barcode, he.identification_id)
+    INTO v_emp_no
+  FROM hr_employee he
+  WHERE he.id = v_emp_id
+  LIMIT 1;
+
+  IF v_emp_no IS NULL OR btrim(v_emp_no) = '' THEN
+    IF TG_OP = 'DELETE' THEN RETURN OLD; END IF;
+    RETURN NEW;
+  END IF;
+
+  -- Resolve leave type readable name
+  SELECT COALESCE(
+           CASE
+             WHEN hlt.name::text LIKE '{%' THEN (hlt.name::jsonb)->>'en_US'
+             ELSE regexp_replace(hlt.name::text, '^"|"$', '', 'g')
+           END,
+           ''
+         )
+    INTO v_type_name
+  FROM hr_leave_type hlt
+  WHERE hlt.id = (CASE WHEN TG_OP='DELETE' THEN OLD.holiday_status_id ELSE NEW.holiday_status_id END)
+  LIMIT 1;
+
+  -- Map ERP type label to mobile allowed code values (per leaves_type_check)
+  -- Known examples seen in mobile: 'annual', 'medical'
+  v_type_code := CASE lower(coalesce(v_type_name, ''))
+    WHEN 'annual leave'        THEN 'annual'
+    WHEN 'annual'              THEN 'annual'
+    WHEN 'sick leave'          THEN 'medical'
+    WHEN 'medical leave'       THEN 'medical'
+    WHEN 'medical'             THEN 'medical'
+    WHEN 'unpaid'              THEN 'unpaid'
+    WHEN 'paid leave'          THEN 'paid'
+    WHEN 'compensatory days'   THEN 'comp_off'
+    WHEN 'extra hours'         THEN 'overtime'
+    ELSE CASE
+           WHEN lower(v_type_name) LIKE '%sick%' OR lower(v_type_name) LIKE '%medical%' THEN 'medical'
+           WHEN lower(v_type_name) LIKE '%annual%' THEN 'annual'
+           WHEN lower(v_type_name) LIKE '%unpaid%' THEN 'unpaid'
+           WHEN lower(v_type_name) LIKE '%paid%' THEN 'paid'
+           ELSE 'annual'
+         END
+  END;
+
+  IF TG_OP IN ('INSERT','UPDATE') THEN
+    -- Non-returning upsert in mobile.leaves
+    v_sql := format($CMD$
+      SET LOCAL app.sync_origin = 'erp';
+
+      INSERT INTO public.leaves (
+        id, user_id, start_date, end_date, type, status, reason, created_at, updated_at
+      )
+      SELECT
+        md5(random()::text || clock_timestamp()::text),
+        u.id, %L, %L, %L, %L, %L, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP
+      FROM (SELECT id FROM public.users WHERE emp_no = %L LIMIT 1) AS u
+      WHERE u.id IS NOT NULL
+      ON CONFLICT (user_id, start_date, end_date, type)
+      DO UPDATE SET
+        type       = EXCLUDED.type,
+        status     = EXCLUDED.status,
+        reason     = EXCLUDED.reason,
+        updated_at = CURRENT_TIMESTAMP;
+    $CMD$, v_start_date, v_end_date, v_type_code, v_status_mobile, v_reason, v_emp_no);
+
+    PERFORM dblink_exec(v_conn, v_sql);
+    RETURN NEW;
+
+  ELSIF TG_OP = 'DELETE' THEN
+    v_sql := format($CMD$
+      SET LOCAL app.sync_origin = 'erp';
+
+      DELETE FROM public.leaves
+      WHERE user_id = (SELECT id FROM public.users WHERE emp_no = %L LIMIT 1)
+        AND start_date = %L
+        AND end_date   = %L
+        AND type       = %L;
+    $CMD$, v_emp_no, v_start_date, v_end_date, v_type_code);
+
+    PERFORM dblink_exec(v_conn, v_sql);
+    RETURN OLD;
+  END IF;
+
+  RETURN NEW;
+END;
+$function$

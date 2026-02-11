@@ -1,0 +1,175 @@
+=================================================================================
+COMPLETE SITE/PROJECT TRACKING IMPLEMENTATION
+=================================================================================
+Date: 2026-01-09
+Purpose: Store BOTH IDs and TEXT NAMES for site and project on clock-in/clock-out
+
+=================================================================================
+DATABASE COLUMNS ADDED
+=================================================================================
+
+employee_clocking_line table now has:
+
+CLOCK-IN COLUMNS:
+  ✅ site_id              - INTEGER (Foreign Key to project_project)
+  ✅ site_name            - VARCHAR(255) (Text name preserved)
+  ✅ project_id           - INTEGER (Already existed - FK to project_project)
+  ✅ project_name         - VARCHAR(255) (Text name preserved)
+
+CLOCK-OUT COLUMNS:
+  ✅ clock_out_site_id    - INTEGER (Foreign Key to project_project)
+  ✅ clock_out_site_name  - VARCHAR(255) (Text name preserved)
+  ✅ clock_out_project_id - INTEGER (Foreign Key to project_project)
+  ✅ clock_out_project_name - VARCHAR(255) (Text name preserved)
+
+=================================================================================
+WHY STORE BOTH ID AND NAME?
+=================================================================================
+
+✅ DATA INTEGRITY: Even if site/project is deleted from master table, you keep the text record
+✅ HISTORICAL ACCURACY: Names at time of clock-in/out are preserved
+✅ REPORTING: Can generate reports even after projects are archived
+✅ AUDIT TRAIL: Complete record of where employee was, regardless of future changes
+
+=================================================================================
+MIGRATION SQL
+=================================================================================
+
+Run this SQL on your PostgreSQL database:
+
+-- Add Clock-IN columns
+ALTER TABLE employee_clocking_line ADD COLUMN IF NOT EXISTS site_id INTEGER;
+ALTER TABLE employee_clocking_line ADD COLUMN IF NOT EXISTS site_name VARCHAR(255);
+ALTER TABLE employee_clocking_line ADD COLUMN IF NOT EXISTS project_name VARCHAR(255);
+
+-- Add Clock-OUT columns  
+ALTER TABLE employee_clocking_line ADD COLUMN IF NOT EXISTS clock_out_site_id INTEGER;
+ALTER TABLE employee_clocking_line ADD COLUMN IF NOT EXISTS clock_out_site_name VARCHAR(255);
+ALTER TABLE employee_clocking_line ADD COLUMN IF NOT EXISTS clock_out_project_id INTEGER;
+ALTER TABLE employee_clocking_line ADD COLUMN IF NOT EXISTS clock_out_project_name VARCHAR(255);
+
+-- Add Foreign Keys
+ALTER TABLE employee_clocking_line 
+  ADD CONSTRAINT IF NOT EXISTS fk_employee_clocking_line_site 
+  FOREIGN KEY (site_id) REFERENCES project_project(id) ON DELETE SET NULL;
+
+ALTER TABLE employee_clocking_line 
+  ADD CONSTRAINT IF NOT EXISTS fk_employee_clocking_line_clock_out_site 
+  FOREIGN KEY (clock_out_site_id) REFERENCES project_project(id) ON DELETE SET NULL;
+
+ALTER TABLE employee_clocking_line 
+  ADD CONSTRAINT IF NOT EXISTS fk_employee_clocking_line_clock_out_project 
+  FOREIGN KEY (clock_out_project_id) REFERENCES project_project(id) ON DELETE SET NULL;
+
+-- Add Indexes (for performance)
+CREATE INDEX IF NOT EXISTS idx_employee_clocking_line_site_id ON employee_clocking_line(site_id);
+CREATE INDEX IF NOT EXISTS idx_employee_clocking_line_clock_out_site_id ON employee_clocking_line(clock_out_site_id);
+CREATE INDEX IF NOT EXISTS idx_employee_clocking_line_clock_out_project_id ON employee_clocking_line(clock_out_project_id);
+
+-- Verify
+SELECT column_name, data_type, character_maximum_length, is_nullable 
+FROM information_schema.columns 
+WHERE table_name = 'employee_clocking_line' 
+  AND column_name IN ('site_id', 'site_name', 'project_name', 
+                      'clock_out_site_id', 'clock_out_site_name',
+                      'clock_out_project_id', 'clock_out_project_name')
+ORDER BY column_name;
+
+=================================================================================
+CODE CHANGES MADE
+=================================================================================
+
+File: src/attendanceRoutes.js
+
+1. CLOCK-IN (Lines 96-136):
+   - Looks up site_id from site name
+   - Looks up project_id from project name
+   - Stores BOTH IDs and names in INSERT statement:
+     * site_id + site_name
+     * project_id + project_name
+
+2. CLOCK-OUT (Lines 338-370, 428-460):
+   - Looks up clock_out_site_id from site name
+   - Looks up clock_out_project_id from project name  
+   - Stores BOTH IDs and names in UPDATE statement:
+     * clock_out_site_id + clock_out_site_name
+     * clock_out_project_id + clock_out_project_name
+
+=================================================================================
+EXAMPLE SCENARIO
+=================================================================================
+
+User clocks IN:
+  - Selects: "Main Office" + "Project Alpha"
+  - Stored: site_id=10, site_name="Main Office", 
+            project_id=25, project_name="Project Alpha"
+
+User clocks OUT:
+  - Selects: "Branch Office" + "Project Beta"
+  - Stored: clock_out_site_id=11, clock_out_site_name="Branch Office",
+            clock_out_project_id=26, clock_out_project_name="Project Beta"
+
+Later, "Project Alpha" gets deleted from project_project table:
+  ✅ Record still shows: project_name="Project Alpha" (preserved!)
+  ⚠️  project_id would be NULL (cascaded due to ON DELETE SET NULL)
+
+=================================================================================
+DEPLOYMENT STEPS
+=================================================================================
+
+1. RUN MIGRATION SQL (see above)
+   - Execute in your PostgreSQL client
+   - Verify all 7 columns were added
+
+2. RESTART BACKEND API
+   PowerShell:
+   Restart-WebAppPool -Name "AttendMsApi2AppPool"
+
+3. TEST THE FLOW
+   a) Clock IN with site + project
+   b) Check database - verify ALL fields populated:
+      SELECT site_id, site_name, project_id, project_name 
+      FROM employee_clocking_line 
+      WHERE employee_id = [your_employee_id]
+      ORDER BY clock_in_date DESC LIMIT 1;
+
+   c) Clock OUT with different site + project
+   d) Check database - verify clock-out fields populated:
+      SELECT clock_out_site_id, clock_out_site_name,
+             clock_out_project_id, clock_out_project_name
+      FROM employee_clocking_line 
+      WHERE employee_id = [your_employee_id]
+      ORDER BY clock_in_date DESC LIMIT 1;
+
+=================================================================================
+FILES CREATED/MODIFIED
+=================================================================================
+
+CREATED:
+  ✅ migrations/add_complete_site_project_tracking.sql - Complete migration script
+  ✅ COMPLETE_SITE_PROJECT_TRACKING.txt - This documentation
+
+MODIFIED:
+  ✅ src/attendanceRoutes.js - Clock-in and clock-out logic updated
+
+=================================================================================
+ROLLBACK (if needed)
+=================================================================================
+
+DROP INDEX IF EXISTS idx_employee_clocking_line_clock_out_project_id;
+DROP INDEX IF EXISTS idx_employee_clocking_line_clock_out_site_id;
+DROP INDEX IF EXISTS idx_employee_clocking_line_site_id;
+
+ALTER TABLE employee_clocking_line DROP CONSTRAINT IF EXISTS fk_employee_clocking_line_clock_out_project;
+ALTER TABLE employee_clocking_line DROP CONSTRAINT IF EXISTS fk_employee_clocking_line_clock_out_site;
+ALTER TABLE employee_clocking_line DROP CONSTRAINT IF EXISTS fk_employee_clocking_line_site;
+
+ALTER TABLE employee_clocking_line DROP COLUMN IF EXISTS clock_out_project_name;
+ALTER TABLE employee_clocking_line DROP COLUMN IF EXISTS clock_out_project_id;
+ALTER TABLE employee_clocking_line DROP COLUMN IF EXISTS clock_out_site_name;
+ALTER TABLE employee_clocking_line DROP COLUMN IF EXISTS clock_out_site_id;
+ALTER TABLE employee_clocking_line DROP COLUMN IF EXISTS project_name;
+ALTER TABLE employee_clocking_line DROP COLUMN IF EXISTS site_name;
+ALTER TABLE employee_clocking_line DROP COLUMN IF EXISTS site_id;
+
+=================================================================================

@@ -1,0 +1,56 @@
+
+=== BRK ===
+{
+  "type": "simple_table",
+  "table": "employee_payslip",
+  "columns": {
+    "id": "id",
+    "empNo": "x_emp_no",
+    "month": "month",
+    "netPay": "net_pay_amount",
+    "status": "status",
+    "payDate": "x_pay_date",
+    "payYear": "pay_year",
+    "grossPay": "gross_pay_amount",
+    "allowance": "x_allowance",
+    "deduction": "deduction_amount",
+    "createDate": "create_date",
+    "employeeId": "employee_id",
+    "payslipUrl": "payslipurl",
+    "basicSalary": "x_basic_salary",
+    "employeeName": "employee_name",
+    "payslipPeriod": "payslip_period"
+  },
+  "id_column": "employee_id"
+}
+
+=== AILAB ===
+{
+  "type": "raw_sql",
+  "query": "SELECT hp.id, hp.employee_id as \"employeeId\", he.name as \"employeeName\", he.\"x_Emp_No\" as \"empNo\", CAST(EXTRACT(YEAR FROM hp.date_to) AS INTEGER) as \"payYear\", TRIM(TO_CHAR(hp.date_to, 'Month')) as \"month\", TO_CHAR(hp.date_from, 'DD/MM/YYYY') || ' - ' || TO_CHAR(hp.date_to, 'DD/MM/YYYY') as \"payslipPeriod\", hp.date_to as \"payDate\", COALESCE((SELECT SUM(total) FROM hr_payslip_line WHERE slip_id = hp.id AND code = 'BASIC'), 0) as \"basicSalary\", COALESCE((SELECT SUM(total) FROM hr_payslip_line WHERE slip_id = hp.id AND code IN ('HRA', 'ALW')), 0) as \"allowance\", COALESCE((SELECT SUM(ABS(total)) FROM hr_payslip_line WHERE slip_id = hp.id AND amount < 0), 0) as \"deduction\", COALESCE((SELECT SUM(total) FROM hr_payslip_line WHERE slip_id = hp.id AND code = 'GROSS'), 0) as \"grossPay\", COALESCE((SELECT SUM(total) FROM hr_payslip_line WHERE slip_id = hp.id AND code = 'NET'), 0) as \"netPay\", '' as \"payslipUrl\", hp.state as \"status\", hp.create_date as \"createDate\" FROM hr_payslip hp JOIN hr_employee he ON hp.employee_id = he.id WHERE hp.employee_id = $1 AND hp.state IN ('done', 'paid') ORDER BY hp.date_to DESC LIMIT 12"
+}
+
+=== SKK ===
+{
+  "type": "simple_table",
+  "table": "mobile_payslip_view",
+  "columns": {
+    "id": "id",
+    "empNo": "x_emp_no",
+    "month": "month",
+    "netPay": "net_pay_amount",
+    "status": "status",
+    "payDate": "x_pay_date",
+    "payYear": "pay_year",
+    "grossPay": "gross_pay_amount",
+    "allowance": "x_allowance",
+    "deduction": "deduction_amount",
+    "createDate": "create_date",
+    "employeeId": "employee_id",
+    "payslipUrl": "payslipurl",
+    "basicSalary": "x_basic_salary",
+    "employeeName": "employee_name",
+    "payslipPeriod": "payslip_period"
+  },
+  "id_column": "employee_id"
+}

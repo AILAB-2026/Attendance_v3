@@ -1,0 +1,34 @@
+        column_name         |     data_type     
+----------------------------+-------------------
+ id                         | integer
+ resource_id                | integer
+ company_id                 | integer
+ resource_calendar_id       | integer
+ message_main_attachment_id | integer
+ color                      | integer
+ department_id              | integer
+ job_id                     | integer
+ address_id                 | integer
+ work_contact_id            | integer
+ work_location_id           | integer
+ user_id                    | integer
+ parent_id                  | integer
+ coach_id                   | integer
+ private_state_id           | integer
+ private_country_id         | integer
+ country_id                 | integer
+ children                   | integer
+ country_of_birth           | integer
+ bank_account_id            | integer
+ distance_home_work         | integer
+ km_home_work               | integer
+ departure_reason_id        | integer
+ create_uid                 | integer
+ write_uid                  | integer
+ name                       | character varying
+ job_title                  | character varying
+ work_phone                 | character varying
+ mobile_phone               | character varying
+ work_email                 | character varying
+(30 rows)
+

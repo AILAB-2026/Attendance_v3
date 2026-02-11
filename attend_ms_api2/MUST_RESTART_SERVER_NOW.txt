@@ -1,0 +1,40 @@
+╔════════════════════════════════════════════════════════════════╗
+║                  ⚠️  SERVER RESTART REQUIRED  ⚠️                ║
+╚════════════════════════════════════════════════════════════════╝
+
+The leave requests endpoint code has been updated again.
+
+WHAT TO DO:
+
+1. Go to the node terminal (@[TerminalName: node, ProcessId: 37624])
+
+2. Press Ctrl+C to stop the server
+
+3. Run: npm start
+   (or: node src/app.js)
+
+4. Wait for "Server running on port 3001"
+
+5. Run test: node SIMPLE_TEST_ALL.js
+
+WHAT TO LOOK FOR:
+
+When you run the test, check the server logs for:
+"🔄 NEW CODE LOADED - Leave requests endpoint v2"
+
+If you see this message, the new code is loaded!
+If you DON'T see this message, the old code is still running.
+
+EXPECTED TEST RESULT:
+
+=== TESTING ALL 4 ISSUES ===
+
+1. LOGIN: ✅ PASS
+2. FACE RECOGNITION: ✅ PASS - Enrolled
+3. LEAVE BALANCE: ✅ PASS - Annual:13 Medical:13
+4. LEAVE REQUESTS: ✅ PASS - Found X requests  <-- THIS SHOULD NOW PASS!
+5. PAYSLIPS: ✅ PASS - Found 8 payslips
+
+=== TEST COMPLETE ===
+
+Once ALL 5 tests show ✅ PASS, we can build the APK!
