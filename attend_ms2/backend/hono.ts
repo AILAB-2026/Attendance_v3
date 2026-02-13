@@ -542,7 +542,7 @@ app.get('/v1/face-health', async (c) => {
     const isHealthy = await checkFaceApiHealth();
     return c.json({
       healthy: isHealthy,
-      apiUrl: process.env.FACE_API_URL || 'http://192.168.0.103:7010',
+      apiUrl: process.env.FACE_API_URL || 'http://192.168.31.45:7012',
       message: isHealthy ? 'Face recognition API is healthy' : 'Face recognition API is unavailable'
     });
   } catch (e) {

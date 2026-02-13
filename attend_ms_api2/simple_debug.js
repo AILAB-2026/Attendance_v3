@@ -10,7 +10,7 @@ app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
-  
+
   if (req.method === 'OPTIONS') {
     res.sendStatus(200);
     return;
@@ -38,16 +38,16 @@ app.use((req, res, next) => {
 // Handle all requests
 app.all('*', (req, res) => {
   console.log(`📱 REQUEST: ${req.method} ${req.url}`);
-  
+
   if (req.url.includes('site')) {
     console.log('🏢 Sites request detected - returning test sites');
-    
+
     const testSites = [
       { siteId: 1, siteName: "DEBUG Site 1" },
       { siteId: 2, siteName: "DEBUG Site 2" },
       { siteId: 3, siteName: "DEBUG Site 3" }
     ];
-    
+
     res.json({
       success: true,
       message: "Debug sites from port 3002",
@@ -78,7 +78,7 @@ app.listen(port, () => {
   console.log('');
   console.log('📱 TO TEST WITH MOBILE APP:');
   console.log(`   1. Change mobile app base URL to: http://localhost:${port}`);
-  console.log(`   2. Or use your computer's IP: http://192.168.x.x:${port}`);
+  console.log(`   2. Or use your computer's IP: http://192.168.31.45:${port}`);
   console.log('   3. Try to load sites in the mobile app');
   console.log('   4. Watch this console for the exact requests');
   console.log('');

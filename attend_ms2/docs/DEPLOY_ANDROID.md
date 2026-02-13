@@ -93,7 +93,7 @@ EAS_NO_VCS=1 eas update --branch production --message "Bug fixes"
 - White screen / network errors: confirm `EXPO_PUBLIC_API_BASE_URL` and server CORS.
 - Play upload errors: increment `android.versionCode` and rebuild.
 - Native crash on startup: verify minimum SDK, permissions, and binary built against supported Expo SDK.
-- Device testing cannot reach local API: set both `API_BASE_URL` and `EXPO_PUBLIC_API_BASE_URL` to your machine LAN IP (e.g., `http://192.168.1.100:3000`). Ensure firewall allows inbound.
+- Device testing cannot reach local API: set both `API_BASE_URL` and `EXPO_PUBLIC_API_BASE_URL` to your machine LAN IP (e.g., `http://192.168.31.45:3000`). Ensure firewall allows inbound.
 
 10) Rollback Strategy
 - Keep an internal track build ready.

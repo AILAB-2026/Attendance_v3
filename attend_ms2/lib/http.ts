@@ -76,8 +76,9 @@ http.interceptors.response.use(
         return Promise.reject(e);
       }
 
-      const e = new Error(text || `API request failed: ${status}`) as Error & { status?: number };
+      const e = new Error(text || `API request failed: ${status}`) as Error & { status?: number; title?: string };
       e.status = status;
+      if (data?.title) e.title = data.title;
       return Promise.reject(e);
     }
 

@@ -1,0 +1,646 @@
+[2026-02-13T10:25:19.330Z] GET /health 304 9.978 ms - res-body: {"status":"healthy"}
+[2026-02-13T10:25:19.608Z] GET /health 304 6.136 ms - res-body: {"status":"healthy"}
+[2026-02-13T10:25:34.299Z] GET /health 304 2.587 ms - res-body: {"status":"healthy"}
+[2026-02-13T10:25:49.301Z] GET /health 304 1.795 ms - res-body: {"status":"healthy"}
+[2026-02-13T10:26:04.320Z] GET /health 304 1.321 ms - res-body: {"status":"healthy"}
+[2026-02-13T10:26:18.127Z] POST /auth/login-multi 200 419.046 ms - res-body: {"success":true,"message":"Login success","data":{"employeeNo":"AILAB0018","name":"Nishanth MR","email":"ailab0018@company.com","role":"employee","companyCode":"AILAB","sessionToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbXBsb3llZUlkIjozNTAsImVtcGxveWVlTm8iOiJBSUxBQjAwMTgiLCJjdXN0b21lcklkIjoxLCJuYW1lIjoiTmlzaGFudGggTVIiLCJjb21wYW55Q29kZSI6IkFJTEFCIiwiaWF0IjoxNzcwOTc4Mzc4LCJleHAiOjE3Nzg3NTQzNzh9.sCQPoIFHJbGLzeasSfK_Vdu9euD0_SszNS7Z-rkTNwg","profileImageUri":null,"modules":{"attendance":true,"... [92 chars truncated]
+[2026-02-13T10:26:18.286Z] GET /users/profile?companyCode=AILAB&employeeNo=AILAB0018 304 104.706 ms - res-body: {"success":true,"data":{"id":350,"employeeNo":"AILAB0018","name":"Nishanth MR","email":null,"companyId":1,"workingDays":6,"profileImageUri":null,"enableHours":true,"role":"employee","leaveBalance":{"annual":7,"medical":5,"compensatory":0,"hospitalised":0,"childcare":0,"unpaid":0,"others":0},"payrollEnable":false,"modules":{"attendance":true,"history":true,"leave":true,"schedule":false,"payroll":true,"feedback":false,"survey":true},"config":{"workingDays":6,"holidays":["2025-03-31","2025-04-18","... [80 chars truncated]
+[2026-02-13T10:26:18.742Z] GET /face/status?companyCode=AILAB&employeeNo=AILAB0018 304 13.077 ms - res-body: {"success":true,"data":{"employeeNo":"AILAB0018","name":"Nishanth MR","registered":true,"message":"Face already enrolled. You can clock in/out."}}
+[2026-02-13T10:26:19.058Z] GET /attendance/today?employeeNo=AILAB0018&companyCode=AILAB 200 285.602 ms - res-body: {"success":true,"data":{"date":"2026-02-13","entries":[],"normalHours":0,"overtimeHours":0,"restHours":0,"totalHours":0,"status":"absent"}}
+[2026-02-13T10:26:19.060Z] GET /settings/company-name?companyCode=AILAB 304 227.121 ms - res-body: {"success":true,"data":{"companyName":"AI LAB TECHNOLOGIES PTE LTD"}}
+[2026-02-13T10:26:19.098Z] GET /schedule/assigned?companyCode=AILAB&employeeNo=AILAB0018&date=2026-02-13 200 13.790 ms - res-body: {"success":true,"data":[{"id":"145","siteName":"AI LAB","projectName":"AI LAB","projectId":145,"isOpen":true,"startDate":"2026-02-13","endDate":null}]}
+[2026-02-13T10:26:19.110Z] GET /leave/balance 200 323.049 ms - res-body: {"success":true,"data":{"balance":{"annual":7,"medical":5,"emergency":0,"unpaid":0},"statistics":{"totalRequests":0,"pendingRequests":0,"approvedDays":0},"details":[{"leaveType":"Annual Leave (7.0 day(s))","leaveTypeId":8,"allocated":7,"taken":0,"pending":0,"balance":7},{"leaveType":"Medical Leave (5.0 day(s))","leaveTypeId":7,"allocated":5,"taken":0,"pending":0,"balance":5}]}}
+[2026-02-13T10:26:19.123Z] GET /leave/requests 304 313.036 ms - res-body: []
+[2026-02-13T10:26:19.136Z] GET /leave?companyCode=AILAB&employeeNo=AILAB0018 304 334.910 ms - res-body: {"data":[]}
+[2026-02-13T10:26:19.182Z] GET /schedule/assigned?companyCode=AILAB&employeeNo=AILAB0018&date=2026-02-13 200 95.719 ms - res-body: {"success":true,"data":[{"id":"145","siteName":"AI LAB","projectName":"AI LAB","projectId":145,"isOpen":true,"startDate":"2026-02-13","endDate":null}]}
+[2026-02-13T10:26:19.189Z] GET /schedule/project-tasks?companyCode=AILAB&projectName=AI+LAB 304 33.343 ms - res-body: {"success":true,"data":[]}
+[2026-02-13T10:26:19.211Z] GET /schedule/project-tasks?companyCode=AILAB&projectName=AI+LAB 304 3.758 ms - res-body: {"success":true,"data":[]}
+[2026-02-13T10:26:19.313Z] GET /health 304 1.244 ms - res-body: {"status":"healthy"}
+[2026-02-13T10:26:23.866Z] GET /users/profile?companyCode=AILAB&employeeNo=AILAB0018 304 62.313 ms - res-body: {"success":true,"data":{"id":350,"employeeNo":"AILAB0018","name":"Nishanth MR","email":null,"companyId":1,"workingDays":6,"profileImageUri":null,"enableHours":true,"role":"employee","leaveBalance":{"annual":7,"medical":5,"compensatory":0,"hospitalised":0,"childcare":0,"unpaid":0,"others":0},"payrollEnable":false,"modules":{"attendance":true,"history":true,"leave":true,"schedule":false,"payroll":true,"feedback":false,"survey":true},"config":{"workingDays":6,"holidays":["2025-03-31","2025-04-18","... [80 chars truncated]
+[2026-02-13T10:26:24.108Z] GET /settings/company-name?companyCode=AILAB 304 10.426 ms - res-body: {"success":true,"data":{"companyName":"AI LAB TECHNOLOGIES PTE LTD"}}
+[2026-02-13T10:26:24.116Z] GET /schedule/assigned?companyCode=AILAB&employeeNo=AILAB0018&date=2026-02-13 304 13.850 ms - res-body: {"success":true,"data":[{"id":"145","siteName":"AI LAB","projectName":"AI LAB","projectId":145,"isOpen":true,"startDate":"2026-02-13","endDate":null}]}
+[2026-02-13T10:26:24.118Z] GET /schedule/assigned?companyCode=AILAB&employeeNo=AILAB0018&date=2026-02-13 304 17.318 ms - res-body: {"success":true,"data":[{"id":"145","siteName":"AI LAB","projectName":"AI LAB","projectId":145,"isOpen":true,"startDate":"2026-02-13","endDate":null}]}
+[2026-02-13T10:26:24.140Z] GET /schedule/project-tasks?companyCode=AILAB&projectName=AI+LAB 304 9.981 ms - res-body: {"success":true,"data":[]}
+[2026-02-13T10:26:24.158Z] GET /schedule/project-tasks?companyCode=AILAB&projectName=AI+LAB 304 25.767 ms - res-body: {"success":true,"data":[]}
+[2026-02-13T10:26:25.019Z] GET /surveys/list?companyCode=AILAB&employeeNo=AILAB0018 500 96.950 ms - res-body: {"success":false,"message":"Failed to fetch surveys","error":"relation \"survey_survey\" does not exist"}
+[2026-02-13T10:26:26.904Z] GET /surveys/list?companyCode=AILAB&employeeNo=AILAB0018 500 60.883 ms - res-body: {"success":false,"message":"Failed to fetch surveys","error":"relation \"survey_survey\" does not exist"}
+[2026-02-13T10:26:34.364Z] GET /health 304 1.806 ms - res-body: {"status":"healthy"}
+[2026-02-13T10:26:49.361Z] GET /health 304 0.661 ms - res-body: {"status":"healthy"}
+[2026-02-13T10:27:04.382Z] GET /health 304 1.430 ms - res-body: {"status":"healthy"}
+[2026-02-13T10:27:16.300Z] POST /auth/login-multi 401 177.474 ms - res-body: {"success":false,"message":"Invalid employee number. Please also verify your password."}
+[2026-02-13T10:27:19.399Z] GET /health 304 0.729 ms - res-body: {"status":"healthy"}
+[2026-02-13T10:27:31.632Z] POST /auth/login-multi 200 16.440 ms - res-body: {"success":true,"message":"Login success","data":{"employeeNo":"TEST-001","name":"Prasanna D","email":"test-001@company.com","role":"employee","companyCode":"SKK","sessionToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbXBsb3llZUlkIjozOTEsImVtcGxveWVlTm8iOiJURVNULTAwMSIsImN1c3RvbWVySWQiOjEsIm5hbWUiOiJQcmFzYW5uYSBEIiwiY29tcGFueUNvZGUiOiJTS0siLCJpYXQiOjE3NzA5Nzg0NTEsImV4cCI6MTc3ODc1NDQ1MX0.8zjgEiwOjD7rSZAFy4Mtfo20UibIn5GK6_JXcb2Wvd8","profileImageUri":"/uploads/profiles/profile-1768069255972-6440... [131 chars truncated]
+[2026-02-13T10:27:31.754Z] GET /users/profile?companyCode=SKK&employeeNo=TEST-001 304 96.242 ms - res-body: {"success":true,"data":{"id":391,"employeeNo":"TEST-001","name":"Prasanna D","email":null,"companyId":1,"workingDays":6,"profileImageUri":"/uploads/profiles/profile-1768069255972-644017712.jpg","enableHours":false,"role":"employee","leaveBalance":{"annual":30,"medical":10,"compensatory":0,"hospitalised":40,"childcare":0,"unpaid":10,"others":0},"payrollEnable":true,"modules":{"attendance":true,"history":true,"leave":true,"schedule":true,"payroll":true,"feedback":true,"survey":true},"config":{"wor... [313 chars truncated]
+[2026-02-13T10:27:32.119Z] GET /face/status?companyCode=SKK&employeeNo=TEST-001 200 19.493 ms - res-body: {"success":true,"data":{"employeeNo":"TEST-001","name":"Prasanna D","registered":true,"message":"Face already enrolled. You can clock in/out."}}
+[2026-02-13T10:27:32.203Z] GET /leave/balance 200 67.053 ms - res-body: {"success":true,"data":{"balance":{"annual":30,"medical":10,"emergency":0,"unpaid":10},"statistics":{"totalRequests":0,"pendingRequests":0,"approvedDays":0},"details":[{"leaveType":"Annual Leave (30.0 day(s))","leaveTypeId":8,"allocated":30,"taken":0,"pending":0,"balance":30},{"leaveType":"Hospitalization Leave (40.0 day(s))","leaveTypeId":55,"allocated":40,"taken":0,"pending":0,"balance":40},{"leaveType":"Medical Leave (10.0 day(s))","leaveTypeId":7,"allocated":10,"taken":0,"pending":0,"balance... [119 chars truncated]
+[2026-02-13T10:27:32.262Z] GET /settings/company-name?companyCode=SKK 304 58.296 ms - res-body: {"success":true,"data":{"companyName":"SKK TECHNOLOGIES PTE LTD"}}
+[2026-02-13T10:27:32.314Z] GET /schedule/assigned?companyCode=SKK&employeeNo=TEST-001&date=2026-02-13 200 73.878 ms - res-body: {"success":true,"data":[]}
+[2026-02-13T10:27:32.357Z] GET /leave/requests 304 182.637 ms - res-body: []
+[2026-02-13T10:27:32.359Z] GET /attendance/today?employeeNo=TEST-001&companyCode=SKK 200 211.392 ms - res-body: {"success":true,"data":{"date":"2026-02-13","entries":[],"normalHours":0,"overtimeHours":0,"restHours":0,"totalHours":0,"status":"absent"}}
+[2026-02-13T10:27:32.408Z] GET /leave?companyCode=SKK&employeeNo=TEST-001 304 242.954 ms - res-body: {"data":[]}
+[2026-02-13T10:27:32.437Z] GET /schedule/assigned?companyCode=SKK&employeeNo=TEST-001&date=2026-02-13 200 152.312 ms - res-body: {"success":true,"data":[]}
+[2026-02-13T10:27:32.460Z] GET /users/profile?companyCode=SKK&employeeNo=TEST-001 304 20.218 ms - res-body: {"success":true,"data":{"id":391,"employeeNo":"TEST-001","name":"Prasanna D","email":null,"companyId":1,"workingDays":6,"profileImageUri":"/uploads/profiles/profile-1768069255972-644017712.jpg","enableHours":false,"role":"employee","leaveBalance":{"annual":30,"medical":10,"compensatory":0,"hospitalised":40,"childcare":0,"unpaid":10,"others":0},"payrollEnable":true,"modules":{"attendance":true,"history":true,"leave":true,"schedule":true,"payroll":true,"feedback":true,"survey":true},"config":{"wor... [313 chars truncated]
+[2026-02-13T10:27:32.612Z] GET /settings/company-name?companyCode=SKK 304 13.906 ms - res-body: {"success":true,"data":{"companyName":"SKK TECHNOLOGIES PTE LTD"}}
+[2026-02-13T10:27:32.622Z] GET /schedule/assigned?companyCode=SKK&employeeNo=TEST-001&date=2026-02-13 304 18.262 ms - res-body: {"success":true,"data":[]}
+[2026-02-13T10:27:32.645Z] GET /schedule/assigned?companyCode=SKK&employeeNo=TEST-001&date=2026-02-13 304 38.540 ms - res-body: {"success":true,"data":[]}
+[2026-02-13T10:27:34.453Z] GET /health 304 0.537 ms - res-body: {"status":"healthy"}
+[2026-02-13T10:27:43.179Z] GET /surveys/list?companyCode=SKK&employeeNo=TEST-001 500 81.788 ms - res-body: {"success":false,"message":"Failed to fetch surveys","error":"column \"survey_start_date\" does not exist"}
+[2026-02-13T10:27:44.613Z] GET /surveys/list?companyCode=SKK&employeeNo=TEST-001 500 23.265 ms - res-body: {"success":false,"message":"Failed to fetch surveys","error":"column \"survey_start_date\" does not exist"}
+[2026-02-13T10:27:47.080Z] GET /surveys/list?companyCode=SKK&employeeNo=TEST-001 500 17.618 ms - res-body: {"success":false,"message":"Failed to fetch surveys","error":"column \"survey_start_date\" does not exist"}
+[2026-02-13T10:27:48.013Z] GET /surveys/list?companyCode=SKK&employeeNo=TEST-001 500 39.214 ms - res-body: {"success":false,"message":"Failed to fetch surveys","error":"column \"survey_start_date\" does not exist"}
+[2026-02-13T10:27:49.344Z] GET /surveys/list?companyCode=SKK&employeeNo=TEST-001 500 26.901 ms - res-body: {"success":false,"message":"Failed to fetch surveys","error":"column \"survey_start_date\" does not exist"}
+[2026-02-13T10:27:49.404Z] GET /health 304 0.345 ms - res-body: {"status":"healthy"}
+[2026-02-13T10:27:52.853Z] GET /surveys/list?companyCode=SKK&employeeNo=TEST-001 500 93.249 ms - res-body: {"success":false,"message":"Failed to fetch surveys","error":"column \"survey_start_date\" does not exist"}
+[2026-02-13T10:28:04.461Z] GET /health 304 0.557 ms - res-body: {"status":"healthy"}
+[2026-02-13T10:28:19.522Z] GET /health 304 0.779 ms - res-body: {"status":"healthy"}
+[2026-02-13T10:28:34.451Z] GET /health 304 0.614 ms - res-body: {"status":"healthy"}
+[2026-02-13T10:28:49.477Z] GET /health 304 0.574 ms - res-body: {"status":"healthy"}
+[2026-02-13T10:29:04.489Z] GET /health 304 0.557 ms - res-body: {"status":"healthy"}
+[2026-02-13T10:29:19.499Z] GET /health 304 0.536 ms - res-body: {"status":"healthy"}
+[2026-02-13T10:29:34.496Z] GET /health 304 0.553 ms - res-body: {"status":"healthy"}
+[2026-02-13T10:29:49.509Z] GET /health 304 0.502 ms - res-body: {"status":"healthy"}
+[2026-02-13T10:30:04.509Z] GET /health 304 0.542 ms - res-body: {"status":"healthy"}
+[2026-02-13T10:31:22.865Z] GET /health 304 19.695 ms - res-body: {"status":"healthy"}
+[2026-02-13T10:31:34.709Z] GET /health 304 1.766 ms - res-body: {"status":"healthy"}
+[2026-02-13T10:31:49.646Z] GET /health 304 0.593 ms - res-body: {"status":"healthy"}
+[2026-02-13T10:32:04.601Z] GET /health 304 0.925 ms - res-body: {"status":"healthy"}
+[2026-02-13T10:33:00.506Z] GET /health 304 14.030 ms - res-body: {"status":"healthy"}
+[2026-02-13T10:33:00.609Z] GET /health 304 1.749 ms - res-body: {"status":"healthy"}
+[2026-02-13T10:33:00.722Z] GET /users/profile?companyCode=SKK&employeeNo=TEST-001 304 210.384 ms - res-body: {"success":true,"data":{"id":391,"employeeNo":"TEST-001","name":"Prasanna D","email":null,"companyId":1,"workingDays":6,"profileImageUri":"/uploads/profiles/profile-1768069255972-644017712.jpg","enableHours":false,"role":"employee","leaveBalance":{"annual":30,"medical":10,"compensatory":0,"hospitalised":40,"childcare":0,"unpaid":10,"others":0},"payrollEnable":true,"modules":{"attendance":true,"history":true,"leave":true,"schedule":true,"payroll":true,"feedback":true,"survey":true},"config":{"wor... [313 chars truncated]
+[2026-02-13T10:33:01.362Z] GET /attendance/today?employeeNo=TEST-001&companyCode=SKK 304 100.374 ms - res-body: {"success":true,"data":{"date":"2026-02-13","entries":[],"normalHours":0,"overtimeHours":0,"restHours":0,"totalHours":0,"status":"absent"}}
+[2026-02-13T10:33:01.411Z] GET /settings/company-name?companyCode=SKK 304 46.408 ms - res-body: {"success":true,"data":{"companyName":"SKK TECHNOLOGIES PTE LTD"}}
+[2026-02-13T10:33:01.423Z] GET /schedule/assigned?companyCode=SKK&employeeNo=TEST-001&date=2026-02-13 304 35.770 ms - res-body: {"success":true,"data":[]}
+[2026-02-13T10:33:01.441Z] GET /schedule/assigned?companyCode=SKK&employeeNo=TEST-001&date=2026-02-13 304 10.690 ms - res-body: {"success":true,"data":[]}
+[2026-02-13T10:33:01.465Z] GET /leave?companyCode=SKK&employeeNo=TEST-001 304 201.637 ms - res-body: {"data":[]}
+[2026-02-13T10:33:01.470Z] GET /leave/requests 304 187.210 ms - res-body: []
+[2026-02-13T10:33:01.476Z] GET /leave/balance 304 204.739 ms - res-body: {"success":true,"data":{"balance":{"annual":30,"medical":10,"emergency":0,"unpaid":10},"statistics":{"totalRequests":0,"pendingRequests":0,"approvedDays":0},"details":[{"leaveType":"Annual Leave (30.0 day(s))","leaveTypeId":8,"allocated":30,"taken":0,"pending":0,"balance":30},{"leaveType":"Hospitalization Leave (40.0 day(s))","leaveTypeId":55,"allocated":40,"taken":0,"pending":0,"balance":40},{"leaveType":"Medical Leave (10.0 day(s))","leaveTypeId":7,"allocated":10,"taken":0,"pending":0,"balance... [119 chars truncated]
+[2026-02-13T10:33:03.873Z] GET /users/profile?companyCode=SKK&employeeNo=TEST-001 304 26.127 ms - res-body: {"success":true,"data":{"id":391,"employeeNo":"TEST-001","name":"Prasanna D","email":null,"companyId":1,"workingDays":6,"profileImageUri":"/uploads/profiles/profile-1768069255972-644017712.jpg","enableHours":false,"role":"employee","leaveBalance":{"annual":30,"medical":10,"compensatory":0,"hospitalised":40,"childcare":0,"unpaid":10,"others":0},"payrollEnable":true,"modules":{"attendance":true,"history":true,"leave":true,"schedule":true,"payroll":true,"feedback":true,"survey":true},"config":{"wor... [313 chars truncated]
+[2026-02-13T10:33:04.095Z] GET /settings/company-name?companyCode=SKK 304 11.893 ms - res-body: {"success":true,"data":{"companyName":"SKK TECHNOLOGIES PTE LTD"}}
+[2026-02-13T10:33:04.108Z] GET /schedule/assigned?companyCode=SKK&employeeNo=TEST-001&date=2026-02-13 304 26.685 ms - res-body: {"success":true,"data":[]}
+[2026-02-13T10:33:04.115Z] GET /schedule/assigned?companyCode=SKK&employeeNo=TEST-001&date=2026-02-13 304 27.514 ms - res-body: {"success":true,"data":[]}
+[2026-02-13T10:33:15.454Z] GET /health 304 0.659 ms - res-body: {"status":"healthy"}
+[2026-02-13T10:33:30.464Z] GET /health 304 0.744 ms - res-body: {"status":"healthy"}
+[2026-02-13T10:33:45.453Z] GET /health 304 0.640 ms - res-body: {"status":"healthy"}
+[2026-02-13T10:34:00.478Z] GET /health 304 0.601 ms - res-body: {"status":"healthy"}
+[2026-02-13T10:34:15.495Z] GET /health 304 0.821 ms - res-body: {"status":"healthy"}
+[2026-02-13T10:34:17.689Z] POST /auth/login-multi 401 194.514 ms - res-body: {"success":false,"message":"Invalid employee number."}
+[2026-02-13T10:34:30.528Z] GET /health 304 1.232 ms - res-body: {"status":"healthy"}
+[2026-02-13T10:34:35.787Z] POST /auth/login-multi 401 26.426 ms - res-body: {"success":false,"message":"Invalid employee number."}
+[2026-02-13T10:34:45.529Z] GET /health 304 0.862 ms - res-body: {"status":"healthy"}
+[2026-02-13T10:34:51.034Z] POST /auth/login-multi 401 18.792 ms - res-body: {"success":false,"message":"Invalid employee number."}
+[2026-02-13T10:35:00.537Z] GET /health 304 0.607 ms - res-body: {"status":"healthy"}
+[2026-02-13T10:35:05.584Z] POST /auth/login-multi 401 106.147 ms - res-body: {"success":false,"message":"Invalid company code."}
+[2026-02-13T10:35:15.575Z] GET /health 304 0.550 ms - res-body: {"status":"healthy"}
+[2026-02-13T10:35:30.583Z] GET /health 304 0.498 ms - res-body: {"status":"healthy"}
+[2026-02-13T10:35:45.681Z] GET /health 304 0.816 ms - res-body: {"status":"healthy"}
+[2026-02-13T10:36:00.613Z] GET /health 304 0.507 ms - res-body: {"status":"healthy"}
+[2026-02-13T10:36:04.697Z] POST /auth/login-multi 401 82.269 ms - res-body: {"success":false,"message":"Invalid employee number."}
+[2026-02-13T10:36:14.478Z] POST /auth/login-multi 401 20.081 ms - res-body: {"success":false,"message":"Invalid password."}
+[2026-02-13T10:36:15.612Z] GET /health 304 0.401 ms - res-body: {"status":"healthy"}
+[2026-02-13T10:36:28.737Z] POST /auth/login-multi 200 23.526 ms - res-body: {"success":true,"message":"Login success","data":{"employeeNo":"AILAB0012","name":"Naveen R","email":"ailab0012@company.com","role":"employee","companyCode":"AILAB","sessionToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbXBsb3llZUlkIjozMzcsImVtcGxveWVlTm8iOiJBSUxBQjAwMTIiLCJjdXN0b21lcklkIjoxLCJuYW1lIjoiTmF2ZWVuIFIiLCJjb21wYW55Q29kZSI6IkFJTEFCIiwiaWF0IjoxNzcwOTc4OTg4LCJleHAiOjE3Nzg3NTQ5ODh9.q2dWTzsFmXRuAjThAFeL0U8S19RyXZf-PoTHmGkZF9o","profileImageUri":null,"modules":{"attendance":true,"history... [85 chars truncated]
+[2026-02-13T10:36:28.859Z] GET /users/profile?companyCode=AILAB&employeeNo=AILAB0012 304 88.047 ms - res-body: {"success":true,"data":{"id":337,"employeeNo":"AILAB0012","name":"Naveen R","email":"naveenmrsamy872003@gmail.com","companyId":1,"workingDays":6,"profileImageUri":null,"enableHours":true,"role":"employee","leaveBalance":{"annual":7,"medical":20,"compensatory":0,"hospitalised":0,"childcare":0,"unpaid":0,"others":0},"payrollEnable":false,"modules":{"attendance":true,"history":true,"leave":true,"schedule":false,"payroll":true,"feedback":false,"survey":true},"config":{"workingDays":6,"holidays":["20... [104 chars truncated]
+[2026-02-13T10:36:29.246Z] GET /face/status?companyCode=AILAB&employeeNo=AILAB0012 304 5.041 ms - res-body: {"success":true,"data":{"employeeNo":"AILAB0012","name":"Naveen R","registered":true,"message":"Face already enrolled. You can clock in/out."}}
+[2026-02-13T10:36:29.287Z] GET /leave/balance 200 33.463 ms - res-body: {"success":true,"data":{"balance":{"annual":7,"medical":20,"emergency":0,"unpaid":0},"statistics":{"totalRequests":0,"pendingRequests":0,"approvedDays":0},"details":[{"leaveType":"Annual Leave (7.0 day(s))","leaveTypeId":8,"allocated":7,"taken":0,"pending":0,"balance":7},{"leaveType":"Medical Leave (15 day(s))","leaveTypeId":7,"allocated":15,"taken":0,"pending":0,"balance":15},{"leaveType":"Medical Leave (5.0 day(s))","leaveTypeId":7,"allocated":5,"taken":0,"pending":0,"balance":5}]}}
+[2026-02-13T10:36:29.309Z] GET /settings/company-name?companyCode=AILAB 304 35.230 ms - res-body: {"success":true,"data":{"companyName":"AI LAB TECHNOLOGIES PTE LTD"}}
+[2026-02-13T10:36:29.358Z] GET /schedule/assigned?companyCode=AILAB&employeeNo=AILAB0012&date=2026-02-13 200 32.209 ms - res-body: {"success":true,"data":[{"id":"145","siteName":"AI LAB","projectName":"AI LAB","projectId":145,"isOpen":true,"startDate":"2026-02-13","endDate":null}]}
+[2026-02-13T10:36:29.409Z] GET /leave/requests 304 151.541 ms - res-body: []
+[2026-02-13T10:36:29.475Z] GET /schedule/project-tasks?companyCode=AILAB&projectName=AI+LAB 304 36.236 ms - res-body: {"success":true,"data":[]}
+[2026-02-13T10:36:29.502Z] GET /leave?companyCode=AILAB&employeeNo=AILAB0012 304 238.222 ms - res-body: {"data":[]}
+[2026-02-13T10:36:29.534Z] GET /attendance/today?employeeNo=AILAB0012&companyCode=AILAB 200 272.654 ms - res-body: {"success":true,"data":{"date":"2026-02-13","entries":[],"normalHours":0,"overtimeHours":0,"restHours":0,"totalHours":0,"status":"absent"}}
+[2026-02-13T10:36:29.541Z] GET /schedule/assigned?companyCode=AILAB&employeeNo=AILAB0012&date=2026-02-13 200 194.282 ms - res-body: {"success":true,"data":[{"id":"145","siteName":"AI LAB","projectName":"AI LAB","projectId":145,"isOpen":true,"startDate":"2026-02-13","endDate":null}]}
+[2026-02-13T10:36:29.578Z] GET /schedule/project-tasks?companyCode=AILAB&projectName=AI+LAB 304 15.579 ms - res-body: {"success":true,"data":[]}
+[2026-02-13T10:36:29.592Z] GET /users/profile?companyCode=AILAB&employeeNo=AILAB0012 304 25.814 ms - res-body: {"success":true,"data":{"id":337,"employeeNo":"AILAB0012","name":"Naveen R","email":"naveenmrsamy872003@gmail.com","companyId":1,"workingDays":6,"profileImageUri":null,"enableHours":true,"role":"employee","leaveBalance":{"annual":7,"medical":20,"compensatory":0,"hospitalised":0,"childcare":0,"unpaid":0,"others":0},"payrollEnable":false,"modules":{"attendance":true,"history":true,"leave":true,"schedule":false,"payroll":true,"feedback":false,"survey":true},"config":{"workingDays":6,"holidays":["20... [104 chars truncated]
+[2026-02-13T10:36:29.726Z] GET /settings/company-name?companyCode=AILAB 304 6.481 ms - res-body: {"success":true,"data":{"companyName":"AI LAB TECHNOLOGIES PTE LTD"}}
+[2026-02-13T10:36:29.735Z] GET /schedule/assigned?companyCode=AILAB&employeeNo=AILAB0012&date=2026-02-13 304 13.339 ms - res-body: {"success":true,"data":[{"id":"145","siteName":"AI LAB","projectName":"AI LAB","projectId":145,"isOpen":true,"startDate":"2026-02-13","endDate":null}]}
+[2026-02-13T10:36:29.736Z] GET /schedule/assigned?companyCode=AILAB&employeeNo=AILAB0012&date=2026-02-13 304 13.027 ms - res-body: {"success":true,"data":[{"id":"145","siteName":"AI LAB","projectName":"AI LAB","projectId":145,"isOpen":true,"startDate":"2026-02-13","endDate":null}]}
+[2026-02-13T10:36:29.768Z] GET /schedule/project-tasks?companyCode=AILAB&projectName=AI+LAB 304 13.769 ms - res-body: {"success":true,"data":[]}
+[2026-02-13T10:36:29.780Z] GET /schedule/project-tasks?companyCode=AILAB&projectName=AI+LAB 304 20.330 ms - res-body: {"success":true,"data":[]}
+[2026-02-13T10:36:30.630Z] GET /health 304 0.329 ms - res-body: {"status":"healthy"}
+[2026-02-13T10:36:45.691Z] GET /health 304 0.663 ms - res-body: {"status":"healthy"}
+[2026-02-13T10:37:00.676Z] GET /health 304 0.569 ms - res-body: {"status":"healthy"}
+[2026-02-13T10:37:15.684Z] GET /health 304 0.331 ms - res-body: {"status":"healthy"}
+[2026-02-13T10:37:30.706Z] GET /health 304 0.652 ms - res-body: {"status":"healthy"}
+[2026-02-13T10:37:45.714Z] GET /health 304 0.521 ms - res-body: {"status":"healthy"}
+[2026-02-13T10:38:00.853Z] GET /health 304 0.515 ms - res-body: {"status":"healthy"}
+[2026-02-13T10:38:15.759Z] GET /health 304 0.397 ms - res-body: {"status":"healthy"}
+[2026-02-13T10:38:30.769Z] GET /health 304 0.499 ms - res-body: {"status":"healthy"}
+[2026-02-13T10:38:45.776Z] GET /health 304 0.432 ms - res-body: {"status":"healthy"}
+[2026-02-13T10:39:00.859Z] GET /health 304 0.566 ms - res-body: {"status":"healthy"}
+[2026-02-13T10:39:15.805Z] GET /health 304 0.412 ms - res-body: {"status":"healthy"}
+[2026-02-13T10:39:30.805Z] GET /health 304 0.527 ms - res-body: {"status":"healthy"}
+[2026-02-13T10:39:45.811Z] GET /health 304 0.352 ms - res-body: {"status":"healthy"}
+[2026-02-13T10:40:00.862Z] GET /health 304 0.440 ms - res-body: {"status":"healthy"}
+[2026-02-13T10:40:15.834Z] GET /health 304 0.498 ms - res-body: {"status":"healthy"}
+[2026-02-13T10:40:30.819Z] GET /health 304 0.371 ms - res-body: {"status":"healthy"}
+[2026-02-13T10:40:45.927Z] GET /health 304 0.591 ms - res-body: {"status":"healthy"}
+[2026-02-13T10:41:00.857Z] GET /health 304 0.564 ms - res-body: {"status":"healthy"}
+[2026-02-13T10:41:15.873Z] GET /health 304 0.544 ms - res-body: {"status":"healthy"}
+[2026-02-13T10:41:30.886Z] GET /health 304 0.577 ms - res-body: {"status":"healthy"}
+[2026-02-13T10:41:45.935Z] GET /health 304 0.699 ms - res-body: {"status":"healthy"}
+[2026-02-13T10:42:00.892Z] GET /health 304 0.450 ms - res-body: {"status":"healthy"}
+[2026-02-13T10:42:15.932Z] GET /health 304 0.753 ms - res-body: {"status":"healthy"}
+[2026-02-13T10:42:30.932Z] GET /health 304 0.419 ms - res-body: {"status":"healthy"}
+[2026-02-13T10:42:45.939Z] GET /health 304 0.510 ms - res-body: {"status":"healthy"}
+[2026-02-13T10:43:00.999Z] GET /health 304 1.155 ms - res-body: {"status":"healthy"}
+[2026-02-13T10:43:16.048Z] GET /health 304 0.524 ms - res-body: {"status":"healthy"}
+[2026-02-13T10:43:31.109Z] GET /health 304 0.537 ms - res-body: {"status":"healthy"}
+[2026-02-13T10:43:46.052Z] GET /health 304 0.673 ms - res-body: {"status":"healthy"}
+[2026-02-13T10:44:00.996Z] GET /health 304 0.460 ms - res-body: {"status":"healthy"}
+[2026-02-13T10:44:16.055Z] GET /health 304 0.473 ms - res-body: {"status":"healthy"}
+[2026-02-13T10:44:46.088Z] GET /health 304 9.560 ms - res-body: {"status":"healthy"}
+[2026-02-13T10:45:01.220Z] GET /health 304 1.647 ms - res-body: {"status":"healthy"}
+[2026-02-13T10:45:16.007Z] GET /health 304 0.647 ms - res-body: {"status":"healthy"}
+[2026-02-13T10:45:31.027Z] GET /health 304 0.853 ms - res-body: {"status":"healthy"}
+[2026-02-13T10:45:38.691Z] GET /health 304 0.805 ms - res-body: {"status":"healthy"}
+[2026-02-13T10:46:30.051Z] GET /health 304 0.609 ms - res-body: {"status":"healthy"}
+[2026-02-13T10:46:30.365Z] GET /health 304 0.436 ms - res-body: {"status":"healthy"}
+[2026-02-13T10:46:45.043Z] GET /health 304 0.665 ms - res-body: {"status":"healthy"}
+[2026-02-13T10:47:00.054Z] GET /health 304 0.928 ms - res-body: {"status":"healthy"}
+[2026-02-13T10:47:15.066Z] GET /health 304 0.427 ms - res-body: {"status":"healthy"}
+[2026-02-13T10:47:30.066Z] GET /health 304 0.418 ms - res-body: {"status":"healthy"}
+[2026-02-13T10:47:45.086Z] GET /health 304 0.414 ms - res-body: {"status":"healthy"}
+[2026-02-13T10:47:47.772Z] POST /auth/login-multi 401 192.107 ms - res-body: {"success":false,"message":"• The company code you entered was not found.\n• Please check and try again.\n• Enter correct company code."}
+[2026-02-13T10:48:00.085Z] GET /health 304 0.638 ms - res-body: {"status":"healthy"}
+[2026-02-13T10:48:15.098Z] GET /health 304 0.476 ms - res-body: {"status":"healthy"}
+[2026-02-13T10:48:30.099Z] GET /health 304 0.554 ms - res-body: {"status":"healthy"}
+[2026-02-13T10:48:45.088Z] GET /health 304 0.537 ms - res-body: {"status":"healthy"}
+[2026-02-13T10:49:00.109Z] GET /health 304 0.444 ms - res-body: {"status":"healthy"}
+[2026-02-13T10:49:15.140Z] GET /health 304 0.349 ms - res-body: {"status":"healthy"}
+[2026-02-13T10:49:30.147Z] GET /health 304 0.504 ms - res-body: {"status":"healthy"}
+[2026-02-13T10:49:45.314Z] GET /health 304 0.478 ms - res-body: {"status":"healthy"}
+[2026-02-13T10:50:00.173Z] GET /health 304 0.383 ms - res-body: {"status":"healthy"}
+[2026-02-13T10:50:15.188Z] GET /health 304 0.322 ms - res-body: {"status":"healthy"}
+[2026-02-13T10:50:30.213Z] GET /health 304 0.534 ms - res-body: {"status":"healthy"}
+[2026-02-13T10:50:45.220Z] GET /health 304 0.510 ms - res-body: {"status":"healthy"}
+[2026-02-13T10:51:01.264Z] GET /health 304 0.503 ms - res-body: {"status":"healthy"}
+[2026-02-13T10:51:15.250Z] GET /health 304 0.318 ms - res-body: {"status":"healthy"}
+[2026-02-13T10:51:31.282Z] GET /health 304 0.336 ms - res-body: {"status":"healthy"}
+[2026-02-13T10:52:06.748Z] GET /health 304 0.508 ms - res-body: {"status":"healthy"}
+[2026-02-13T10:52:07.068Z] GET /health 304 0.325 ms - res-body: {"status":"healthy"}
+[2026-02-13T10:52:21.739Z] GET /health 304 0.499 ms - res-body: {"status":"healthy"}
+[2026-02-13T10:52:36.752Z] GET /health 304 0.398 ms - res-body: {"status":"healthy"}
+[2026-02-13T10:52:51.775Z] GET /health 304 0.463 ms - res-body: {"status":"healthy"}
+[2026-02-13T10:53:06.791Z] GET /health 304 0.341 ms - res-body: {"status":"healthy"}
+[2026-02-13T10:53:21.782Z] GET /health 304 0.408 ms - res-body: {"status":"healthy"}
+[2026-02-13T10:53:36.807Z] GET /health 304 0.373 ms - res-body: {"status":"healthy"}
+[2026-02-13T10:53:51.813Z] GET /health 304 0.369 ms - res-body: {"status":"healthy"}
+[2026-02-13T10:54:06.810Z] GET /health 304 0.360 ms - res-body: {"status":"healthy"}
+[2026-02-13T10:54:14.037Z] POST /auth/login-multi 401 146.991 ms - res-body: {"success":false,"message":"• The Employee Number you entered was not found.\n• Please check and try again.\n• Enter correct Employee Number."}
+[2026-02-13T10:54:21.825Z] GET /health 304 0.444 ms - res-body: {"status":"healthy"}
+[2026-02-13T10:55:50.349Z] GET /health 304 6.813 ms - res-body: {"status":"healthy"}
+[2026-02-13T10:55:50.671Z] GET /health 304 1.111 ms - res-body: {"status":"healthy"}
+[2026-02-13T10:56:05.330Z] GET /health 304 0.408 ms - res-body: {"status":"healthy"}
+[2026-02-13T10:56:11.410Z] POST /auth/login-multi 401 166.850 ms - res-body: {"success":false,"message":"• The Employee Number you entered was not found.\n• Please check and try again.\n• Enter correct Employee Number."}
+[2026-02-13T10:56:20.365Z] GET /health 304 0.730 ms - res-body: {"status":"healthy"}
+[2026-02-13T10:56:35.369Z] GET /health 304 0.709 ms - res-body: {"status":"healthy"}
+[2026-02-13T10:57:10.392Z] GET /health 304 0.537 ms - res-body: {"status":"healthy"}
+[2026-02-13T10:57:10.695Z] GET /health 304 0.417 ms - res-body: {"status":"healthy"}
+[2026-02-13T10:57:25.423Z] GET /health 304 0.753 ms - res-body: {"status":"healthy"}
+[2026-02-13T10:57:40.431Z] GET /health 304 0.510 ms - res-body: {"status":"healthy"}
+[2026-02-13T10:57:48.839Z] POST /auth/login-multi 401 69.828 ms - res-body: {"success":false,"message":"• The Employee Number you entered was not found.\n• Please check and try again.\n• Enter correct Employee Number."}
+[2026-02-13T10:57:55.429Z] GET /health 304 0.509 ms - res-body: {"status":"healthy"}
+[2026-02-13T10:58:10.430Z] GET /health 304 0.500 ms - res-body: {"status":"healthy"}
+[2026-02-13T10:58:41.483Z] GET /health 304 0.733 ms - res-body: {"status":"healthy"}
+[2026-02-13T10:58:55.476Z] GET /health 304 0.368 ms - res-body: {"status":"healthy"}
+[2026-02-13T10:59:10.482Z] GET /health 304 0.589 ms - res-body: {"status":"healthy"}
+[2026-02-13T10:59:25.485Z] GET /health 304 0.455 ms - res-body: {"status":"healthy"}
+[2026-02-13T10:59:40.491Z] GET /health 304 0.387 ms - res-body: {"status":"healthy"}
+[2026-02-13T10:59:55.510Z] GET /health 304 0.610 ms - res-body: {"status":"healthy"}
+[2026-02-13T11:00:10.508Z] GET /health 304 0.428 ms - res-body: {"status":"healthy"}
+[2026-02-13T11:00:25.498Z] GET /health 304 0.390 ms - res-body: {"status":"healthy"}
+[2026-02-13T11:00:40.529Z] GET /health 304 0.534 ms - res-body: {"status":"healthy"}
+[2026-02-13T11:00:55.544Z] GET /health 304 0.439 ms - res-body: {"status":"healthy"}
+[2026-02-13T11:01:10.534Z] GET /health 304 0.512 ms - res-body: {"status":"healthy"}
+[2026-02-13T11:01:25.548Z] GET /health 304 0.446 ms - res-body: {"status":"healthy"}
+[2026-02-13T11:01:40.562Z] GET /health 304 0.318 ms - res-body: {"status":"healthy"}
+[2026-02-13T11:01:55.576Z] GET /health 304 0.492 ms - res-body: {"status":"healthy"}
+[2026-02-13T11:02:10.590Z] GET /health 304 0.331 ms - res-body: {"status":"healthy"}
+[2026-02-13T11:02:25.607Z] GET /health 304 0.427 ms - res-body: {"status":"healthy"}
+[2026-02-13T11:02:40.615Z] GET /health 304 0.598 ms - res-body: {"status":"healthy"}
+[2026-02-13T11:02:55.597Z] GET /health 304 0.322 ms - res-body: {"status":"healthy"}
+[2026-02-13T11:03:10.626Z] GET /health 304 0.512 ms - res-body: {"status":"healthy"}
+[2026-02-13T11:03:25.622Z] GET /health 304 0.439 ms - res-body: {"status":"healthy"}
+[2026-02-13T11:03:40.652Z] GET /health 304 0.485 ms - res-body: {"status":"healthy"}
+[2026-02-13T11:03:55.635Z] GET /health 304 0.316 ms - res-body: {"status":"healthy"}
+[2026-02-13T11:04:10.651Z] GET /health 304 0.322 ms - res-body: {"status":"healthy"}
+[2026-02-13T11:04:25.666Z] GET /health 304 0.492 ms - res-body: {"status":"healthy"}
+[2026-02-13T11:04:40.682Z] GET /health 304 0.340 ms - res-body: {"status":"healthy"}
+[2026-02-13T11:04:55.672Z] GET /health 304 0.346 ms - res-body: {"status":"healthy"}
+[2026-02-13T11:05:10.694Z] GET /health 304 0.379 ms - res-body: {"status":"healthy"}
+[2026-02-13T11:05:25.721Z] GET /health 304 0.426 ms - res-body: {"status":"healthy"}
+[2026-02-13T11:05:40.712Z] GET /health 304 0.306 ms - res-body: {"status":"healthy"}
+[2026-02-13T11:05:55.710Z] GET /health 304 0.371 ms - res-body: {"status":"healthy"}
+[2026-02-13T11:06:10.727Z] GET /health 304 0.298 ms - res-body: {"status":"healthy"}
+[2026-02-13T11:06:25.752Z] GET /health 304 0.477 ms - res-body: {"status":"healthy"}
+[2026-02-13T11:06:40.758Z] GET /health 304 0.445 ms - res-body: {"status":"healthy"}
+[2026-02-13T11:06:55.768Z] GET /health 304 0.493 ms - res-body: {"status":"healthy"}
+[2026-02-13T11:07:10.777Z] GET /health 304 0.378 ms - res-body: {"status":"healthy"}
+[2026-02-13T11:07:25.772Z] GET /health 304 0.378 ms - res-body: {"status":"healthy"}
+[2026-02-13T11:07:40.797Z] GET /health 304 0.395 ms - res-body: {"status":"healthy"}
+[2026-02-13T11:07:55.804Z] GET /health 304 0.507 ms - res-body: {"status":"healthy"}
+[2026-02-13T11:08:23.304Z] GET /health 304 0.368 ms - res-body: {"status":"healthy"}
+[2026-02-13T11:08:24.214Z] GET /health 304 0.324 ms - res-body: {"status":"healthy"}
+[2026-02-13T11:08:38.321Z] GET /health 304 1.187 ms - res-body: {"status":"healthy"}
+[2026-02-13T11:08:53.302Z] GET /health 304 0.529 ms - res-body: {"status":"healthy"}
+[2026-02-13T11:08:54.061Z] POST /auth/login-multi 401 76.034 ms - res-body: {"success":false,"message":"• The company code you entered was not found.\n• Please check and try again.\n• Enter correct company code."}
+[2026-02-13T11:09:08.340Z] GET /health 304 0.502 ms - res-body: {"status":"healthy"}
+[2026-02-13T11:09:23.340Z] GET /health 304 0.601 ms - res-body: {"status":"healthy"}
+[2026-02-13T11:09:30.376Z] POST /auth/login-multi 200 119.326 ms - res-body: {"success":true,"message":"Login success","data":{"employeeNo":"AILAB0012","name":"Naveen R","email":"ailab0012@company.com","role":"employee","companyCode":"AILAB","sessionToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbXBsb3llZUlkIjozMzcsImVtcGxveWVlTm8iOiJBSUxBQjAwMTIiLCJjdXN0b21lcklkIjoxLCJuYW1lIjoiTmF2ZWVuIFIiLCJjb21wYW55Q29kZSI6IkFJTEFCIiwiaWF0IjoxNzcwOTgwOTcwLCJleHAiOjE3Nzg3NTY5NzB9.AI1JFrSIvrlb4oIMrgxonMNK6Hu8NovGGyJCBMQvjl8","profileImageUri":null,"modules":{"attendance":true,"history... [85 chars truncated]
+[2026-02-13T11:09:30.435Z] GET /users/profile?companyCode=AILAB&employeeNo=AILAB0012 304 23.866 ms - res-body: {"success":true,"data":{"id":337,"employeeNo":"AILAB0012","name":"Naveen R","email":"naveenmrsamy872003@gmail.com","companyId":1,"workingDays":6,"profileImageUri":null,"enableHours":true,"role":"employee","leaveBalance":{"annual":7,"medical":20,"compensatory":0,"hospitalised":0,"childcare":0,"unpaid":0,"others":0},"payrollEnable":false,"modules":{"attendance":true,"history":true,"leave":true,"schedule":false,"payroll":true,"feedback":false,"survey":true},"config":{"workingDays":6,"holidays":["20... [104 chars truncated]
+[2026-02-13T11:09:30.850Z] GET /face/status?companyCode=AILAB&employeeNo=AILAB0012 304 3.314 ms - res-body: {"success":true,"data":{"employeeNo":"AILAB0012","name":"Naveen R","registered":true,"message":"Face already enrolled. You can clock in/out."}}
+[2026-02-13T11:09:30.938Z] GET /attendance/today?employeeNo=AILAB0012&companyCode=AILAB 304 80.680 ms - res-body: {"success":true,"data":{"date":"2026-02-13","entries":[],"normalHours":0,"overtimeHours":0,"restHours":0,"totalHours":0,"status":"absent"}}
+[2026-02-13T11:09:30.941Z] GET /settings/company-name?companyCode=AILAB 304 56.553 ms - res-body: {"success":true,"data":{"companyName":"AI LAB TECHNOLOGIES PTE LTD"}}
+[2026-02-13T11:09:30.974Z] GET /leave?companyCode=AILAB&employeeNo=AILAB0012 304 112.012 ms - res-body: {"data":[]}
+[2026-02-13T11:09:30.977Z] GET /leave/requests 304 111.393 ms - res-body: []
+[2026-02-13T11:09:30.979Z] GET /schedule/assigned?companyCode=AILAB&employeeNo=AILAB0012&date=2026-02-13 304 12.604 ms - res-body: {"success":true,"data":[{"id":"145","siteName":"AI LAB","projectName":"AI LAB","projectId":145,"isOpen":true,"startDate":"2026-02-13","endDate":null}]}
+[2026-02-13T11:09:30.989Z] GET /leave/balance 304 115.360 ms - res-body: {"success":true,"data":{"balance":{"annual":7,"medical":20,"emergency":0,"unpaid":0},"statistics":{"totalRequests":0,"pendingRequests":0,"approvedDays":0},"details":[{"leaveType":"Annual Leave (7.0 day(s))","leaveTypeId":8,"allocated":7,"taken":0,"pending":0,"balance":7},{"leaveType":"Medical Leave (15 day(s))","leaveTypeId":7,"allocated":15,"taken":0,"pending":0,"balance":15},{"leaveType":"Medical Leave (5.0 day(s))","leaveTypeId":7,"allocated":5,"taken":0,"pending":0,"balance":5}]}}
+[2026-02-13T11:09:31.038Z] GET /schedule/assigned?companyCode=AILAB&employeeNo=AILAB0012&date=2026-02-13 304 67.728 ms - res-body: {"success":true,"data":[{"id":"145","siteName":"AI LAB","projectName":"AI LAB","projectId":145,"isOpen":true,"startDate":"2026-02-13","endDate":null}]}
+[2026-02-13T11:09:31.116Z] GET /schedule/project-tasks?companyCode=AILAB&projectName=AI+LAB 304 38.145 ms - res-body: {"success":true,"data":[]}
+[2026-02-13T11:09:31.120Z] GET /schedule/project-tasks?companyCode=AILAB&projectName=AI+LAB 304 36.677 ms - res-body: {"success":true,"data":[]}
+[2026-02-13T11:09:34.191Z] GET /users/profile?companyCode=AILAB&employeeNo=AILAB0012 304 29.419 ms - res-body: {"success":true,"data":{"id":337,"employeeNo":"AILAB0012","name":"Naveen R","email":"naveenmrsamy872003@gmail.com","companyId":1,"workingDays":6,"profileImageUri":null,"enableHours":true,"role":"employee","leaveBalance":{"annual":7,"medical":20,"compensatory":0,"hospitalised":0,"childcare":0,"unpaid":0,"others":0},"payrollEnable":false,"modules":{"attendance":true,"history":true,"leave":true,"schedule":false,"payroll":true,"feedback":false,"survey":true},"config":{"workingDays":6,"holidays":["20... [104 chars truncated]
+[2026-02-13T11:09:34.343Z] GET /settings/company-name?companyCode=AILAB 304 3.993 ms - res-body: {"success":true,"data":{"companyName":"AI LAB TECHNOLOGIES PTE LTD"}}
+[2026-02-13T11:09:34.350Z] GET /schedule/assigned?companyCode=AILAB&employeeNo=AILAB0012&date=2026-02-13 304 9.375 ms - res-body: {"success":true,"data":[{"id":"145","siteName":"AI LAB","projectName":"AI LAB","projectId":145,"isOpen":true,"startDate":"2026-02-13","endDate":null}]}
+[2026-02-13T11:09:34.351Z] GET /schedule/assigned?companyCode=AILAB&employeeNo=AILAB0012&date=2026-02-13 304 6.291 ms - res-body: {"success":true,"data":[{"id":"145","siteName":"AI LAB","projectName":"AI LAB","projectId":145,"isOpen":true,"startDate":"2026-02-13","endDate":null}]}
+[2026-02-13T11:09:34.400Z] GET /schedule/project-tasks?companyCode=AILAB&projectName=AI+LAB 304 8.593 ms - res-body: {"success":true,"data":[]}
+[2026-02-13T11:09:34.404Z] GET /schedule/project-tasks?companyCode=AILAB&projectName=AI+LAB 304 10.977 ms - res-body: {"success":true,"data":[]}
+[2026-02-13T11:09:38.342Z] GET /health 304 0.452 ms - res-body: {"status":"healthy"}
+[2026-02-13T11:09:48.483Z] POST /auth/login-multi 401 20.377 ms - res-body: {"success":false,"message":"• The company code you entered was not found.\n• Please check and try again.\n• Enter correct company code."}
+[2026-02-13T11:09:53.354Z] GET /health 304 0.339 ms - res-body: {"status":"healthy"}
+[2026-02-13T11:10:08.383Z] GET /health 304 0.469 ms - res-body: {"status":"healthy"}
+[2026-02-13T11:10:23.398Z] GET /health 304 0.312 ms - res-body: {"status":"healthy"}
+[2026-02-13T11:11:00.508Z] GET /health 304 0.305 ms - res-body: {"status":"healthy"}
+[2026-02-13T11:11:00.844Z] GET /health 304 0.389 ms - res-body: {"status":"healthy"}
+[2026-02-13T11:11:15.489Z] GET /health 304 0.432 ms - res-body: {"status":"healthy"}
+[2026-02-13T11:11:20.251Z] POST /auth/login-multi 401 65.645 ms - res-body: {"success":false,"message":"• The company code you entered was not found.\n• Please check and try again.\n• Enter correct company code."}
+[2026-02-13T11:11:30.518Z] GET /health 304 0.545 ms - res-body: {"status":"healthy"}
+[2026-02-13T11:11:45.535Z] GET /health 304 0.303 ms - res-body: {"status":"healthy"}
+[2026-02-13T11:12:00.522Z] GET /health 304 0.567 ms - res-body: {"status":"healthy"}
+[2026-02-13T11:12:15.528Z] GET /health 304 0.349 ms - res-body: {"status":"healthy"}
+[2026-02-13T11:12:30.558Z] GET /health 304 0.482 ms - res-body: {"status":"healthy"}
+[2026-02-13T11:12:45.568Z] GET /health 304 0.293 ms - res-body: {"status":"healthy"}
+[2026-02-13T11:13:00.583Z] GET /health 304 0.308 ms - res-body: {"status":"healthy"}
+[2026-02-13T11:13:15.586Z] GET /health 304 0.441 ms - res-body: {"status":"healthy"}
+[2026-02-13T11:13:30.652Z] GET /health 304 0.449 ms - res-body: {"status":"healthy"}
+[2026-02-13T11:13:45.600Z] GET /health 304 0.394 ms - res-body: {"status":"healthy"}
+[2026-02-13T11:14:00.608Z] GET /health 304 0.824 ms - res-body: {"status":"healthy"}
+[2026-02-13T11:14:15.619Z] GET /health 304 0.346 ms - res-body: {"status":"healthy"}
+[2026-02-13T11:15:00.659Z] GET /health 304 8.534 ms - res-body: {"status":"healthy"}
+[2026-02-13T11:15:15.670Z] GET /health 304 2.036 ms - res-body: {"status":"healthy"}
+[2026-02-13T11:15:32.182Z] GET /health 304 74.889 ms - res-body: {"status":"healthy"}
+[2026-02-13T11:15:45.113Z] POST /auth/login-multi 200 181.648 ms - res-body: {"success":true,"message":"Login success","data":{"employeeNo":"AILAB0012","name":"Naveen R","email":"ailab0012@company.com","role":"employee","companyCode":"AILAB","sessionToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbXBsb3llZUlkIjozMzcsImVtcGxveWVlTm8iOiJBSUxBQjAwMTIiLCJjdXN0b21lcklkIjoxLCJuYW1lIjoiTmF2ZWVuIFIiLCJjb21wYW55Q29kZSI6IkFJTEFCIiwiaWF0IjoxNzcwOTgxMzQ1LCJleHAiOjE3Nzg3NTczNDV9.tHfYc_0Ew6LIi9B-_qTiLy3d9T1gTiJszyEYcfYaCCg","profileImageUri":null,"modules":{"attendance":true,"history... [85 chars truncated]
+[2026-02-13T11:15:45.177Z] GET /users/profile?companyCode=AILAB&employeeNo=AILAB0012 304 29.240 ms - res-body: {"success":true,"data":{"id":337,"employeeNo":"AILAB0012","name":"Naveen R","email":"naveenmrsamy872003@gmail.com","companyId":1,"workingDays":6,"profileImageUri":null,"enableHours":true,"role":"employee","leaveBalance":{"annual":7,"medical":20,"compensatory":0,"hospitalised":0,"childcare":0,"unpaid":0,"others":0},"payrollEnable":false,"modules":{"attendance":true,"history":true,"leave":true,"schedule":false,"payroll":true,"feedback":false,"survey":true},"config":{"workingDays":6,"holidays":["20... [104 chars truncated]
+[2026-02-13T11:15:45.231Z] GET /face/status?companyCode=AILAB&employeeNo=AILAB0012 304 2.272 ms - res-body: {"success":true,"data":{"employeeNo":"AILAB0012","name":"Naveen R","registered":true,"message":"Face already enrolled. You can clock in/out."}}
+[2026-02-13T11:15:45.688Z] GET /attendance/today?employeeNo=AILAB0012&companyCode=AILAB 304 73.662 ms - res-body: {"success":true,"data":{"date":"2026-02-13","entries":[],"normalHours":0,"overtimeHours":0,"restHours":0,"totalHours":0,"status":"absent"}}
+[2026-02-13T11:15:45.711Z] GET /settings/company-name?companyCode=AILAB 304 20.586 ms - res-body: {"success":true,"data":{"companyName":"AI LAB TECHNOLOGIES PTE LTD"}}
+[2026-02-13T11:15:45.730Z] GET /leave/requests 304 33.895 ms - res-body: []
+[2026-02-13T11:15:45.754Z] GET /health 304 1.089 ms - res-body: {"status":"healthy"}
+[2026-02-13T11:15:45.757Z] GET /schedule/assigned?companyCode=AILAB&employeeNo=AILAB0012&date=2026-02-13 304 20.093 ms - res-body: {"success":true,"data":[{"id":"145","siteName":"AI LAB","projectName":"AI LAB","projectId":145,"isOpen":true,"startDate":"2026-02-13","endDate":null}]}
+[2026-02-13T11:15:45.795Z] GET /leave?companyCode=AILAB&employeeNo=AILAB0012 304 174.346 ms - res-body: {"data":[]}
+[2026-02-13T11:15:45.806Z] GET /leave/balance 304 179.541 ms - res-body: {"success":true,"data":{"balance":{"annual":7,"medical":20,"emergency":0,"unpaid":0},"statistics":{"totalRequests":0,"pendingRequests":0,"approvedDays":0},"details":[{"leaveType":"Annual Leave (7.0 day(s))","leaveTypeId":8,"allocated":7,"taken":0,"pending":0,"balance":7},{"leaveType":"Medical Leave (15 day(s))","leaveTypeId":7,"allocated":15,"taken":0,"pending":0,"balance":15},{"leaveType":"Medical Leave (5.0 day(s))","leaveTypeId":7,"allocated":5,"taken":0,"pending":0,"balance":5}]}}
+[2026-02-13T11:15:45.821Z] GET /schedule/assigned?companyCode=AILAB&employeeNo=AILAB0012&date=2026-02-13 304 108.650 ms - res-body: {"success":true,"data":[{"id":"145","siteName":"AI LAB","projectName":"AI LAB","projectId":145,"isOpen":true,"startDate":"2026-02-13","endDate":null}]}
+[2026-02-13T11:15:45.838Z] GET /schedule/project-tasks?companyCode=AILAB&projectName=AI+LAB 304 40.411 ms - res-body: {"success":true,"data":[]}
+[2026-02-13T11:15:45.853Z] GET /schedule/project-tasks?companyCode=AILAB&projectName=AI+LAB 304 3.435 ms - res-body: {"success":true,"data":[]}
+[2026-02-13T11:15:47.857Z] GET /users/profile?companyCode=AILAB&employeeNo=AILAB0012 304 19.794 ms - res-body: {"success":true,"data":{"id":337,"employeeNo":"AILAB0012","name":"Naveen R","email":"naveenmrsamy872003@gmail.com","companyId":1,"workingDays":6,"profileImageUri":null,"enableHours":true,"role":"employee","leaveBalance":{"annual":7,"medical":20,"compensatory":0,"hospitalised":0,"childcare":0,"unpaid":0,"others":0},"payrollEnable":false,"modules":{"attendance":true,"history":true,"leave":true,"schedule":false,"payroll":true,"feedback":false,"survey":true},"config":{"workingDays":6,"holidays":["20... [104 chars truncated]
+[2026-02-13T11:15:48.065Z] GET /settings/company-name?companyCode=AILAB 304 2.407 ms - res-body: {"success":true,"data":{"companyName":"AI LAB TECHNOLOGIES PTE LTD"}}
+[2026-02-13T11:15:48.071Z] GET /schedule/assigned?companyCode=AILAB&employeeNo=AILAB0012&date=2026-02-13 304 4.887 ms - res-body: {"success":true,"data":[{"id":"145","siteName":"AI LAB","projectName":"AI LAB","projectId":145,"isOpen":true,"startDate":"2026-02-13","endDate":null}]}
+[2026-02-13T11:15:48.072Z] GET /schedule/assigned?companyCode=AILAB&employeeNo=AILAB0012&date=2026-02-13 304 6.563 ms - res-body: {"success":true,"data":[{"id":"145","siteName":"AI LAB","projectName":"AI LAB","projectId":145,"isOpen":true,"startDate":"2026-02-13","endDate":null}]}
+[2026-02-13T11:15:48.089Z] GET /schedule/project-tasks?companyCode=AILAB&projectName=AI+LAB 304 3.211 ms - res-body: {"success":true,"data":[]}
+[2026-02-13T11:15:48.094Z] GET /schedule/project-tasks?companyCode=AILAB&projectName=AI+LAB 304 3.933 ms - res-body: {"success":true,"data":[]}
+[2026-02-13T11:16:00.709Z] GET /health 304 0.595 ms - res-body: {"status":"healthy"}
+[2026-02-13T11:16:01.460Z] POST /auth/login-multi 200 19.613 ms - res-body: {"success":true,"message":"Login success","data":{"employeeNo":"AILAB0002","name":"Siva Shankar","email":"ailab0002@company.com","role":"employee","companyCode":"AILAB","sessionToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbXBsb3llZUlkIjozNDUsImVtcGxveWVlTm8iOiJBSUxBQjAwMDIiLCJjdXN0b21lcklkIjoxLCJuYW1lIjoiU2l2YSBTaGFua2FyIiwiY29tcGFueUNvZGUiOiJBSUxBQiIsImlhdCI6MTc3MDk4MTM2MSwiZXhwIjoxNzc4NzU3MzYxfQ.rjO0cFN7d1XkAKmazCHxAGVQqb_UtsfAVnbwTvxlHZ4","profileImageUri":null,"modules":{"attendance":tru... [95 chars truncated]
+[2026-02-13T11:16:01.487Z] GET /users/profile?companyCode=AILAB&employeeNo=AILAB0002 200 8.102 ms - res-body: {"success":true,"data":{"id":345,"employeeNo":"AILAB0002","name":"Siva Shankar","email":"siva@ailabtech.com","companyId":1,"workingDays":6,"profileImageUri":null,"enableHours":true,"role":"employee","leaveBalance":{"annual":0,"medical":0,"compensatory":0,"hospitalised":0,"childcare":0,"unpaid":0,"others":0},"payrollEnable":false,"modules":{"attendance":true,"history":true,"leave":true,"schedule":false,"payroll":true,"feedback":false,"survey":true},"config":{"workingDays":6,"holidays":["2025-03-3... [97 chars truncated]
+[2026-02-13T11:16:01.801Z] GET /face/status?companyCode=AILAB&employeeNo=AILAB0002 200 1.636 ms - res-body: {"success":true,"data":{"employeeNo":"AILAB0002","name":"Siva Shankar","registered":false,"message":"Face not enrolled. Please register your face first."}}
+[2026-02-13T11:16:01.863Z] GET /leave?companyCode=AILAB&employeeNo=AILAB0002 200 17.696 ms - res-body: {"data":[]}
+[2026-02-13T11:16:01.883Z] GET /settings/company-name?companyCode=AILAB 304 17.280 ms - res-body: {"success":true,"data":{"companyName":"AI LAB TECHNOLOGIES PTE LTD"}}
+[2026-02-13T11:16:01.889Z] GET /leave/balance 200 39.433 ms - res-body: {"success":true,"data":{"balance":{"annual":0,"medical":0,"emergency":0,"unpaid":0},"statistics":{"totalRequests":0,"pendingRequests":0,"approvedDays":0},"details":[]}}
+[2026-02-13T11:16:01.891Z] GET /attendance/today?employeeNo=AILAB0002&companyCode=AILAB 200 25.984 ms - res-body: {"success":true,"data":{"date":"2026-02-13","entries":[],"normalHours":0,"overtimeHours":0,"restHours":0,"totalHours":0,"status":"absent"}}
+[2026-02-13T11:16:01.898Z] GET /schedule/assigned?companyCode=AILAB&employeeNo=AILAB0002&date=2026-02-13 200 5.627 ms - res-body: {"success":true,"data":[]}
+[2026-02-13T11:16:01.903Z] GET /leave/requests 304 50.135 ms - res-body: []
+[2026-02-13T11:16:01.907Z] GET /schedule/assigned?companyCode=AILAB&employeeNo=AILAB0002&date=2026-02-13 200 7.973 ms - res-body: {"success":true,"data":[]}
+[2026-02-13T11:16:02.024Z] GET /users/profile?companyCode=AILAB&employeeNo=AILAB0002 304 7.357 ms - res-body: {"success":true,"data":{"id":345,"employeeNo":"AILAB0002","name":"Siva Shankar","email":"siva@ailabtech.com","companyId":1,"workingDays":6,"profileImageUri":null,"enableHours":true,"role":"employee","leaveBalance":{"annual":0,"medical":0,"compensatory":0,"hospitalised":0,"childcare":0,"unpaid":0,"others":0},"payrollEnable":false,"modules":{"attendance":true,"history":true,"leave":true,"schedule":false,"payroll":true,"feedback":false,"survey":true},"config":{"workingDays":6,"holidays":["2025-03-3... [97 chars truncated]
+[2026-02-13T11:16:02.152Z] GET /schedule/assigned?companyCode=AILAB&employeeNo=AILAB0002&date=2026-02-13 304 6.484 ms - res-body: {"success":true,"data":[]}
+[2026-02-13T11:16:02.155Z] GET /settings/company-name?companyCode=AILAB 304 4.510 ms - res-body: {"success":true,"data":{"companyName":"AI LAB TECHNOLOGIES PTE LTD"}}
+[2026-02-13T11:16:02.165Z] GET /schedule/assigned?companyCode=AILAB&employeeNo=AILAB0002&date=2026-02-13 304 15.057 ms - res-body: {"success":true,"data":[]}
+[2026-02-13T11:16:15.720Z] GET /health 304 0.480 ms - res-body: {"status":"healthy"}
+[2026-02-13T11:16:30.711Z] GET /health 304 0.559 ms - res-body: {"status":"healthy"}
+[2026-02-13T11:16:45.729Z] GET /health 304 0.701 ms - res-body: {"status":"healthy"}
+[2026-02-13T11:17:00.737Z] GET /health 304 0.495 ms - res-body: {"status":"healthy"}
+[2026-02-13T11:17:15.765Z] GET /health 304 0.647 ms - res-body: {"status":"healthy"}
+[2026-02-13T11:17:30.761Z] GET /health 304 0.528 ms - res-body: {"status":"healthy"}
+[2026-02-13T11:17:46.816Z] GET /health 304 13.349 ms - res-body: {"status":"healthy"}
+[2026-02-13T11:18:00.782Z] GET /health 304 1.734 ms - res-body: {"status":"healthy"}
+[2026-02-13T11:18:15.771Z] GET /health 304 0.576 ms - res-body: {"status":"healthy"}
+[2026-02-13T11:18:59.141Z] GET /health 304 0.641 ms - res-body: {"status":"healthy"}
+[2026-02-13T11:18:59.494Z] GET /health 304 0.672 ms - res-body: {"status":"healthy"}
+[2026-02-13T11:19:14.144Z] GET /health 304 1.019 ms - res-body: {"status":"healthy"}
+[2026-02-13T11:19:24.652Z] POST /auth/login-multi 200 158.564 ms - res-body: {"success":true,"message":"Login success","data":{"employeeNo":"AILAB0012","name":"Naveen R","email":"ailab0012@company.com","role":"employee","companyCode":"AILAB","sessionToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbXBsb3llZUlkIjozMzcsImVtcGxveWVlTm8iOiJBSUxBQjAwMTIiLCJjdXN0b21lcklkIjoxLCJuYW1lIjoiTmF2ZWVuIFIiLCJjb21wYW55Q29kZSI6IkFJTEFCIiwiaWF0IjoxNzcwOTgxNTY0LCJleHAiOjE3Nzg3NTc1NjR9.dGUA0mG6zW1MVUstoFpoPL7dFRRbgIbcNdbSifGZKpA","profileImageUri":null,"modules":{"attendance":true,"history... [85 chars truncated]
+[2026-02-13T11:19:24.726Z] GET /users/profile?companyCode=AILAB&employeeNo=AILAB0012 304 31.026 ms - res-body: {"success":true,"data":{"id":337,"employeeNo":"AILAB0012","name":"Naveen R","email":"naveenmrsamy872003@gmail.com","companyId":1,"workingDays":6,"profileImageUri":null,"enableHours":true,"role":"employee","leaveBalance":{"annual":7,"medical":20,"compensatory":0,"hospitalised":0,"childcare":0,"unpaid":0,"others":0},"payrollEnable":false,"modules":{"attendance":true,"history":true,"leave":true,"schedule":false,"payroll":true,"feedback":false,"survey":true},"config":{"workingDays":6,"holidays":["20... [104 chars truncated]
+[2026-02-13T11:19:24.775Z] GET /face/status?companyCode=AILAB&employeeNo=AILAB0012 304 2.996 ms - res-body: {"success":true,"data":{"employeeNo":"AILAB0012","name":"Naveen R","registered":true,"message":"Face already enrolled. You can clock in/out."}}
+[2026-02-13T11:19:25.335Z] GET /attendance/today?employeeNo=AILAB0012&companyCode=AILAB 304 171.176 ms - res-body: {"success":true,"data":{"date":"2026-02-13","entries":[],"normalHours":0,"overtimeHours":0,"restHours":0,"totalHours":0,"status":"absent"}}
+[2026-02-13T11:19:25.340Z] GET /settings/company-name?companyCode=AILAB 304 96.963 ms - res-body: {"success":true,"data":{"companyName":"AI LAB TECHNOLOGIES PTE LTD"}}
+[2026-02-13T11:19:25.376Z] GET /schedule/assigned?companyCode=AILAB&employeeNo=AILAB0012&date=2026-02-13 304 8.863 ms - res-body: {"success":true,"data":[{"id":"145","siteName":"AI LAB","projectName":"AI LAB","projectId":145,"isOpen":true,"startDate":"2026-02-13","endDate":null}]}
+[2026-02-13T11:19:25.386Z] GET /leave/balance 200 190.322 ms - res-body: {"success":true,"data":{"balance":{"annual":7,"medical":20,"emergency":0,"unpaid":0},"statistics":{"totalRequests":0,"pendingRequests":0,"approvedDays":0},"details":[{"leaveType":"Annual Leave (7.0 day(s))","leaveTypeId":8,"allocated":7,"taken":0,"pending":0,"balance":7},{"leaveType":"Medical Leave (15 day(s))","leaveTypeId":7,"allocated":15,"taken":0,"pending":0,"balance":15},{"leaveType":"Medical Leave (5.0 day(s))","leaveTypeId":7,"allocated":5,"taken":0,"pending":0,"balance":5}]}}
+[2026-02-13T11:19:25.395Z] GET /leave?companyCode=AILAB&employeeNo=AILAB0012 304 225.191 ms - res-body: {"data":[]}
+[2026-02-13T11:19:25.399Z] GET /leave/requests 304 163.246 ms - res-body: []
+[2026-02-13T11:19:25.442Z] GET /schedule/assigned?companyCode=AILAB&employeeNo=AILAB0012&date=2026-02-13 304 68.137 ms - res-body: {"success":true,"data":[{"id":"145","siteName":"AI LAB","projectName":"AI LAB","projectId":145,"isOpen":true,"startDate":"2026-02-13","endDate":null}]}
+[2026-02-13T11:19:25.483Z] GET /schedule/project-tasks?companyCode=AILAB&projectName=AI+LAB 304 20.834 ms - res-body: {"success":true,"data":[]}
+[2026-02-13T11:19:25.494Z] GET /schedule/project-tasks?companyCode=AILAB&projectName=AI+LAB 304 23.391 ms - res-body: {"success":true,"data":[]}
+[2026-02-13T11:19:28.216Z] GET /users/profile?companyCode=AILAB&employeeNo=AILAB0012 304 17.456 ms - res-body: {"success":true,"data":{"id":337,"employeeNo":"AILAB0012","name":"Naveen R","email":"naveenmrsamy872003@gmail.com","companyId":1,"workingDays":6,"profileImageUri":null,"enableHours":true,"role":"employee","leaveBalance":{"annual":7,"medical":20,"compensatory":0,"hospitalised":0,"childcare":0,"unpaid":0,"others":0},"payrollEnable":false,"modules":{"attendance":true,"history":true,"leave":true,"schedule":false,"payroll":true,"feedback":false,"survey":true},"config":{"workingDays":6,"holidays":["20... [104 chars truncated]
+[2026-02-13T11:19:28.365Z] GET /settings/company-name?companyCode=AILAB 304 11.205 ms - res-body: {"success":true,"data":{"companyName":"AI LAB TECHNOLOGIES PTE LTD"}}
+[2026-02-13T11:19:28.366Z] GET /schedule/assigned?companyCode=AILAB&employeeNo=AILAB0012&date=2026-02-13 304 14.859 ms - res-body: {"success":true,"data":[{"id":"145","siteName":"AI LAB","projectName":"AI LAB","projectId":145,"isOpen":true,"startDate":"2026-02-13","endDate":null}]}
+[2026-02-13T11:19:28.368Z] GET /schedule/assigned?companyCode=AILAB&employeeNo=AILAB0012&date=2026-02-13 304 18.374 ms - res-body: {"success":true,"data":[{"id":"145","siteName":"AI LAB","projectName":"AI LAB","projectId":145,"isOpen":true,"startDate":"2026-02-13","endDate":null}]}
+[2026-02-13T11:19:28.389Z] GET /schedule/project-tasks?companyCode=AILAB&projectName=AI+LAB 304 3.537 ms - res-body: {"success":true,"data":[]}
+[2026-02-13T11:19:28.394Z] GET /schedule/project-tasks?companyCode=AILAB&projectName=AI+LAB 304 3.936 ms - res-body: {"success":true,"data":[]}
+[2026-02-13T11:19:29.148Z] GET /health 304 0.321 ms - res-body: {"status":"healthy"}
+[2026-02-13T11:19:44.191Z] GET /health 304 0.292 ms - res-body: {"status":"healthy"}
+[2026-02-13T11:19:49.293Z] POST /auth/login-multi 401 7.671 ms - res-body: {"success":false,"message":"• The company code you entered was not found.\n• Please check and try again.\n• Enter correct company code."}
+[2026-02-13T11:19:59.197Z] GET /health 304 0.503 ms - res-body: {"status":"healthy"}
+[2026-02-13T11:20:14.230Z] GET /health 304 0.526 ms - res-body: {"status":"healthy"}
+[2026-02-13T11:20:29.212Z] GET /health 304 0.518 ms - res-body: {"status":"healthy"}
+[2026-02-13T11:20:44.219Z] GET /health 304 0.490 ms - res-body: {"status":"healthy"}
+[2026-02-13T11:20:59.213Z] GET /health 304 0.539 ms - res-body: {"status":"healthy"}
+[2026-02-13T11:21:14.830Z] POST /auth/login-multi 401 64.424 ms - res-body: {"success":false,"message":"• The company code you entered was not found.\n• Please check and try again.\n• Enter correct company code."}
+[2026-02-13T11:21:15.212Z] GET /health 304 0.515 ms - res-body: {"status":"healthy"}
+[2026-02-13T11:31:47.331Z] GET /health 304 7.799 ms - res-body: {"status":"healthy"}
+[2026-02-13T11:31:47.624Z] GET /health 304 1.318 ms - res-body: {"status":"healthy"}
+[2026-02-13T11:32:02.270Z] GET /health 304 0.388 ms - res-body: {"status":"healthy"}
+[2026-02-13T11:32:07.839Z] POST /auth/login-multi 200 200.024 ms - res-body: {"success":true,"message":"Login success","data":{"employeeNo":"AILAB0012","name":"Naveen R","email":"ailab0012@company.com","role":"employee","companyCode":"AILAB","sessionToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbXBsb3llZUlkIjozMzcsImVtcGxveWVlTm8iOiJBSUxBQjAwMTIiLCJjdXN0b21lcklkIjoxLCJuYW1lIjoiTmF2ZWVuIFIiLCJjb21wYW55Q29kZSI6IkFJTEFCIiwiaWF0IjoxNzcwOTgyMzI3LCJleHAiOjE3Nzg3NTgzMjd9.eL7Khy6RzCrKzfXi7DFVZ1e7t-acLMVKvKLk6njkz28","profileImageUri":null,"modules":{"attendance":true,"history... [85 chars truncated]
+[2026-02-13T11:32:07.907Z] GET /users/profile?companyCode=AILAB&employeeNo=AILAB0012 304 23.205 ms - res-body: {"success":true,"data":{"id":337,"employeeNo":"AILAB0012","name":"Naveen R","email":"naveenmrsamy872003@gmail.com","companyId":1,"workingDays":6,"profileImageUri":null,"enableHours":true,"role":"employee","leaveBalance":{"annual":7,"medical":20,"compensatory":0,"hospitalised":0,"childcare":0,"unpaid":0,"others":0},"payrollEnable":false,"modules":{"attendance":true,"history":true,"leave":true,"schedule":false,"payroll":true,"feedback":false,"survey":true},"config":{"workingDays":6,"holidays":["20... [104 chars truncated]
+[2026-02-13T11:32:07.951Z] GET /face/status?companyCode=AILAB&employeeNo=AILAB0012 304 2.353 ms - res-body: {"success":true,"data":{"employeeNo":"AILAB0012","name":"Naveen R","registered":true,"message":"Face already enrolled. You can clock in/out."}}
+[2026-02-13T11:32:08.417Z] GET /attendance/today?employeeNo=AILAB0012&companyCode=AILAB 304 76.732 ms - res-body: {"success":true,"data":{"date":"2026-02-13","entries":[],"normalHours":0,"overtimeHours":0,"restHours":0,"totalHours":0,"status":"absent"}}
+[2026-02-13T11:32:08.451Z] GET /settings/company-name?companyCode=AILAB 304 24.888 ms - res-body: {"success":true,"data":{"companyName":"AI LAB TECHNOLOGIES PTE LTD"}}
+[2026-02-13T11:32:08.469Z] GET /leave/balance 304 48.506 ms - res-body: {"success":true,"data":{"balance":{"annual":7,"medical":20,"emergency":0,"unpaid":0},"statistics":{"totalRequests":0,"pendingRequests":0,"approvedDays":0},"details":[{"leaveType":"Annual Leave (7.0 day(s))","leaveTypeId":8,"allocated":7,"taken":0,"pending":0,"balance":7},{"leaveType":"Medical Leave (15 day(s))","leaveTypeId":7,"allocated":15,"taken":0,"pending":0,"balance":15},{"leaveType":"Medical Leave (5.0 day(s))","leaveTypeId":7,"allocated":5,"taken":0,"pending":0,"balance":5}]}}
+[2026-02-13T11:32:08.519Z] GET /leave/requests 304 174.142 ms - res-body: []
+[2026-02-13T11:32:08.522Z] GET /schedule/assigned?companyCode=AILAB&employeeNo=AILAB0012&date=2026-02-13 304 35.111 ms - res-body: {"success":true,"data":[{"id":"145","siteName":"AI LAB","projectName":"AI LAB","projectId":145,"isOpen":true,"startDate":"2026-02-13","endDate":null}]}
+[2026-02-13T11:32:08.525Z] GET /leave?companyCode=AILAB&employeeNo=AILAB0012 304 170.741 ms - res-body: {"data":[]}
+[2026-02-13T11:32:08.558Z] GET /schedule/assigned?companyCode=AILAB&employeeNo=AILAB0012&date=2026-02-13 304 120.151 ms - res-body: {"success":true,"data":[{"id":"145","siteName":"AI LAB","projectName":"AI LAB","projectId":145,"isOpen":true,"startDate":"2026-02-13","endDate":null}]}
+[2026-02-13T11:32:08.615Z] GET /schedule/project-tasks?companyCode=AILAB&projectName=AI+LAB 304 18.733 ms - res-body: {"success":true,"data":[]}
+[2026-02-13T11:32:08.623Z] GET /schedule/project-tasks?companyCode=AILAB&projectName=AI+LAB 304 25.053 ms - res-body: {"success":true,"data":[]}
+[2026-02-13T11:32:11.264Z] GET /users/profile?companyCode=AILAB&employeeNo=AILAB0012 304 17.930 ms - res-body: {"success":true,"data":{"id":337,"employeeNo":"AILAB0012","name":"Naveen R","email":"naveenmrsamy872003@gmail.com","companyId":1,"workingDays":6,"profileImageUri":null,"enableHours":true,"role":"employee","leaveBalance":{"annual":7,"medical":20,"compensatory":0,"hospitalised":0,"childcare":0,"unpaid":0,"others":0},"payrollEnable":false,"modules":{"attendance":true,"history":true,"leave":true,"schedule":false,"payroll":true,"feedback":false,"survey":true},"config":{"workingDays":6,"holidays":["20... [104 chars truncated]
+[2026-02-13T11:32:11.386Z] GET /settings/company-name?companyCode=AILAB 304 4.603 ms - res-body: {"success":true,"data":{"companyName":"AI LAB TECHNOLOGIES PTE LTD"}}
+[2026-02-13T11:32:11.388Z] GET /schedule/assigned?companyCode=AILAB&employeeNo=AILAB0012&date=2026-02-13 304 7.942 ms - res-body: {"success":true,"data":[{"id":"145","siteName":"AI LAB","projectName":"AI LAB","projectId":145,"isOpen":true,"startDate":"2026-02-13","endDate":null}]}
+[2026-02-13T11:32:11.389Z] GET /schedule/assigned?companyCode=AILAB&employeeNo=AILAB0012&date=2026-02-13 304 6.238 ms - res-body: {"success":true,"data":[{"id":"145","siteName":"AI LAB","projectName":"AI LAB","projectId":145,"isOpen":true,"startDate":"2026-02-13","endDate":null}]}
+[2026-02-13T11:32:11.406Z] GET /schedule/project-tasks?companyCode=AILAB&projectName=AI+LAB 304 3.877 ms - res-body: {"success":true,"data":[]}
+[2026-02-13T11:32:11.417Z] GET /schedule/project-tasks?companyCode=AILAB&projectName=AI+LAB 304 3.732 ms - res-body: {"success":true,"data":[]}
+[2026-02-13T11:32:17.300Z] GET /health 304 0.295 ms - res-body: {"status":"healthy"}
+[2026-02-13T11:32:32.355Z] GET /health 304 0.328 ms - res-body: {"status":"healthy"}
+[2026-02-13T11:32:47.346Z] GET /health 304 0.592 ms - res-body: {"status":"healthy"}
+[2026-02-13T11:32:51.878Z] POST /auth/login-multi 200 296.291 ms - res-body: {"success":true,"message":"Login success","data":{"employeeNo":"AILAB0012","name":"Naveen R","email":"ailab0012@company.com","role":"employee","companyCode":"AILAB","sessionToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbXBsb3llZUlkIjozMzcsImVtcGxveWVlTm8iOiJBSUxBQjAwMTIiLCJjdXN0b21lcklkIjoxLCJuYW1lIjoiTmF2ZWVuIFIiLCJjb21wYW55Q29kZSI6IkFJTEFCIiwiaWF0IjoxNzcwOTgyMzcxLCJleHAiOjE3Nzg3NTgzNzF9.j_94xhYXAhP3YgOpnh3lxd4lR7a3UkXPGNpN1UqTNtQ","profileImageUri":null,"modules":{"attendance":true,"history... [85 chars truncated]
+[2026-02-13T11:32:52.090Z] GET /users/profile?companyCode=AILAB&employeeNo=AILAB0012 304 139.612 ms - res-body: {"success":true,"data":{"id":337,"employeeNo":"AILAB0012","name":"Naveen R","email":"naveenmrsamy872003@gmail.com","companyId":1,"workingDays":6,"profileImageUri":null,"enableHours":true,"role":"employee","leaveBalance":{"annual":7,"medical":20,"compensatory":0,"hospitalised":0,"childcare":0,"unpaid":0,"others":0},"payrollEnable":false,"modules":{"attendance":true,"history":true,"leave":true,"schedule":false,"payroll":true,"feedback":false,"survey":true},"config":{"workingDays":6,"holidays":["20... [104 chars truncated]
+[2026-02-13T11:32:52.129Z] GET /face/status?companyCode=AILAB&employeeNo=AILAB0012 304 2.163 ms - res-body: {"success":true,"data":{"employeeNo":"AILAB0012","name":"Naveen R","registered":true,"message":"Face already enrolled. You can clock in/out."}}
+[2026-02-13T11:32:52.446Z] GET /leave?companyCode=AILAB&employeeNo=AILAB0012 304 15.224 ms - res-body: {"data":[]}
+[2026-02-13T11:32:52.481Z] GET /settings/company-name?companyCode=AILAB 304 33.548 ms - res-body: {"success":true,"data":{"companyName":"AI LAB TECHNOLOGIES PTE LTD"}}
+[2026-02-13T11:32:52.504Z] GET /leave/requests 304 46.848 ms - res-body: []
+[2026-02-13T11:32:52.544Z] GET /schedule/assigned?companyCode=AILAB&employeeNo=AILAB0012&date=2026-02-13 304 39.093 ms - res-body: {"success":true,"data":[{"id":"145","siteName":"AI LAB","projectName":"AI LAB","projectId":145,"isOpen":true,"startDate":"2026-02-13","endDate":null}]}
+[2026-02-13T11:32:52.637Z] GET /schedule/project-tasks?companyCode=AILAB&projectName=AI+LAB 304 49.969 ms - res-body: {"success":true,"data":[]}
+[2026-02-13T11:32:52.685Z] GET /attendance/today?employeeNo=AILAB0012&companyCode=AILAB 304 213.855 ms - res-body: {"success":true,"data":{"date":"2026-02-13","entries":[],"normalHours":0,"overtimeHours":0,"restHours":0,"totalHours":0,"status":"absent"}}
+[2026-02-13T11:32:52.699Z] GET /schedule/assigned?companyCode=AILAB&employeeNo=AILAB0012&date=2026-02-13 304 225.163 ms - res-body: {"success":true,"data":[{"id":"145","siteName":"AI LAB","projectName":"AI LAB","projectId":145,"isOpen":true,"startDate":"2026-02-13","endDate":null}]}
+[2026-02-13T11:32:52.714Z] GET /leave/balance 304 279.927 ms - res-body: {"success":true,"data":{"balance":{"annual":7,"medical":20,"emergency":0,"unpaid":0},"statistics":{"totalRequests":0,"pendingRequests":0,"approvedDays":0},"details":[{"leaveType":"Annual Leave (7.0 day(s))","leaveTypeId":8,"allocated":7,"taken":0,"pending":0,"balance":7},{"leaveType":"Medical Leave (15 day(s))","leaveTypeId":7,"allocated":15,"taken":0,"pending":0,"balance":15},{"leaveType":"Medical Leave (5.0 day(s))","leaveTypeId":7,"allocated":5,"taken":0,"pending":0,"balance":5}]}}
+[2026-02-13T11:32:52.752Z] GET /schedule/project-tasks?companyCode=AILAB&projectName=AI+LAB 304 36.752 ms - res-body: {"success":true,"data":[]}
+[2026-02-13T11:32:52.787Z] GET /users/profile?companyCode=AILAB&employeeNo=AILAB0012 304 33.774 ms - res-body: {"success":true,"data":{"id":337,"employeeNo":"AILAB0012","name":"Naveen R","email":"naveenmrsamy872003@gmail.com","companyId":1,"workingDays":6,"profileImageUri":null,"enableHours":true,"role":"employee","leaveBalance":{"annual":7,"medical":20,"compensatory":0,"hospitalised":0,"childcare":0,"unpaid":0,"others":0},"payrollEnable":false,"modules":{"attendance":true,"history":true,"leave":true,"schedule":false,"payroll":true,"feedback":false,"survey":true},"config":{"workingDays":6,"holidays":["20... [104 chars truncated]
+[2026-02-13T11:32:52.921Z] GET /settings/company-name?companyCode=AILAB 304 5.500 ms - res-body: {"success":true,"data":{"companyName":"AI LAB TECHNOLOGIES PTE LTD"}}
+[2026-02-13T11:32:52.926Z] GET /schedule/assigned?companyCode=AILAB&employeeNo=AILAB0012&date=2026-02-13 304 7.196 ms - res-body: {"success":true,"data":[{"id":"145","siteName":"AI LAB","projectName":"AI LAB","projectId":145,"isOpen":true,"startDate":"2026-02-13","endDate":null}]}
+[2026-02-13T11:32:52.928Z] GET /schedule/assigned?companyCode=AILAB&employeeNo=AILAB0012&date=2026-02-13 304 9.456 ms - res-body: {"success":true,"data":[{"id":"145","siteName":"AI LAB","projectName":"AI LAB","projectId":145,"isOpen":true,"startDate":"2026-02-13","endDate":null}]}
+[2026-02-13T11:32:52.965Z] GET /schedule/project-tasks?companyCode=AILAB&projectName=AI+LAB 304 24.665 ms - res-body: {"success":true,"data":[]}
+[2026-02-13T11:32:52.967Z] GET /schedule/project-tasks?companyCode=AILAB&projectName=AI+LAB 304 23.246 ms - res-body: {"success":true,"data":[]}
+[2026-02-13T11:33:02.378Z] GET /health 304 0.482 ms - res-body: {"status":"healthy"}
+[2026-02-13T11:33:35.128Z] GET /health 304 0.534 ms - res-body: {"status":"healthy"}
+[2026-02-13T11:33:35.283Z] GET /health 304 0.526 ms - res-body: {"status":"healthy"}
+[2026-02-13T11:33:35.291Z] GET /users/profile?companyCode=AILAB&employeeNo=AILAB0012 304 138.663 ms - res-body: {"success":true,"data":{"id":337,"employeeNo":"AILAB0012","name":"Naveen R","email":"naveenmrsamy872003@gmail.com","companyId":1,"workingDays":6,"profileImageUri":null,"enableHours":true,"role":"employee","leaveBalance":{"annual":7,"medical":20,"compensatory":0,"hospitalised":0,"childcare":0,"unpaid":0,"others":0},"payrollEnable":false,"modules":{"attendance":true,"history":true,"leave":true,"schedule":false,"payroll":true,"feedback":false,"survey":true},"config":{"workingDays":6,"holidays":["20... [104 chars truncated]
+[2026-02-13T11:33:35.844Z] GET /leave?companyCode=AILAB&employeeNo=AILAB0012 304 8.107 ms - res-body: {"data":[]}
+[2026-02-13T11:33:35.882Z] GET /settings/company-name?companyCode=AILAB 304 19.114 ms - res-body: {"success":true,"data":{"companyName":"AI LAB TECHNOLOGIES PTE LTD"}}
+[2026-02-13T11:33:35.912Z] GET /leave/balance 304 63.536 ms - res-body: {"success":true,"data":{"balance":{"annual":7,"medical":20,"emergency":0,"unpaid":0},"statistics":{"totalRequests":0,"pendingRequests":0,"approvedDays":0},"details":[{"leaveType":"Annual Leave (7.0 day(s))","leaveTypeId":8,"allocated":7,"taken":0,"pending":0,"balance":7},{"leaveType":"Medical Leave (15 day(s))","leaveTypeId":7,"allocated":15,"taken":0,"pending":0,"balance":15},{"leaveType":"Medical Leave (5.0 day(s))","leaveTypeId":7,"allocated":5,"taken":0,"pending":0,"balance":5}]}}
+[2026-02-13T11:33:35.932Z] GET /schedule/assigned?companyCode=AILAB&employeeNo=AILAB0012&date=2026-02-13 304 18.717 ms - res-body: {"success":true,"data":[{"id":"145","siteName":"AI LAB","projectName":"AI LAB","projectId":145,"isOpen":true,"startDate":"2026-02-13","endDate":null}]}
+[2026-02-13T11:33:35.981Z] GET /attendance/today?employeeNo=AILAB0012&companyCode=AILAB 304 140.074 ms - res-body: {"success":true,"data":{"date":"2026-02-13","entries":[],"normalHours":0,"overtimeHours":0,"restHours":0,"totalHours":0,"status":"absent"}}
+[2026-02-13T11:33:35.992Z] GET /schedule/assigned?companyCode=AILAB&employeeNo=AILAB0012&date=2026-02-13 304 137.166 ms - res-body: {"success":true,"data":[{"id":"145","siteName":"AI LAB","projectName":"AI LAB","projectId":145,"isOpen":true,"startDate":"2026-02-13","endDate":null}]}
+[2026-02-13T11:33:36.000Z] GET /schedule/project-tasks?companyCode=AILAB&projectName=AI+LAB 304 18.268 ms - res-body: {"success":true,"data":[]}
+[2026-02-13T11:33:36.011Z] GET /schedule/project-tasks?companyCode=AILAB&projectName=AI+LAB 304 6.701 ms - res-body: {"success":true,"data":[]}
+[2026-02-13T11:33:36.027Z] GET /leave/requests 304 170.155 ms - res-body: []
+[2026-02-13T11:33:38.185Z] GET /users/profile?companyCode=AILAB&employeeNo=AILAB0012 304 17.519 ms - res-body: {"success":true,"data":{"id":337,"employeeNo":"AILAB0012","name":"Naveen R","email":"naveenmrsamy872003@gmail.com","companyId":1,"workingDays":6,"profileImageUri":null,"enableHours":true,"role":"employee","leaveBalance":{"annual":7,"medical":20,"compensatory":0,"hospitalised":0,"childcare":0,"unpaid":0,"others":0},"payrollEnable":false,"modules":{"attendance":true,"history":true,"leave":true,"schedule":false,"payroll":true,"feedback":false,"survey":true},"config":{"workingDays":6,"holidays":["20... [104 chars truncated]
+[2026-02-13T11:33:38.336Z] GET /settings/company-name?companyCode=AILAB 304 4.397 ms - res-body: {"success":true,"data":{"companyName":"AI LAB TECHNOLOGIES PTE LTD"}}
+[2026-02-13T11:33:38.340Z] GET /schedule/assigned?companyCode=AILAB&employeeNo=AILAB0012&date=2026-02-13 304 7.433 ms - res-body: {"success":true,"data":[{"id":"145","siteName":"AI LAB","projectName":"AI LAB","projectId":145,"isOpen":true,"startDate":"2026-02-13","endDate":null}]}
+[2026-02-13T11:33:38.346Z] GET /schedule/assigned?companyCode=AILAB&employeeNo=AILAB0012&date=2026-02-13 304 15.355 ms - res-body: {"success":true,"data":[{"id":"145","siteName":"AI LAB","projectName":"AI LAB","projectId":145,"isOpen":true,"startDate":"2026-02-13","endDate":null}]}
+[2026-02-13T11:33:38.371Z] GET /schedule/project-tasks?companyCode=AILAB&projectName=AI+LAB 304 4.415 ms - res-body: {"success":true,"data":[]}
+[2026-02-13T11:33:38.373Z] GET /schedule/project-tasks?companyCode=AILAB&projectName=AI+LAB 304 14.296 ms - res-body: {"success":true,"data":[]}
+[2026-02-13T11:33:50.150Z] GET /health 304 0.475 ms - res-body: {"status":"healthy"}
+[2026-02-13T11:33:59.410Z] POST /auth/login-multi 401 6.604 ms - res-body: {"success":false,"message":"Invalid employee number. Please also verify your password."}
+[2026-02-13T11:34:05.124Z] GET /health 304 0.518 ms - res-body: {"status":"healthy"}
+[2026-02-13T11:34:20.152Z] GET /health 304 0.510 ms - res-body: {"status":"healthy"}
+[2026-02-13T11:34:30.418Z] POST /auth/login-multi 401 68.387 ms - res-body: {"success":false,"message":"Invalid company code. Please also verify your employee number and password."}
+[2026-02-13T11:34:35.161Z] GET /health 304 0.513 ms - res-body: {"status":"healthy"}
+[2026-02-13T11:34:50.189Z] GET /health 304 0.485 ms - res-body: {"status":"healthy"}
+[2026-02-13T11:35:05.211Z] GET /health 304 0.462 ms - res-body: {"status":"healthy"}
+[2026-02-13T11:35:20.203Z] GET /health 304 0.477 ms - res-body: {"status":"healthy"}
+[2026-02-13T11:35:35.216Z] GET /health 304 0.525 ms - res-body: {"status":"healthy"}
+[2026-02-13T11:35:50.228Z] GET /health 304 0.466 ms - res-body: {"status":"healthy"}
+[2026-02-13T11:36:05.210Z] GET /health 304 0.397 ms - res-body: {"status":"healthy"}
+[2026-02-13T11:36:20.229Z] GET /health 304 0.571 ms - res-body: {"status":"healthy"}
+[2026-02-13T11:36:35.273Z] GET /health 304 0.490 ms - res-body: {"status":"healthy"}
+[2026-02-13T11:36:39.473Z] POST /auth/login-multi 401 73.390 ms - res-body: {"success":false,"message":"Invalid employee number. Please also verify your password."}
+[2026-02-13T11:36:50.277Z] GET /health 304 1.256 ms - res-body: {"status":"healthy"}
+[2026-02-13T11:37:19.185Z] GET /health 304 0.484 ms - res-body: {"status":"healthy"}
+[2026-02-13T11:37:19.543Z] GET /health 304 0.480 ms - res-body: {"status":"healthy"}
+[2026-02-13T11:37:34.195Z] GET /health 304 0.514 ms - res-body: {"status":"healthy"}
+[2026-02-13T11:37:40.252Z] POST /auth/login-multi 401 60.182 ms - res-body: {"success":false,"message":"Invalid company code. Please also verify your employee number and password."}
+[2026-02-13T11:37:49.228Z] GET /health 304 0.331 ms - res-body: {"status":"healthy"}
+[2026-02-13T11:38:07.755Z] GET /health 304 16.631 ms - res-body: {"status":"healthy"}
+[2026-02-13T11:40:08.860Z] GET /health 304 1.612 ms - res-body: {"status":"healthy"}
+[2026-02-13T11:40:09.232Z] GET /health 304 0.703 ms - res-body: {"status":"healthy"}
+[2026-02-13T11:40:23.830Z] GET /health 304 0.622 ms - res-body: {"status":"healthy"}
+[2026-02-13T11:40:31.258Z] POST /auth/login-multi 401 210.469 ms - res-body: {"success":false,"message":"Invalid employee number. Please also verify your password."}
+[2026-02-13T11:40:38.863Z] GET /health 304 0.533 ms - res-body: {"status":"healthy"}
+[2026-02-13T11:40:53.861Z] GET /health 304 0.764 ms - res-body: {"status":"healthy"}
+[2026-02-13T11:41:08.911Z] GET /health 304 0.877 ms - res-body: {"status":"healthy"}
+[2026-02-13T11:43:04.686Z] GET /health 304 0.917 ms - res-body: {"status":"healthy"}
+[2026-02-13T11:43:04.956Z] GET /health 304 0.613 ms - res-body: {"status":"healthy"}
+[2026-02-13T11:43:19.649Z] GET /health 304 0.595 ms - res-body: {"status":"healthy"}
+[2026-02-13T11:43:28.651Z] POST /auth/login-multi 401 78.188 ms - res-body: {"success":false,"message":"Invalid company code. Please also verify your employee number and password."}
+[2026-02-13T11:43:34.717Z] GET /health 304 0.398 ms - res-body: {"status":"healthy"}
+[2026-02-13T11:43:49.677Z] GET /health 304 0.693 ms - res-body: {"status":"healthy"}
+[2026-02-13T11:44:04.710Z] GET /health 304 0.474 ms - res-body: {"status":"healthy"}
+[2026-02-13T11:44:19.714Z] GET /health 304 0.464 ms - res-body: {"status":"healthy"}
+[2026-02-13T11:44:34.733Z] GET /health 304 0.477 ms - res-body: {"status":"healthy"}
+[2026-02-13T11:44:49.739Z] GET /health 304 0.447 ms - res-body: {"status":"healthy"}
+[2026-02-13T11:45:04.752Z] GET /health 304 0.305 ms - res-body: {"status":"healthy"}
+[2026-02-13T11:45:19.761Z] GET /health 304 0.499 ms - res-body: {"status":"healthy"}
+[2026-02-13T11:45:34.773Z] GET /health 304 0.479 ms - res-body: {"status":"healthy"}
+[2026-02-13T11:45:49.774Z] GET /health 304 0.363 ms - res-body: {"status":"healthy"}
+[2026-02-13T11:46:04.772Z] GET /health 304 0.469 ms - res-body: {"status":"healthy"}
+[2026-02-13T11:46:19.805Z] GET /health 304 0.626 ms - res-body: {"status":"healthy"}
+[2026-02-13T11:46:49.852Z] GET /health 304 9.521 ms - res-body: {"status":"healthy"}
+[2026-02-13T11:47:04.813Z] GET /health 304 1.553 ms - res-body: {"status":"healthy"}
+[2026-02-13T11:50:41.248Z] GET /health 304 19.843 ms - res-body: {"status":"healthy"}
+[2026-02-13T11:50:56.150Z] GET /health 304 1.719 ms - res-body: {"status":"healthy"}
+[2026-02-13T11:51:11.173Z] GET /health 304 0.493 ms - res-body: {"status":"healthy"}
+[2026-02-13T11:51:26.168Z] GET /health 304 0.831 ms - res-body: {"status":"healthy"}
+[2026-02-13T11:51:41.184Z] GET /health 304 0.437 ms - res-body: {"status":"healthy"}
+[2026-02-13T11:51:56.178Z] GET /health 304 0.765 ms - res-body: {"status":"healthy"}
+[2026-02-13T11:52:11.195Z] GET /health 304 0.394 ms - res-body: {"status":"healthy"}
+[2026-02-13T12:06:24.176Z] GET /health 304 7.725 ms - res-body: {"status":"healthy"}
+[2026-02-13T12:06:24.435Z] GET /health 304 1.558 ms - res-body: {"status":"healthy"}
+[2026-02-13T12:06:38.974Z] GET /health 304 0.827 ms - res-body: {"status":"healthy"}
+[2026-02-13T12:06:47.250Z] POST /auth/login-multi 401 158.907 ms - res-body: {"success":false,"message":"Invalid company code. Please also verify your employee number and password."}
+[2026-02-13T12:06:54.007Z] GET /health 304 0.928 ms - res-body: {"status":"healthy"}
+[2026-02-13T12:07:09.041Z] GET /health 304 1.010 ms - res-body: {"status":"healthy"}
+[2026-02-13T12:07:24.037Z] GET /health 304 0.802 ms - res-body: {"status":"healthy"}
+[2026-02-13T12:07:40.158Z] GET /health 304 0.676 ms - res-body: {"status":"healthy"}
+[2026-02-13T12:07:55.052Z] GET /health 304 0.744 ms - res-body: {"status":"healthy"}
+[2026-02-13T12:08:12.129Z] GET /health 304 0.515 ms - res-body: {"status":"healthy"}
+[2026-02-13T12:08:42.113Z] GET /health 304 0.442 ms - res-body: {"status":"healthy"}
+[2026-02-13T12:08:55.123Z] GET /health 304 0.788 ms - res-body: {"status":"healthy"}
+[2026-02-13T12:09:09.095Z] GET /health 304 0.510 ms - res-body: {"status":"healthy"}
+[2026-02-13T12:09:27.128Z] GET /health 304 0.423 ms - res-body: {"status":"healthy"}
+[2026-02-13T12:09:39.126Z] GET /health 304 0.452 ms - res-body: {"status":"healthy"}
+[2026-02-13T12:09:54.127Z] GET /health 304 0.481 ms - res-body: {"status":"healthy"}
+[2026-02-13T12:10:09.131Z] GET /health 304 0.486 ms - res-body: {"status":"healthy"}
+[2026-02-13T12:10:24.151Z] GET /health 304 0.730 ms - res-body: {"status":"healthy"}
+[2026-02-13T12:10:39.165Z] GET /health 304 0.495 ms - res-body: {"status":"healthy"}
+[2026-02-13T12:15:09.877Z] GET /health 304 0.648 ms - res-body: {"status":"healthy"}
+[2026-02-13T12:15:10.176Z] GET /health 304 0.316 ms - res-body: {"status":"healthy"}
+[2026-02-13T12:15:24.880Z] GET /health 304 0.344 ms - res-body: {"status":"healthy"}
+[2026-02-13T12:15:28.887Z] POST /auth/login-multi 401 158.085 ms - res-body: {"success":false,"message":"Invalid company code. Please also verify your employee number and password."}
+[2026-02-13T12:15:39.901Z] GET /health 304 0.588 ms - res-body: {"status":"healthy"}
+[2026-02-13T12:15:54.886Z] GET /health 304 0.305 ms - res-body: {"status":"healthy"}
+[2026-02-13T12:18:44.362Z] GET /health 304 7.896 ms - res-body: {"status":"healthy"}
+[2026-02-13T12:18:44.703Z] GET /health 304 1.505 ms - res-body: {"status":"healthy"}
+[2026-02-13T12:18:59.349Z] GET /health 304 0.420 ms - res-body: {"status":"healthy"}
+[2026-02-13T12:19:29.393Z] GET /health 304 7.217 ms - res-body: {"status":"healthy"}
+[2026-02-13T12:19:44.369Z] GET /health 304 0.963 ms - res-body: {"status":"healthy"}
+[2026-02-13T12:20:41.396Z] GET /health 304 0.724 ms - res-body: {"status":"healthy"}
+[2026-02-13T12:20:41.760Z] GET /health 304 0.555 ms - res-body: {"status":"healthy"}
+[2026-02-13T12:20:56.437Z] GET /health 304 0.903 ms - res-body: {"status":"healthy"}
+[2026-02-13T12:21:11.438Z] GET /health 304 0.684 ms - res-body: {"status":"healthy"}
+[2026-02-13T12:21:26.438Z] GET /health 304 0.558 ms - res-body: {"status":"healthy"}
+[2026-02-13T12:21:41.461Z] GET /health 304 0.410 ms - res-body: {"status":"healthy"}
+[2026-02-13T12:21:46.185Z] POST /auth/login-multi 200 240.899 ms - res-body: {"success":true,"message":"Login success","data":{"employeeNo":"AILAB0012","name":"Naveen R","email":"ailab0012@company.com","role":"employee","companyCode":"AILAB","sessionToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbXBsb3llZUlkIjozMzcsImVtcGxveWVlTm8iOiJBSUxBQjAwMTIiLCJjdXN0b21lcklkIjoxLCJuYW1lIjoiTmF2ZWVuIFIiLCJjb21wYW55Q29kZSI6IkFJTEFCIiwiaWF0IjoxNzcwOTg1MzA2LCJleHAiOjE3Nzg3NjEzMDZ9.PZpsJaiVAupYyFx_IIiHnAbrIBXvRuer5hIVDrqukWM","profileImageUri":null,"modules":{"attendance":true,"history... [85 chars truncated]
+[2026-02-13T12:21:46.278Z] GET /users/profile?companyCode=AILAB&employeeNo=AILAB0012 304 41.350 ms - res-body: {"success":true,"data":{"id":337,"employeeNo":"AILAB0012","name":"Naveen R","email":"naveenmrsamy872003@gmail.com","companyId":1,"workingDays":6,"profileImageUri":null,"enableHours":true,"role":"employee","leaveBalance":{"annual":7,"medical":20,"compensatory":0,"hospitalised":0,"childcare":0,"unpaid":0,"others":0},"payrollEnable":false,"modules":{"attendance":true,"history":true,"leave":true,"schedule":false,"payroll":true,"feedback":false,"survey":true},"config":{"workingDays":6,"holidays":["20... [104 chars truncated]
+[2026-02-13T12:21:46.736Z] GET /face/status?companyCode=AILAB&employeeNo=AILAB0012 304 3.901 ms - res-body: {"success":true,"data":{"employeeNo":"AILAB0012","name":"Naveen R","registered":true,"message":"Face already enrolled. You can clock in/out."}}
+[2026-02-13T12:21:46.918Z] GET /attendance/today?employeeNo=AILAB0012&companyCode=AILAB 304 176.213 ms - res-body: {"success":true,"data":{"date":"2026-02-13","entries":[],"normalHours":0,"overtimeHours":0,"restHours":0,"totalHours":0,"status":"absent"}}
+[2026-02-13T12:21:46.921Z] GET /settings/company-name?companyCode=AILAB 304 151.636 ms - res-body: {"success":true,"data":{"companyName":"AI LAB TECHNOLOGIES PTE LTD"}}
+[2026-02-13T12:21:46.943Z] GET /schedule/assigned?companyCode=AILAB&employeeNo=AILAB0012&date=2026-02-13 304 11.217 ms - res-body: {"success":true,"data":[{"id":"145","siteName":"AI LAB","projectName":"AI LAB","projectId":145,"isOpen":true,"startDate":"2026-02-13","endDate":null}]}
+[2026-02-13T12:21:46.985Z] GET /leave/balance 304 233.292 ms - res-body: {"success":true,"data":{"balance":{"annual":7,"medical":20,"emergency":0,"unpaid":0},"statistics":{"totalRequests":0,"pendingRequests":0,"approvedDays":0},"details":[{"leaveType":"Annual Leave (7.0 day(s))","leaveTypeId":8,"allocated":7,"taken":0,"pending":0,"balance":7},{"leaveType":"Medical Leave (15 day(s))","leaveTypeId":7,"allocated":15,"taken":0,"pending":0,"balance":15},{"leaveType":"Medical Leave (5.0 day(s))","leaveTypeId":7,"allocated":5,"taken":0,"pending":0,"balance":5}]}}
+[2026-02-13T12:21:47.002Z] GET /leave?companyCode=AILAB&employeeNo=AILAB0012 304 242.896 ms - res-body: {"data":[]}
+[2026-02-13T12:21:47.005Z] GET /leave/requests 304 242.208 ms - res-body: []
+[2026-02-13T12:21:47.088Z] GET /schedule/project-tasks?companyCode=AILAB&projectName=AI+LAB 304 33.401 ms - res-body: {"success":true,"data":[]}
+[2026-02-13T12:21:47.107Z] GET /schedule/assigned?companyCode=AILAB&employeeNo=AILAB0012&date=2026-02-13 304 169.117 ms - res-body: {"success":true,"data":[{"id":"145","siteName":"AI LAB","projectName":"AI LAB","projectId":145,"isOpen":true,"startDate":"2026-02-13","endDate":null}]}
+[2026-02-13T12:21:47.133Z] GET /schedule/project-tasks?companyCode=AILAB&projectName=AI+LAB 304 13.616 ms - res-body: {"success":true,"data":[]}
+[2026-02-13T12:21:50.480Z] GET /users/profile?companyCode=AILAB&employeeNo=AILAB0012 304 17.221 ms - res-body: {"success":true,"data":{"id":337,"employeeNo":"AILAB0012","name":"Naveen R","email":"naveenmrsamy872003@gmail.com","companyId":1,"workingDays":6,"profileImageUri":null,"enableHours":true,"role":"employee","leaveBalance":{"annual":7,"medical":20,"compensatory":0,"hospitalised":0,"childcare":0,"unpaid":0,"others":0},"payrollEnable":false,"modules":{"attendance":true,"history":true,"leave":true,"schedule":false,"payroll":true,"feedback":false,"survey":true},"config":{"workingDays":6,"holidays":["20... [104 chars truncated]
+[2026-02-13T12:21:50.634Z] GET /settings/company-name?companyCode=AILAB 304 3.046 ms - res-body: {"success":true,"data":{"companyName":"AI LAB TECHNOLOGIES PTE LTD"}}
+[2026-02-13T12:21:50.637Z] GET /schedule/assigned?companyCode=AILAB&employeeNo=AILAB0012&date=2026-02-13 304 3.809 ms - res-body: {"success":true,"data":[{"id":"145","siteName":"AI LAB","projectName":"AI LAB","projectId":145,"isOpen":true,"startDate":"2026-02-13","endDate":null}]}
+[2026-02-13T12:21:50.677Z] GET /schedule/assigned?companyCode=AILAB&employeeNo=AILAB0012&date=2026-02-13 304 3.702 ms - res-body: {"success":true,"data":[{"id":"145","siteName":"AI LAB","projectName":"AI LAB","projectId":145,"isOpen":true,"startDate":"2026-02-13","endDate":null}]}
+[2026-02-13T12:21:50.802Z] GET /schedule/project-tasks?companyCode=AILAB&projectName=AI+LAB 304 3.284 ms - res-body: {"success":true,"data":[]}
+[2026-02-13T12:21:50.807Z] GET /schedule/project-tasks?companyCode=AILAB&projectName=AI+LAB 304 3.727 ms - res-body: {"success":true,"data":[]}
+[2026-02-13T12:21:56.446Z] GET /health 304 0.599 ms - res-body: {"status":"healthy"}
+[2026-02-13T12:22:09.039Z] POST /auth/login-multi 401 9.003 ms - res-body: {"success":false,"message":"Invalid company code. Please also verify your employee number and password."}
+[2026-02-13T12:22:11.470Z] GET /health 304 0.314 ms - res-body: {"status":"healthy"}
+[2026-02-13T12:22:26.512Z] GET /health 304 0.560 ms - res-body: {"status":"healthy"}
+[2026-02-13T12:22:41.531Z] GET /health 304 0.331 ms - res-body: {"status":"healthy"}
+[2026-02-13T12:22:56.554Z] GET /health 304 0.519 ms - res-body: {"status":"healthy"}
+[2026-02-13T12:23:11.551Z] GET /health 304 0.615 ms - res-body: {"status":"healthy"}
+[2026-02-13T12:23:26.544Z] GET /health 304 0.379 ms - res-body: {"status":"healthy"}
+[2026-02-13T12:23:41.562Z] GET /health 304 0.543 ms - res-body: {"status":"healthy"}
+[2026-02-13T12:27:43.813Z] GET /health 304 8.408 ms - res-body: {"status":"healthy"}
+[2026-02-13T12:28:28.565Z] GET /health 304 1.099 ms - res-body: {"status":"healthy"}
+[2026-02-13T12:28:29.503Z] GET /health 304 0.698 ms - res-body: {"status":"healthy"}
+[2026-02-13T12:28:43.565Z] GET /health 304 0.631 ms - res-body: {"status":"healthy"}
+[2026-02-13T12:28:46.768Z] POST /auth/login-multi 200 266.751 ms - res-body: {"success":true,"message":"Login success","data":{"employeeNo":"AILAB0012","name":"Naveen R","email":"ailab0012@company.com","role":"employee","companyCode":"AILAB","sessionToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbXBsb3llZUlkIjozMzcsImVtcGxveWVlTm8iOiJBSUxBQjAwMTIiLCJjdXN0b21lcklkIjoxLCJuYW1lIjoiTmF2ZWVuIFIiLCJjb21wYW55Q29kZSI6IkFJTEFCIiwiaWF0IjoxNzcwOTg1NzI2LCJleHAiOjE3Nzg3NjE3MjZ9.oagXsQdByhHSHFpkBqBiT4srv7eib-UXj33_O8f6W7s","profileImageUri":null,"modules":{"attendance":true,"history... [85 chars truncated]
+[2026-02-13T12:28:46.844Z] GET /users/profile?companyCode=AILAB&employeeNo=AILAB0012 304 36.433 ms - res-body: {"success":true,"data":{"id":337,"employeeNo":"AILAB0012","name":"Naveen R","email":"naveenmrsamy872003@gmail.com","companyId":1,"workingDays":6,"profileImageUri":null,"enableHours":true,"role":"employee","leaveBalance":{"annual":7,"medical":20,"compensatory":0,"hospitalised":0,"childcare":0,"unpaid":0,"others":0},"payrollEnable":false,"modules":{"attendance":true,"history":true,"leave":true,"schedule":false,"payroll":true,"feedback":false,"survey":true},"config":{"workingDays":6,"holidays":["20... [104 chars truncated]
+[2026-02-13T12:28:46.887Z] GET /face/status?companyCode=AILAB&employeeNo=AILAB0012 304 3.199 ms - res-body: {"success":true,"data":{"employeeNo":"AILAB0012","name":"Naveen R","registered":true,"message":"Face already enrolled. You can clock in/out."}}
+[2026-02-13T12:28:47.352Z] GET /attendance/today?employeeNo=AILAB0012&companyCode=AILAB 304 91.362 ms - res-body: {"success":true,"data":{"date":"2026-02-13","entries":[],"normalHours":0,"overtimeHours":0,"restHours":0,"totalHours":0,"status":"absent"}}
+[2026-02-13T12:28:47.397Z] GET /settings/company-name?companyCode=AILAB 304 114.811 ms - res-body: {"success":true,"data":{"companyName":"AI LAB TECHNOLOGIES PTE LTD"}}
+[2026-02-13T12:28:47.414Z] GET /schedule/assigned?companyCode=AILAB&employeeNo=AILAB0012&date=2026-02-13 304 14.806 ms - res-body: {"success":true,"data":[{"id":"145","siteName":"AI LAB","projectName":"AI LAB","projectId":145,"isOpen":true,"startDate":"2026-02-13","endDate":null}]}
+[2026-02-13T12:28:47.437Z] GET /schedule/assigned?companyCode=AILAB&employeeNo=AILAB0012&date=2026-02-13 304 11.537 ms - res-body: {"success":true,"data":[{"id":"145","siteName":"AI LAB","projectName":"AI LAB","projectId":145,"isOpen":true,"startDate":"2026-02-13","endDate":null}]}
+[2026-02-13T12:28:47.465Z] GET /leave?companyCode=AILAB&employeeNo=AILAB0012 304 189.229 ms - res-body: {"data":[]}
+[2026-02-13T12:28:47.476Z] GET /leave/balance 304 209.578 ms - res-body: {"success":true,"data":{"balance":{"annual":7,"medical":20,"emergency":0,"unpaid":0},"statistics":{"totalRequests":0,"pendingRequests":0,"approvedDays":0},"details":[{"leaveType":"Annual Leave (7.0 day(s))","leaveTypeId":8,"allocated":7,"taken":0,"pending":0,"balance":7},{"leaveType":"Medical Leave (15 day(s))","leaveTypeId":7,"allocated":15,"taken":0,"pending":0,"balance":15},{"leaveType":"Medical Leave (5.0 day(s))","leaveTypeId":7,"allocated":5,"taken":0,"pending":0,"balance":5}]}}
+[2026-02-13T12:28:47.517Z] GET /leave/requests 304 233.730 ms - res-body: []
+[2026-02-13T12:28:47.728Z] GET /schedule/project-tasks?companyCode=AILAB&projectName=AI+LAB 304 240.084 ms - res-body: {"success":true,"data":[]}
+[2026-02-13T12:28:47.777Z] GET /schedule/project-tasks?companyCode=AILAB&projectName=AI+LAB 304 270.727 ms - res-body: {"success":true,"data":[]}
+[2026-02-13T12:28:58.595Z] GET /health 304 0.435 ms - res-body: {"status":"healthy"}
+[2026-02-13T12:29:01.574Z] POST /auth/login-multi 401 8.272 ms - res-body: {"success":false,"message":"Invalid company code. Please also verify your employee number and password."}
+[2026-02-13T12:42:46.863Z] GET /health 304 6.561 ms - res-body: {"status":"healthy"}
+[2026-02-13T12:43:01.841Z] GET /health 304 2.689 ms - res-body: {"status":"healthy"}
+[2026-02-13T12:43:41.249Z] GET /health 304 1.248 ms - res-body: {"status":"healthy"}
+[2026-02-13T12:43:41.587Z] GET /health 304 0.625 ms - res-body: {"status":"healthy"}
+[2026-02-13T12:43:56.253Z] GET /health 304 0.616 ms - res-body: {"status":"healthy"}
+[2026-02-13T12:44:09.302Z] POST /auth/login-multi 200 312.510 ms - res-body: {"success":true,"message":"Login success","data":{"employeeNo":"AILAB0012","name":"Naveen R","email":"ailab0012@company.com","role":"employee","companyCode":"AILAB","sessionToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbXBsb3llZUlkIjozMzcsImVtcGxveWVlTm8iOiJBSUxBQjAwMTIiLCJjdXN0b21lcklkIjoxLCJuYW1lIjoiTmF2ZWVuIFIiLCJjb21wYW55Q29kZSI6IkFJTEFCIiwiaWF0IjoxNzcwOTg2NjQ5LCJleHAiOjE3Nzg3NjI2NDl9.cVyaTchYzkQYDbqeX58ifiteBiN77zWDiycxyEoIHD8","profileImageUri":null,"modules":{"attendance":true,"history... [85 chars truncated]
+[2026-02-13T12:44:09.519Z] GET /users/profile?companyCode=AILAB&employeeNo=AILAB0012 304 84.174 ms - res-body: {"success":true,"data":{"id":337,"employeeNo":"AILAB0012","name":"Naveen R","email":"naveenmrsamy872003@gmail.com","companyId":1,"workingDays":6,"profileImageUri":null,"enableHours":true,"role":"employee","leaveBalance":{"annual":7,"medical":20,"compensatory":0,"hospitalised":0,"childcare":0,"unpaid":0,"others":0},"payrollEnable":false,"modules":{"attendance":true,"history":true,"leave":true,"schedule":false,"payroll":true,"feedback":false,"survey":true},"config":{"workingDays":6,"holidays":["20... [104 chars truncated]
+[2026-02-13T12:44:09.986Z] GET /face/status?companyCode=AILAB&employeeNo=AILAB0012 304 24.368 ms - res-body: {"success":true,"data":{"employeeNo":"AILAB0012","name":"Naveen R","registered":true,"message":"Face already enrolled. You can clock in/out."}}
+[2026-02-13T12:44:10.076Z] GET /leave/requests 304 81.994 ms - res-body: []
+[2026-02-13T12:44:10.081Z] GET /settings/company-name?companyCode=AILAB 304 52.972 ms - res-body: {"success":true,"data":{"companyName":"AI LAB TECHNOLOGIES PTE LTD"}}
+[2026-02-13T12:44:10.127Z] GET /schedule/assigned?companyCode=AILAB&employeeNo=AILAB0012&date=2026-02-13 304 35.654 ms - res-body: {"success":true,"data":[{"id":"145","siteName":"AI LAB","projectName":"AI LAB","projectId":145,"isOpen":true,"startDate":"2026-02-13","endDate":null}]}
+[2026-02-13T12:44:10.136Z] GET /leave?companyCode=AILAB&employeeNo=AILAB0012 304 127.820 ms - res-body: {"data":[]}
+[2026-02-13T12:44:10.146Z] GET /leave/balance 304 127.788 ms - res-body: {"success":true,"data":{"balance":{"annual":7,"medical":20,"emergency":0,"unpaid":0},"statistics":{"totalRequests":0,"pendingRequests":0,"approvedDays":0},"details":[{"leaveType":"Annual Leave (7.0 day(s))","leaveTypeId":8,"allocated":7,"taken":0,"pending":0,"balance":7},{"leaveType":"Medical Leave (15 day(s))","leaveTypeId":7,"allocated":15,"taken":0,"pending":0,"balance":15},{"leaveType":"Medical Leave (5.0 day(s))","leaveTypeId":7,"allocated":5,"taken":0,"pending":0,"balance":5}]}}
+[2026-02-13T12:44:10.226Z] GET /attendance/today?employeeNo=AILAB0012&companyCode=AILAB 304 250.637 ms - res-body: {"success":true,"data":{"date":"2026-02-13","entries":[],"normalHours":0,"overtimeHours":0,"restHours":0,"totalHours":0,"status":"absent"}}
+[2026-02-13T12:44:10.246Z] GET /schedule/project-tasks?companyCode=AILAB&projectName=AI+LAB 304 19.114 ms - res-body: {"success":true,"data":[]}
+[2026-02-13T12:44:10.256Z] GET /schedule/assigned?companyCode=AILAB&employeeNo=AILAB0012&date=2026-02-13 304 158.383 ms - res-body: {"success":true,"data":[{"id":"145","siteName":"AI LAB","projectName":"AI LAB","projectId":145,"isOpen":true,"startDate":"2026-02-13","endDate":null}]}
+[2026-02-13T12:44:10.321Z] GET /schedule/project-tasks?companyCode=AILAB&projectName=AI+LAB 304 42.988 ms - res-body: {"success":true,"data":[]}
+[2026-02-13T12:44:11.279Z] GET /health 304 0.531 ms - res-body: {"status":"healthy"}
+[2026-02-13T12:44:13.181Z] GET /users/profile?companyCode=AILAB&employeeNo=AILAB0012 304 19.574 ms - res-body: {"success":true,"data":{"id":337,"employeeNo":"AILAB0012","name":"Naveen R","email":"naveenmrsamy872003@gmail.com","companyId":1,"workingDays":6,"profileImageUri":null,"enableHours":true,"role":"employee","leaveBalance":{"annual":7,"medical":20,"compensatory":0,"hospitalised":0,"childcare":0,"unpaid":0,"others":0},"payrollEnable":false,"modules":{"attendance":true,"history":true,"leave":true,"schedule":false,"payroll":true,"feedback":false,"survey":true},"config":{"workingDays":6,"holidays":["20... [104 chars truncated]
+[2026-02-13T12:44:13.312Z] GET /settings/company-name?companyCode=AILAB 304 5.808 ms - res-body: {"success":true,"data":{"companyName":"AI LAB TECHNOLOGIES PTE LTD"}}
+[2026-02-13T12:44:13.315Z] GET /schedule/assigned?companyCode=AILAB&employeeNo=AILAB0012&date=2026-02-13 304 9.514 ms - res-body: {"success":true,"data":[{"id":"145","siteName":"AI LAB","projectName":"AI LAB","projectId":145,"isOpen":true,"startDate":"2026-02-13","endDate":null}]}
+[2026-02-13T12:44:13.318Z] GET /schedule/assigned?companyCode=AILAB&employeeNo=AILAB0012&date=2026-02-13 304 9.583 ms - res-body: {"success":true,"data":[{"id":"145","siteName":"AI LAB","projectName":"AI LAB","projectId":145,"isOpen":true,"startDate":"2026-02-13","endDate":null}]}
+[2026-02-13T12:44:13.583Z] GET /schedule/project-tasks?companyCode=AILAB&projectName=AI+LAB 304 7.029 ms - res-body: {"success":true,"data":[]}
+[2026-02-13T12:44:13.585Z] GET /schedule/project-tasks?companyCode=AILAB&projectName=AI+LAB 304 7.056 ms - res-body: {"success":true,"data":[]}
+[2026-02-13T12:44:26.305Z] GET /health 304 0.338 ms - res-body: {"status":"healthy"}
+[2026-02-13T12:44:32.962Z] POST /auth/login-multi 401 6.246 ms - res-body: {"success":false,"message":"Invalid company code. Please also verify your employee number and password."}
+[2026-02-13T12:44:41.318Z] GET /health 304 0.928 ms - res-body: {"status":"healthy"}
+[2026-02-13T12:44:56.343Z] GET /health 304 0.401 ms - res-body: {"status":"healthy"}
+[2026-02-13T12:45:11.313Z] GET /health 304 0.406 ms - res-body: {"status":"healthy"}
+[2026-02-13T12:45:26.412Z] GET /health 304 0.338 ms - res-body: {"status":"healthy"}
+[2026-02-13T12:45:41.339Z] GET /health 304 0.450 ms - res-body: {"status":"healthy"}
+[2026-02-13T12:45:43.864Z] POST /auth/login-multi 401 67.032 ms - res-body: {"success":false,"message":"Invalid company code. Please also verify your employee number and password."}
+[2026-02-13T12:45:56.376Z] GET /health 304 0.481 ms - res-body: {"status":"healthy"}
+[2026-02-13T12:46:11.364Z] GET /health 304 0.535 ms - res-body: {"status":"healthy"}
+[2026-02-13T12:46:26.377Z] GET /health 304 0.332 ms - res-body: {"status":"healthy"}
+[2026-02-13T12:46:41.385Z] GET /health 304 0.676 ms - res-body: {"status":"healthy"}
+[2026-02-13T12:46:56.400Z] GET /health 304 0.984 ms - res-body: {"status":"healthy"}
+[2026-02-13T12:47:11.414Z] GET /health 304 0.384 ms - res-body: {"status":"healthy"}
+[2026-02-13T12:47:26.408Z] GET /health 304 0.822 ms - res-body: {"status":"healthy"}
+[2026-02-13T12:47:41.424Z] GET /health 304 0.484 ms - res-body: {"status":"healthy"}
+[2026-02-13T12:48:11.479Z] GET /health 304 8.692 ms - res-body: {"status":"healthy"}
+[2026-02-13T12:48:58.387Z] GET /health 304 6.453 ms - res-body: {"status":"healthy"}
+[2026-02-13T12:48:58.774Z] GET /health 304 1.321 ms - res-body: {"status":"healthy"}
+[2026-02-13T12:49:13.396Z] GET /health 304 1.512 ms - res-body: {"status":"healthy"}
+[2026-02-13T12:49:28.406Z] GET /health 304 0.748 ms - res-body: {"status":"healthy"}
+[2026-02-13T12:49:34.561Z] POST /auth/login-multi 401 166.684 ms - res-body: {"success":false,"message":"• The employee number you entered was not found.\n• Please check and try again.\n• Enter correct employee number."}
+[2026-02-13T12:49:43.410Z] GET /health 304 0.520 ms - res-body: {"status":"healthy"}
+[2026-02-13T12:49:50.922Z] POST /auth/login-multi 401 5.917 ms - res-body: {"success":false,"message":"• The company code you entered was not found.\n• Please check and try again.\n• Enter correct company code."}
+[2026-02-13T12:49:58.419Z] GET /health 304 0.605 ms - res-body: {"status":"healthy"}
+[2026-02-13T12:50:13.435Z] GET /health 304 1.071 ms - res-body: {"status":"healthy"}
+[2026-02-13T12:50:19.202Z] POST /auth/login-multi 401 62.461 ms - res-body: {"success":false,"message":"• The employee number you entered was not found.\n• Please check and try again.\n• Enter correct employee number."}
+[2026-02-13T12:50:28.452Z] GET /health 304 0.592 ms - res-body: {"status":"healthy"}
+[2026-02-13T12:50:43.429Z] GET /health 304 0.712 ms - res-body: {"status":"healthy"}
+[2026-02-13T12:50:47.881Z] POST /auth/login-multi 401 9.973 ms - res-body: {"success":false,"message":"• The password you entered is incorrect.\n• Please check and try again.\n• Enter correct password."}
+[2026-02-13T12:50:58.483Z] GET /health 304 0.675 ms - res-body: {"status":"healthy"}
+[2026-02-13T12:51:13.485Z] GET /health 304 0.482 ms - res-body: {"status":"healthy"}
+[2026-02-13T12:51:28.493Z] GET /health 304 0.519 ms - res-body: {"status":"healthy"}
+[2026-02-13T12:51:43.583Z] GET /health 304 1.209 ms - res-body: {"status":"healthy"}
+[2026-02-13T12:51:58.512Z] GET /health 304 0.430 ms - res-body: {"status":"healthy"}
+[2026-02-13T12:52:13.519Z] GET /health 304 0.261 ms - res-body: {"status":"healthy"}
+[2026-02-13T12:52:28.537Z] GET /health 304 0.409 ms - res-body: {"status":"healthy"}
+[2026-02-13T12:52:43.545Z] GET /health 304 0.964 ms - res-body: {"status":"healthy"}
+[2026-02-13T12:52:58.532Z] GET /health 304 0.294 ms - res-body: {"status":"healthy"}
+[2026-02-13T12:53:13.570Z] GET /health 304 0.379 ms - res-body: {"status":"healthy"}
+[2026-02-13T12:53:28.563Z] GET /health 304 0.412 ms - res-body: {"status":"healthy"}
+[2026-02-13T12:53:33.764Z] GET /health 304 0.517 ms - res-body: {"status":"healthy"}
+[2026-02-13T12:53:33.961Z] GET /health 304 0.507 ms - res-body: {"status":"healthy"}
+[2026-02-13T12:53:41.410Z] GET /health 304 0.543 ms - res-body: {"status":"healthy"}
+[2026-02-13T12:53:41.564Z] GET /health 304 0.483 ms - res-body: {"status":"healthy"}
+[2026-02-13T12:53:53.375Z] GET /health 304 0.459 ms - res-body: {"status":"healthy"}
+[2026-02-13T12:53:53.552Z] GET /health 304 0.486 ms - res-body: {"status":"healthy"}
+[2026-02-13T12:54:08.371Z] GET /health 304 0.385 ms - res-body: {"status":"healthy"}
+[2026-02-13T12:54:23.401Z] GET /health 304 0.334 ms - res-body: {"status":"healthy"}
+[2026-02-13T12:54:38.420Z] GET /health 304 0.347 ms - res-body: {"status":"healthy"}
+[2026-02-13T12:54:53.415Z] GET /health 304 0.646 ms - res-body: {"status":"healthy"}
+[2026-02-13T12:55:08.434Z] GET /health 304 0.304 ms - res-body: {"status":"healthy"}
+[2026-02-13T12:55:23.455Z] GET /health 304 0.525 ms - res-body: {"status":"healthy"}
+[2026-02-13T12:55:38.463Z] GET /health 304 0.379 ms - res-body: {"status":"healthy"}
+[2026-02-13T12:55:53.451Z] GET /health 304 0.509 ms - res-body: {"status":"healthy"}
+[2026-02-13T12:56:08.497Z] GET /health 304 0.557 ms - res-body: {"status":"healthy"}
+[2026-02-13T12:56:23.490Z] GET /health 304 0.394 ms - res-body: {"status":"healthy"}
+[2026-02-13T12:56:38.486Z] GET /health 304 0.438 ms - res-body: {"status":"healthy"}
+[2026-02-13T12:56:53.510Z] GET /health 304 0.434 ms - res-body: {"status":"healthy"}
+[2026-02-13T12:57:08.520Z] GET /health 304 0.576 ms - res-body: {"status":"healthy"}
+[2026-02-13T12:57:38.544Z] GET /health 304 8.334 ms - res-body: {"status":"healthy"}
+[2026-02-13T12:57:53.561Z] GET /health 304 2.088 ms - res-body: {"status":"healthy"}
+[2026-02-13T12:58:08.577Z] GET /health 304 1.010 ms - res-body: {"status":"healthy"}
