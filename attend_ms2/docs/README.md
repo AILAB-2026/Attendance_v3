@@ -128,7 +128,7 @@ npm run start-web
 
 Ensure `EXPO_PUBLIC_API_BASE_URL` points to your API (default `http://localhost:3000`).
 
-- When testing on a physical device on the same LAN, set both `API_BASE_URL` and `EXPO_PUBLIC_API_BASE_URL` to your machine's LAN IP (e.g., `http://192.168.31.45:3000`).
+- When testing on a physical device on the same LAN, set both `API_BASE_URL` and `EXPO_PUBLIC_API_BASE_URL` to your machine's LAN IP (e.g., `http://192.168.1.10:3000`).
 - For production builds via EAS, set `EXPO_PUBLIC_API_BASE_URL` to your public domain (e.g., `https://api.example.com`).
 
 ## API Quick Reference

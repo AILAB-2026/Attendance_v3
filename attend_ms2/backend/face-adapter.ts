@@ -16,10 +16,10 @@ import jwt from 'jsonwebtoken';
 import { pool as aiattendPool } from './db/connection';
 
 // Configuration
-const FACE_API_URL = process.env.FACE_API_URL || 'http://192.168.31.45:7012';
+const FACE_API_URL = process.env.FACE_API_URL || 'http://192.168.1.10:7012';
 const FACE_API_SECRET = process.env.FACE_API_SECRET || 'change-this-dev-secret';
 const ATTENDANCE_DB_CONFIG = {
-  host: process.env.ATTENDANCE_DB_HOST || '192.168.31.45',
+  host: process.env.ATTENDANCE_DB_HOST || '192.168.1.10',
   port: parseInt(process.env.ATTENDANCE_DB_PORT || '5432'),
   database: process.env.ATTENDANCE_DB_NAME || 'CX18AILABDEMO',
   user: process.env.ATTENDANCE_DB_USER || 'postgres',

@@ -83,7 +83,7 @@ app.listen(port, () => {
   console.log(`🔍 Debug server running on port ${port}`);
   console.log('📱 Configure your mobile app to use this server temporarily:');
   console.log(`   Base URL: http://localhost:${port}`);
-  console.log('   or: http://192.168.31.45:${port} (replace with your IP)');
+  console.log('   or: http://192.168.1.10:${port} (replace with your IP)');
   console.log('\n🎯 This will show exactly what requests the mobile app is making');
   console.log('💡 Once we see the requests, we can fix the real API accordingly\n');
 });
