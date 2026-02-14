@@ -138,7 +138,7 @@ router.get("/balance", async (req, res) => {
           COALESCE(SUM(hl.number_of_days), 0) as taken_days
         FROM hr_leave hl
         WHERE hl.employee_id = $1
-          AND hl.state IN ('validate', 'confirm')
+          AND hl.state IN ('validate')
         GROUP BY hl.employee_id, hl.holiday_status_id
       ),
       leave_pending AS (
@@ -254,6 +254,7 @@ router.get("/balance", async (req, res) => {
     };
 
     console.log("✅ Leave balance fetched successfully");
+    console.log("📊 Breakdown:", leaveDetails.map(d => `${d.leaveType}: Alloc=${d.allocated} Taken=${d.taken} Pending=${d.pending} Bal=${d.balance}`));
 
     res.json({
       success: true,

@@ -108,6 +108,8 @@
     "runtimeVersion": {
       "policy": "appVersion"
     },
-    "updates": {}
+    "updates": {
+      "enabled": false
+    }
   }
 }

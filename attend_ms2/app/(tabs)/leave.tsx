@@ -191,10 +191,11 @@ export default function LeaveScreen() {
   const reasonError = useMemo(() => (!reason.trim() ? 'Reason is required' : ''), [reason]);
   const balanceError = useMemo(() => {
     const paid = ['annual', 'medical', 'compensatory', 'hospitalised', 'childcare', 'unpaid', 'others'] as const;
-    if (leaveType && paid.includes(leaveType)) {
-      if (selectedBalance <= 0) return `${leaveType} leave balance is 0`;
-      if (requestedDays > selectedBalance && requestedDays > 0) return `Requested ${requestedDays}, available ${selectedBalance}`;
-    }
+    // Relaxed validation: Backend will enforce limits.
+    // if (leaveType && paid.includes(leaveType)) {
+    //   if (selectedBalance <= 0) return `${leaveType} leave balance is 0`;
+    //   if (requestedDays > selectedBalance && requestedDays > 0) return `Requested ${requestedDays}, available ${selectedBalance}`;
+    // }
     return '';
   }, [leaveType, requestedDays, selectedBalance]);
   const halfError = useMemo(() => {

@@ -3,6 +3,7 @@ import multer from "multer";
 import { createCanvas, loadImage } from "canvas";
 import { query } from "./dbconn.js";
 import { getCompanyPool } from "./multiCompanyDb.js";
+import { logActivity } from "./utils/auditLogger.js";
 const router = express.Router();
 
 // Memory storage for image processing
@@ -252,6 +253,12 @@ router.post("/clock-in", upload.single('image'), async (req, res) => {
     );
 
     console.log('✅ Clock in successful:', insertResult.rows[0]);
+    logActivity("clock-in", "success", "Clock in successful", {
+      companyCode,
+      employeeNo,
+      userId: employeeId,
+      metadata: { latitude, longitude, address, method, siteName, projectName }
+    });
 
     res.json({
       success: true,
@@ -277,6 +284,7 @@ router.post("/clock-in", upload.single('image'), async (req, res) => {
       message: "Clock in failed",
       error: error.message
     });
+    logActivity("clock-in", "failure", error.message, { companyCode, employeeNo, metadata: { method } });
   }
 });
 
@@ -349,6 +357,7 @@ router.post("/clock-out", upload.single('image'), async (req, res) => {
         });
       }
 
+      logActivity("clock-out", "failure", "Employee not found", { companyCode, employeeNo });
       return res.status(404).json({
         success: false,
         message: "Employee not found"
@@ -621,6 +630,12 @@ router.post("/clock-out", upload.single('image'), async (req, res) => {
     }
 
     console.log('✅ Clock out successful:', updateResult.rows[0]);
+    logActivity("clock-out", "success", "Clock out successful", {
+      companyCode,
+      employeeNo,
+      userId: employeeId,
+      metadata: { latitude, longitude, address, method, siteName, projectName }
+    });
 
     res.json({
       success: true,
@@ -653,6 +668,7 @@ router.post("/clock-out", upload.single('image'), async (req, res) => {
       message: "Clock out failed",
       error: error.message
     });
+    logActivity("clock-out", "failure", error.message, { companyCode, employeeNo, metadata: { method } });
   }
 });
 

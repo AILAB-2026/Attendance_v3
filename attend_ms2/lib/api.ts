@@ -1219,6 +1219,36 @@ class ApiService {
     return this.makeRequest<any>(`/surveys/${surveyId}?${params.toString()}`, { method: 'GET' });
   }
 
+  // Client-side Logging
+  async logClientError(companyCode: string, employeeNo: string, action: string, message: string, status: string = 'failure', metadata: any = {}) {
+    console.log(`[ApiService] logClientError: ${action} | ${status} | ${message}`);
+    const payload = {
+      companyCode,
+      employeeNo,
+      action,
+      message,
+      status, // Pass status to backend
+      metadata: {
+        ...metadata,
+        timestamp: new Date().toISOString()
+      }
+    };
+
+    // Fire and forget - use a short timeout and don't block
+    try {
+      if (this.verbose) console.log('📝 Sending client log:', payload);
+      this.makeRequest('/audit/client-log', {
+        method: 'POST',
+        body: JSON.stringify(payload)
+      }).catch(err => {
+        // Silently fail if logging fails
+        if (this.verbose) console.warn('⚠️ Client log send failed:', err.message);
+      });
+    } catch (e) {
+      // Ignore
+    }
+  }
+
   async submitSurvey(companyCode: string, employeeNo: string, surveyId: number | string, answers: any[]) {
     return this.makeRequest<any>(`/surveys/${surveyId}/submit`, {
       method: 'POST',

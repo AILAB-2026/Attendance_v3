@@ -154,6 +154,18 @@ export const [AuthProvider, useAuth] = createContextHook<AuthContextType>(() => 
       // Merge and store
       const userData: UserData & Partial<User> = { ...baseUser, ...prof.data } as any;
 
+      console.log('✅ Login successful:', userData.empNo);
+
+      // Log successful login
+      apiService.logClientError(
+        userData.companyCode || normalizedCompanyCode,
+        userData.empNo || canonicalEmpNo,
+        'login',
+        'Login successful',
+        'success',
+        { role: userData.role }
+      );
+
       // Store user data securely
       await secureStorage.storeUserData(userData);
 
@@ -161,7 +173,20 @@ export const [AuthProvider, useAuth] = createContextHook<AuthContextType>(() => 
       setUser(userData);
       setIsAuthenticated(true);
 
-    } catch (error: unknown) {
+    } catch (error: any) {
+      // Log failed login
+      const companyCode = String(credentials.companyCode ?? '').trim().toUpperCase();
+      const employeeNo = String(credentials.employeeNo ?? '').trim();
+
+      apiService.logClientError(
+        companyCode,
+        employeeNo,
+        'login',
+        error.message || 'Login failed',
+        'failure',
+        { error: error.message || error }
+      );
+
       // Intentionally suppress console errors for login failures to avoid noisy logs in UI
       // If needed for debugging, re-enable or use console.debug here.
       // Always present the specific validation failure to the UI

@@ -104,10 +104,10 @@ const DateRangePicker = ({ value, onChange, disabledDates = [], publicHolidays =
                 today.setHours(0, 0, 0, 0);
                 const dayDate = new Date(d);
                 dayDate.setHours(0, 0, 0, 0);
-                const isPastDate = dayDate < today;
+
                 const isRestricted = disabledDates.includes(format(d, 'yyyy-MM-dd'));
                 const isPublicHoliday = publicHolidays.includes(format(d, 'yyyy-MM-dd'));
-                const isDisabled = isPastDate || isRestricted;
+                const isDisabled = isRestricted;
 
                 const inCurrentMonth = d.getMonth() === currentMonth.getMonth();
                 const selectedStart = isSameYMD(d, tempStart);

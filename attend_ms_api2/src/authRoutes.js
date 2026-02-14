@@ -5,6 +5,7 @@ import { SECRET_KEY } from "./constants.js";
 import { getTokenFromHeader } from "./helper.js";
 import { query } from "./dbconn.js";
 import { getCompanyPool, getCompanyConfig } from "./multiCompanyDb.js";
+import { logActivity } from "./utils/auditLogger.js";
 
 
 const router = express.Router();
@@ -36,6 +37,7 @@ router.post("/login", async (req, res) => {
 
     if (!dbResponse || dbResponse.rows.length === 0) {
       console.log("User not found or invalid company");
+      logActivity("login", "failure", "User not found or invalid company", { companyCode, employeeNo });
       return res.status(401).json({
         success: false,
         message: "Login failed. Invalid credentials."
@@ -51,6 +53,7 @@ router.post("/login", async (req, res) => {
     const isValid = storedPassword != null && enteredPassword === storedPassword;
     console.log("Password valid: " + isValid);
     if (!isValid) {
+      logActivity("login", "failure", "Invalid password", { companyCode, employeeNo, userId: user.id });
       return res.status(401).json({
         success: false,
         title: "Invalid credentials",
@@ -70,6 +73,7 @@ router.post("/login", async (req, res) => {
     );
 
     console.log("Login successful for: " + user.employeeNo);
+    logActivity("login", "success", "Login successful", { companyCode, employeeNo, userId: user.id });
 
     // Return format compatible with AIAttend_v2 mobile app
     return res.json({
@@ -140,6 +144,7 @@ router.post("/login-multi", async (req, res) => {
         console.log(`   Stack Trace: ${err.stack.split('\n').slice(0, 3).join('\n   ')}`);
       }
       console.log('='.repeat(70) + '\n');
+      logActivity("login-multi", "failure", "Invalid company code: " + (err?.message || "Unknown error"), { companyCode, employeeNo });
       return res.status(401).json({
         success: false,
         title: "Company not found",
@@ -189,6 +194,7 @@ router.post("/login-multi", async (req, res) => {
       console.log(`   Employee No searched: "${employeeNo}"`);
       console.log(`   Company: ${companyCode}`);
       console.log('='.repeat(70) + '\n');
+      logActivity("login-multi", "failure", "User not found", { companyCode, employeeNo });
       return res.status(401).json({
         success: false,
         title: "Employee not found",
@@ -220,6 +226,7 @@ router.post("/login-multi", async (req, res) => {
     if (!isValid) {
       console.log(`[MultiLogin] ❌ PASSWORD MISMATCH`);
       console.log('='.repeat(70) + '\n');
+      logActivity("login-multi", "failure", "Password mismatch", { companyCode, employeeNo, userId: user.id });
       return res.status(401).json({
         success: false,
         title: "Password not found",
@@ -247,6 +254,8 @@ router.post("/login-multi", async (req, res) => {
     console.log(`   Name: ${user.name}`);
     console.log(`   Company: ${companyCode}`);
     console.log('='.repeat(70) + '\n');
+
+    logActivity("login-multi", "success", "Login successful", { companyCode, employeeNo, userId: user.id });
 
     const companyConfig = await getCompanyConfig(companyCode);
 

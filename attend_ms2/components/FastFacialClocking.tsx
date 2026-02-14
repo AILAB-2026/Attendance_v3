@@ -333,11 +333,23 @@ const FastFacialClocking = ({ intendedAction = 'in', onClockAction, onCancel, mo
         }, 500);
       }
 
-    } catch (error) {
+    } catch (error: any) {
       console.error('Face verification error:', error);
       setScanningState('failed');
       setStatusMessage('Verification failed. Please try again.');
       setIsProcessing(false);
+
+      // Log generic verification error
+      if (user?.empNo && (user as any)?.companyCode) {
+        apiService.logClientError(
+          (user as any).companyCode,
+          user.empNo,
+          'face_verification',
+          error.message || 'Face verification exception',
+          'failure',
+          { error: error }
+        );
+      }
     }
   };
 

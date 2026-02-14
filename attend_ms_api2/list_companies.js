@@ -16,7 +16,7 @@ const pool = new Pool({
 
 async function list() {
     try {
-        const res = await pool.query('SELECT company_code, db_name FROM companies');
+        const res = await pool.query('SELECT company_code, database_name FROM companies');
         console.log('Companies:', res.rows);
     } catch (e) {
         console.error(e);
