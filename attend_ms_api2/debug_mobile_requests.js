@@ -25,17 +25,17 @@ app.use((req, res, next) => {
 // Catch all routes and return mock data
 app.all('*', (req, res) => {
   console.log(`📱 Mobile app called: ${req.method} ${req.url}`);
-  
+
   // If it's a sites-related request, return mock sites
   if (req.url.includes('site') || req.url.includes('Site')) {
     console.log('🏢 Returning mock sites data');
-    
+
     const mockSites = [
       { siteId: 1, siteName: "Test Site 1", siteLocationName: "Test Site 1", value: "Test Site 1" },
       { siteId: 2, siteName: "Test Site 2", siteLocationName: "Test Site 2", value: "Test Site 2" },
       { siteId: 3, siteName: "Test Site 3", siteLocationName: "Test Site 3", value: "Test Site 3" }
     ];
-    
+
     // Try different response formats
     const responses = {
       format1: mockSites, // Direct array
@@ -44,17 +44,17 @@ app.all('*', (req, res) => {
       format4: { success: true, sites: mockSites }, // Alternative format
       format5: mockSites.map(s => ({ siteLocationName: s.siteName })) // Legacy format
     };
-    
+
     console.log('📋 Available response formats:');
     Object.keys(responses).forEach(key => {
       console.log(`   ${key}:`, JSON.stringify(responses[key], null, 2));
     });
-    
+
     // Return the full format by default
     res.json(responses.format3);
     return;
   }
-  
+
   // For login requests
   if (req.url.includes('login') || req.url.includes('auth')) {
     console.log('🔐 Returning mock login response');
@@ -69,7 +69,7 @@ app.all('*', (req, res) => {
     });
     return;
   }
-  
+
   // Default response
   console.log('❓ Unknown request, returning generic response');
   res.json({
@@ -83,7 +83,7 @@ app.listen(port, () => {
   console.log(`🔍 Debug server running on port ${port}`);
   console.log('📱 Configure your mobile app to use this server temporarily:');
   console.log(`   Base URL: http://localhost:${port}`);
-  console.log('   or: http://192.168.x.x:${port} (replace with your IP)');
+  console.log('   or: http://192.168.1.10:${port} (replace with your IP)');
   console.log('\n🎯 This will show exactly what requests the mobile app is making');
   console.log('💡 Once we see the requests, we can fix the real API accordingly\n');
 });

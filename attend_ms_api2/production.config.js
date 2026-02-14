@@ -3,28 +3,28 @@
 
 export const productionConfig = {
   // Production domain
-  domain: 'https://brave-smooth-favourite-geek.trycloudflare.com',
+  domain: 'http://192.168.1.10:7012',
 
   // API base URL for client applications
-  apiBaseUrl: 'https://brave-smooth-favourite-geek.trycloudflare.com',
+  apiBaseUrl: 'http://192.168.1.10:7012',
 
   // Health check endpoint
-  healthCheck: 'https://brave-smooth-favourite-geek.trycloudflare.com/health',
+  healthCheck: 'http://192.168.1.10:7012/health',
 
   // Authentication endpoint
-  authEndpoint: 'https://brave-smooth-favourite-geek.trycloudflare.com/auth/login',
+  authEndpoint: 'http://192.168.1.10:7012/auth/login',
 
   // Face recognition endpoints
-  faceEnrollment: 'https://brave-smooth-favourite-geek.trycloudflare.com/facialAuth/enroll',
-  faceVerification: 'https://brave-smooth-favourite-geek.trycloudflare.com/facialAuth/verify',
+  faceEnrollment: 'http://192.168.1.10:7012/facialAuth/enroll',
+  faceVerification: 'http://192.168.1.10:7012/facialAuth/verify',
 
   // Attendance endpoints
-  clockIn: 'https://brave-smooth-favourite-geek.trycloudflare.com/attendance/clock-in',
-  clockOut: 'https://brave-smooth-favourite-geek.trycloudflare.com/attendance/clock-out',
+  clockIn: 'http://192.168.1.10:7012/attendance/clock-in',
+  clockOut: 'http://192.168.1.10:7012/attendance/clock-out',
 
   // CORS settings for production
   corsOrigins: [
-    'https://brave-smooth-favourite-geek.trycloudflare.com'
+    'http://192.168.1.10:7012'
   ]
 };
 

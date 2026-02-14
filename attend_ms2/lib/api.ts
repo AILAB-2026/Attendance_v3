@@ -11,6 +11,7 @@ interface LoginCredentials {
 interface LoginResponse {
   success: boolean;
   message?: string;
+  title?: string;
   data?: {
     employeeNo: string;
     name?: string;
@@ -346,7 +347,11 @@ class ApiService {
     } catch (_err: any) {
       console.error('❌ Login error:', _err);
       // Return the specific error message from the backend if available
-      return { success: false, message: _err?.message || 'Invalid company code, employee number, or password.' };
+      return {
+        success: false,
+        message: _err?.message || 'Invalid company code, employee number, or password.',
+        title: _err?.title
+      };
     }
   }
 

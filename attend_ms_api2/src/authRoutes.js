@@ -56,7 +56,8 @@ router.post("/login", async (req, res) => {
       logActivity("login", "failure", "Invalid password", { companyCode, employeeNo, userId: user.id });
       return res.status(401).json({
         success: false,
-        message: "Login failed. Invalid credentials."
+        title: "Invalid credentials",
+        message: "• Invalid credentials.\n• Please check and try again.\n• Enter correct details."
       });
     }
 
@@ -146,7 +147,8 @@ router.post("/login-multi", async (req, res) => {
       logActivity("login-multi", "failure", "Invalid company code: " + (err?.message || "Unknown error"), { companyCode, employeeNo });
       return res.status(401).json({
         success: false,
-        message: "Invalid company code. Please also verify your employee number and password.",
+        title: "Company not found",
+        message: "• The company code you entered was not found.\n• Please check and try again.\n• Enter correct company code.",
       });
     }
 
@@ -195,7 +197,8 @@ router.post("/login-multi", async (req, res) => {
       logActivity("login-multi", "failure", "User not found", { companyCode, employeeNo });
       return res.status(401).json({
         success: false,
-        message: "Invalid employee number. Please also verify your password.",
+        title: "Employee not found",
+        message: "• The employee number you entered was not found.\n• Please check and try again.\n• Enter correct employee number.",
       });
     }
 
@@ -226,7 +229,8 @@ router.post("/login-multi", async (req, res) => {
       logActivity("login-multi", "failure", "Password mismatch", { companyCode, employeeNo, userId: user.id });
       return res.status(401).json({
         success: false,
-        message: "Invalid password.",
+        title: "Password not found",
+        message: "• The password you entered is incorrect.\n• Please check and try again.\n• Enter correct password.",
       });
     }
 

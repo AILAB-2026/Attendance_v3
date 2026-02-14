@@ -118,7 +118,9 @@ export const [AuthProvider, useAuth] = createContextHook<AuthContextType>(() => 
       });
 
       if (!response.success) {
-        throw new Error(response.message || 'Invalid company code, employee number, or password.');
+        const error = new Error(response.message || 'Invalid company code, employee number, or password.') as any;
+        error.title = response.title;
+        throw error;
       }
 
       // After validation, enforce DB membership and allowed roles using profile endpoint

@@ -542,7 +542,11 @@ app.get('/v1/face-health', async (c) => {
     const isHealthy = await checkFaceApiHealth();
     return c.json({
       healthy: isHealthy,
+<<<<<<< HEAD
       apiUrl: process.env.FACE_API_URL || 'http://192.168.31.135:7012',
+=======
+      apiUrl: process.env.FACE_API_URL || 'http://192.168.1.10:7012',
+>>>>>>> 47c0b0bc0d5dbd0227515fa0905c54847dd7040a
       message: isHealthy ? 'Face recognition API is healthy' : 'Face recognition API is unavailable'
     });
   } catch (e) {
@@ -2797,7 +2801,11 @@ app.get('/users/profile', async (c) => {
     // Query CX18AILABDEMO.hr_employee table
     const { Pool } = require('pg');
     const hrDb = new Pool({
+<<<<<<< HEAD
       host: process.env.ATTENDANCE_DB_HOST || '192.168.31.135',
+=======
+      host: process.env.ATTENDANCE_DB_HOST || '192.168.1.10',
+>>>>>>> 47c0b0bc0d5dbd0227515fa0905c54847dd7040a
       port: parseInt(process.env.ATTENDANCE_DB_PORT || '5432'),
       database: process.env.ATTENDANCE_DB_NAME || 'CX18AILABDEMO',
       user: process.env.ATTENDANCE_DB_USER || 'postgres',

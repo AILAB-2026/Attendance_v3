@@ -104,7 +104,8 @@ export default function LoginScreen() {
     } catch (error: any) {
       // Show specific validation popup
       const errorMessage = error?.message || 'Invalid company code, employee number, or password.';
-      Alert.alert('Validation', errorMessage, [
+      const errorTitle = error?.title || 'Validation';
+      Alert.alert(errorTitle, errorMessage, [
         {
           text: 'OK',
           onPress: () => {
