@@ -15,7 +15,7 @@ const pool = new Pool({
 async function listDbs() {
     try {
         const res = await pool.query("SELECT datname FROM pg_database WHERE datistemplate = false;");
-        console.log('Databases found:', res.rows.map(r => r.datname).join(', '));
+        console.log('Databases:\n' + res.rows.map(r => r.datname).join('\n'));
     } catch (err) {
         console.error('Error:', err);
     } finally {

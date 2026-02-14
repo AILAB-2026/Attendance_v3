@@ -706,7 +706,14 @@ export default function ClockScreen() {
       }
     }
     const ok = await ensureLocation();
-    if (!ok) return;
+    if (!ok) {
+      const cc = (user as any)?.companyCode || (user as any)?.cmpcode;
+      const emp = (user as any)?.empNo || (user as any)?.employeeNo || (user as any)?.user_id;
+      if (cc && emp) {
+        apiService.logClientError(cc, emp, 'gps_check_failed', 'Location permission denied or services off during pre-check', 'failure', { method, rawError: 'ensureLocation returned false' });
+      }
+      return;
+    }
 
     try {
       setClockMethod(method);
@@ -725,6 +732,15 @@ export default function ClockScreen() {
         if (cc && emp) {
           const verify = await apiService.verifyFace(cc, emp, { imageUri, faceTemplateBase64 });
           if (!verify?.success) {
+
+            // Log face verification failure
+            const rawMsg = verify?.message || 'Face verification failed';
+            let action = 'face_verification_failed';
+            if (rawMsg.toLowerCase().includes('liveness')) action = 'face_liveness_failed';
+            if (rawMsg.toLowerCase().includes('no face')) action = 'face_not_detected';
+
+            apiService.logClientError(cc, emp, action, rawMsg, 'failure', { method, facePlannedAction });
+
             setShowCamera(false);
             setClockMethod(null);
             setFacePlannedAction(null);
@@ -768,7 +784,32 @@ export default function ClockScreen() {
       }
       const rawMessage = (error instanceof Error ? error.message : String(error || ''));
       const message = rawMessage.toLowerCase();
+      // Expanded fallback logic for company code and employee number
+      const cc = (user as any)?.companyCode || (user as any)?.cmpcode;
+      const emp = (user as any)?.empNo || (user as any)?.employeeNo || (user as any)?.user_id;
+
+      // Debugging logs to troubleshoot client logging issues
+      console.log('⚠️ [UI] Clock In Error:', rawMessage);
+      console.log('📝 [UI] User Context for Logging:', { cc, emp, user: user ? 'present' : 'missing' });
+
+      // Helper to log client error
+      const logError = (action: string, msg: string) => {
+        if (cc && emp) {
+          console.log(`📤 [UI] Sending log: ${action}`);
+          apiService.logClientError(cc, emp, action, msg, 'failure', {
+            method,
+            facePlannedAction,
+            siteName: meta?.siteName,
+            projectName: meta?.projectName,
+            rawError: rawMessage
+          });
+        } else {
+          console.warn('⚠️ [UI] Skipping log: Missing companyCode/empNo');
+        }
+      };
+
       if (message.includes('permission')) {
+        logError('gps_permission_denied', 'Location permission denied');
         showAlert(
           'Location permission required',
           'Please grant Location permission to clock in. You can enable it in Settings.',
@@ -779,6 +820,7 @@ export default function ClockScreen() {
           ]
         );
       } else if (message.includes('services')) {
+        logError('gps_services_off', 'Location services disabled');
         showAlert(
           'Location Services Off',
           'Turn on device Location Services (GPS/Wi‑Fi) and try again.',
@@ -789,6 +831,7 @@ export default function ClockScreen() {
         message.includes('gps unavailable') ||
         message.includes('location timeout')
       ) {
+        logError('gps_unavailable', 'Could not fetch location/address');
         // Close camera before showing validation
         setShowCamera(false);
         setClockMethod(null);
@@ -799,6 +842,7 @@ export default function ClockScreen() {
           'error'
         );
       } else if (message.includes('not assigned') || message.includes('assign')) {
+        logError('project_assignment_error', 'User not assigned to project/site');
         // Close camera before showing validation
         setShowCamera(false);
         setClockMethod(null);
@@ -821,21 +865,27 @@ export default function ClockScreen() {
         // SECURITY: Provide specific feedback based on error type
         let alertTitle = 'Face Verification Failed';
         let alertMessage = 'Your face could not be verified. Please try again.';
+        let logAction = 'face_verification_failed';
 
         if (message.includes('no face detected')) {
+          logAction = 'face_not_detected';
           alertTitle = 'No Face Detected';
           alertMessage = 'Please ensure your face is fully visible, well-lit, and centered in the camera frame.';
         } else if (message.includes('liveness check failed') || message.includes('liveness')) {
+          logAction = 'face_liveness_failed';
           alertTitle = 'Liveness Check Failed';
           alertMessage = 'Please use your real face for verification. Photos, videos, or masks are not allowed.';
         } else if (message.includes('unauthorized') || message.includes('does not match')) {
+          logAction = 'face_mismatch';
           alertTitle = (facePlannedAction === 'out') ? 'Clock Out Failed' : 'Clock In Failed';
           const empNo = (user as any)?.empNo || (user as any)?.employeeNo || '';
           alertMessage = `EMP NO : ${empNo}\n\nThe face does not match the registered user. Please ensure you are using your own account.`;
         }
 
+        logError(logAction, rawMessage);
         showAlert(alertTitle, alertMessage, 'error');
       } else if (message.includes('already clocked in')) {
+        logError('already_clocked_in', 'Attempted duplicate clock-in');
         // Close camera before showing validation
         setShowCamera(false);
         setClockMethod(null);
@@ -921,7 +971,14 @@ export default function ClockScreen() {
       }
     }
     const ok = await ensureLocation();
-    if (!ok) return;
+    if (!ok) {
+      const cc = (user as any)?.companyCode || (user as any)?.cmpcode;
+      const emp = (user as any)?.empNo || (user as any)?.employeeNo || (user as any)?.user_id;
+      if (cc && emp) {
+        apiService.logClientError(cc, emp, 'gps_check_failed', 'Location permission denied or services off during pre-check (Clock Out)', 'failure', { method, rawError: 'ensureLocation returned false' });
+      }
+      return;
+    }
 
     try {
       setClockMethod(method);
@@ -940,6 +997,15 @@ export default function ClockScreen() {
         if (cc && emp) {
           const verify = await apiService.verifyFace(cc, emp, { imageUri, faceTemplateBase64 });
           if (!verify?.success) {
+
+            // Log face verification failure
+            const rawMsg = verify?.message || 'Face verification failed';
+            let action = 'face_verification_failed';
+            if (rawMsg.toLowerCase().includes('liveness')) action = 'face_liveness_failed';
+            if (rawMsg.toLowerCase().includes('no face')) action = 'face_not_detected';
+
+            apiService.logClientError(cc, emp, action, rawMsg, 'failure', { method, facePlannedAction: 'out' });
+
             setShowCamera(false);
             setClockMethod(null);
             setFacePlannedAction(null);
@@ -974,7 +1040,27 @@ export default function ClockScreen() {
       }
       const rawMessage = (error instanceof Error ? error.message : String(error || ''));
       const message = rawMessage.toLowerCase();
+
+      // Expanded fallback logic for company code and employee number
+      const cc = (user as any)?.companyCode || (user as any)?.cmpcode;
+      const emp = (user as any)?.empNo || (user as any)?.employeeNo || (user as any)?.user_id;
+
+      // Helper to log client error
+      const logError = (action: string, msg: string) => {
+        if (cc && emp) {
+          console.log(`📤 [UI] Sending log (Clock Out): ${action}`);
+          apiService.logClientError(cc, emp, action, msg, 'failure', {
+            method,
+            facePlannedAction: 'out',
+            siteName: meta?.siteName,
+            projectName: meta?.projectName,
+            rawError: rawMessage
+          });
+        }
+      };
+
       if (message.includes('permission')) {
+        logError('gps_permission_denied', 'Location permission denied');
         showAlert(
           'Location permission required',
           'Please grant Location permission to clock out. You can enable it in Settings.',
@@ -985,6 +1071,7 @@ export default function ClockScreen() {
           ]
         );
       } else if (message.includes('services')) {
+        logError('gps_services_off', 'Location services disabled');
         showAlert(
           'Location Services Off',
           'Turn on device Location Services (GPS/Wi‑Fi) and try again.',
@@ -995,6 +1082,7 @@ export default function ClockScreen() {
         message.includes('gps unavailable') ||
         message.includes('location timeout')
       ) {
+        logError('gps_unavailable', 'Could not fetch location/address');
         // Close camera before showing validation
         setShowCamera(false);
         setClockMethod(null);
@@ -1005,6 +1093,7 @@ export default function ClockScreen() {
           'error'
         );
       } else if (message.includes('not assigned') || message.includes('assign')) {
+        logError('project_assignment_error', 'User not assigned to project/site');
         // Close camera before showing validation
         setShowCamera(false);
         setClockMethod(null);
@@ -1027,18 +1116,24 @@ export default function ClockScreen() {
         // SECURITY: Provide specific feedback based on error type
         let alertTitle = 'Face Verification Failed';
         let alertMessage = 'Your face could not be verified. Please try again.';
+        let logAction = 'face_verification_failed';
 
         if (message.includes('no face detected')) {
+          logAction = 'face_not_detected';
           alertTitle = 'No Face Detected';
           alertMessage = 'Please ensure your face is fully visible, well-lit, and centered in the camera frame.';
         } else if (message.includes('liveness check failed') || message.includes('liveness')) {
+          logAction = 'face_liveness_failed';
           alertTitle = 'Liveness Check Failed';
           alertMessage = 'Please use your real face for verification. Photos, videos, or masks are not allowed.';
         } else if (message.includes('unauthorized') || message.includes('does not match')) {
+          logAction = 'face_mismatch';
           alertTitle = 'Clock Out Failed';
           const empNo = (user as any)?.empNo || (user as any)?.employeeNo || '';
           alertMessage = `EMP NO : ${empNo}\n\nThe face does not match the registered user. Please ensure you are using your own account.`;
         }
+
+        logError(logAction, rawMessage);
 
         showAlert(alertTitle, alertMessage, 'error');
       } else {

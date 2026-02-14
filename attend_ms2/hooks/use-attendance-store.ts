@@ -581,12 +581,14 @@ export const [AttendanceContext, useAttendance] = createContextHook(() => {
     const lower = data.type.toLowerCase() as LeaveType;
     const requiresBalance = ['annual', 'medical', 'emergency'].includes(lower);
     const balance = (user as any)?.leaveBalance || {};
-    if (requiresBalance) {
-      const available = Number(balance[lower] ?? 0);
-      const reqUnits = isSingleDay && data.duration === 'half' ? 0.5 : daysInclusive(data.startDate, data.endDate);
-      if (available <= 0) throw new Error(`No ${lower} leave balance available`);
-      if (reqUnits > available) throw new Error(`Insufficient ${lower} leave balance. Requested ${reqUnits}, available ${available}.`);
-    }
+    // Client-side balance check skipped to allow pending requests without deduction blocking new ones.
+    // Backend will handle final validation.
+    // if (requiresBalance) {
+    //   const available = Number(balance[lower] ?? 0);
+    //   const reqUnits = isSingleDay && data.duration === 'half' ? 0.5 : daysInclusive(data.startDate, data.endDate);
+    //   if (available <= 0) throw new Error(`No ${lower} leave balance available`);
+    //   if (reqUnits > available) throw new Error(`Insufficient ${lower} leave balance. Requested ${reqUnits}, available ${available}.`);
+    // }
   };
 
   // Check overlap with existing leaves (pending/approved)
@@ -753,6 +755,22 @@ export const [AttendanceContext, useAttendance] = createContextHook(() => {
         return result;
       } catch (error: any) {
         console.error('❌ CLOCK IN EXCEPTION:', error?.message || error);
+
+        // Log client-side error before rethrowing
+        apiService.logClientError(
+          (user as any).companyCode || 'UNKNOWN',
+          user.empNo || 'UNKNOWN',
+          'clock_in_failure',
+          error?.message || 'Unknown clock in error',
+          'failure',
+          {
+            method,
+            siteName: meta?.siteName,
+            projectName: meta?.projectName,
+            stack: error?.stack
+          }
+        ).catch(() => { });
+
         console.error('❌ Error stack:', error?.stack);
         console.log('==================== CLOCK IN END (EXCEPTION) ====================');
         throw error;
@@ -816,6 +834,22 @@ export const [AttendanceContext, useAttendance] = createContextHook(() => {
         return result;
       } catch (error: any) {
         console.error('❌ CLOCK OUT EXCEPTION:', error?.message || error);
+
+        // Log client-side error before rethrowing
+        apiService.logClientError(
+          (user as any).companyCode || 'UNKNOWN',
+          user.empNo || 'UNKNOWN',
+          'clock_out_failure',
+          error?.message || 'Unknown clock out error',
+          'failure',
+          {
+            method,
+            siteName: meta?.siteName,
+            projectName: meta?.projectName,
+            stack: error?.stack
+          }
+        ).catch(() => { });
+
         console.error('❌ Error stack:', error?.stack);
         console.log('==================== CLOCK OUT END (EXCEPTION) ====================');
         throw error;
