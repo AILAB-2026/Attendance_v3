@@ -85,7 +85,7 @@ EAS_NO_VCS=1 eas update --branch production --message "Bug fixes"
 - Build failures: verify bundle identifier matches App Store Connect, and credentials are valid.
 - Rejected binaries: ensure accurate descriptions, icons, screenshots; follow Apple HIG and privacy policies.
 - API timeouts: verify `EXPO_PUBLIC_API_BASE_URL` and production server health.
-- Device testing cannot reach local API: set both `API_BASE_URL` and `EXPO_PUBLIC_API_BASE_URL` to your machine LAN IP (e.g., `http://192.168.1.5:3000`). Ensure firewall allows inbound.
+- Device testing cannot reach local API: set both `API_BASE_URL` and `EXPO_PUBLIC_API_BASE_URL` to your machine LAN IP (e.g., `http://192.168.1.10:3000`). Ensure firewall allows inbound.
 
 11) Rollback Strategy
 - Keep a last-known-good build for quick re-submission if needed.
