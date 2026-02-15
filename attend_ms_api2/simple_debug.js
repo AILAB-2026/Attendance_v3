@@ -78,7 +78,7 @@ app.listen(port, () => {
   console.log('');
   console.log('📱 TO TEST WITH MOBILE APP:');
   console.log(`   1. Change mobile app base URL to: http://localhost:${port}`);
-  console.log(`   2. Or use your computer's IP: http://192.168.1.10:${port}`);
+  console.log(`   2. Or use Cloudflare domain: https://tab-summer-charity-anyway.trycloudflare.com`);
   console.log('   3. Try to load sites in the mobile app');
   console.log('   4. Watch this console for the exact requests');
   console.log('');
