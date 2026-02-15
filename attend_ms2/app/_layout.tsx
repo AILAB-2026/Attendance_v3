@@ -13,6 +13,8 @@ import { AuthProvider, useAuth } from '@/hooks/use-auth';
 import { AttendanceContext } from '@/hooks/use-attendance-store';
 import colors from '@/constants/colors';
 import OfflineBanner from '@/components/OfflineBanner';
+import { apiService } from '@/lib/api';
+import { secureStorage } from '@/lib/secure-storage';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -111,6 +113,36 @@ export default function RootLayout() {
       }
     }
     loadFonts();
+
+    // Global Error Handler for App Crashes
+    const defaultErrorHandler = (global as any).ErrorUtils?.getGlobalHandler();
+    if (defaultErrorHandler) {
+      (global as any).ErrorUtils.setGlobalHandler(async (error: any, isFatal?: boolean) => {
+        try {
+          // Attempt to log the crash to the server
+          const userData = await secureStorage.getUserData();
+          if (userData?.companyCode && userData?.employeeNo) {
+            await apiService.logClientError(
+              userData.companyCode,
+              userData.employeeNo,
+              'app-crash',
+              error?.message || 'Unknown fatal error',
+              'fatal',
+              {
+                stack: error?.stack,
+                isFatal: !!isFatal,
+                deviceTime: new Date().toISOString(),
+              }
+            );
+          }
+        } catch (e) {
+          console.error('Failed to log crash to server:', e);
+        }
+
+        // Call the original handler (shows RedBox in dev, or crashes in prod)
+        defaultErrorHandler(error, isFatal);
+      });
+    }
   }, []);
 
   // Show loading while fonts are loading

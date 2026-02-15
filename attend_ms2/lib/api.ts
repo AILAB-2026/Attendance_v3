@@ -291,14 +291,23 @@ class ApiService {
       if (this.verbose && endpoint !== '/auth/login') {
         console.log(`Making request to: ${this.baseUrl}${endpoint}`);
       }
+      
+      const start = Date.now();
       const response = await http.request({
         url: endpoint,
         method,
         data,
         headers: defaultHeaders,
       });
+      const duration = Date.now() - start;
 
       const respData: any = response.data;
+
+      // Log latency for slow successful requests (> 10s and not an upload)
+      if (duration > 10000 && method === 'GET') {
+        this.logLatency(endpoint, duration);
+      }
+
       if (respData && typeof respData === 'object' && 'success' in respData) {
         return respData as T;
       }
@@ -308,14 +317,82 @@ class ApiService {
       }
 
       return (respData ?? { success: true }) as T;
-    } catch (error) {
+    } catch (error: any) {
+      const duration = Date.now() - start;
       // Suppress console noise for login attempts and when verbose logging is disabled
       if (this.verbose && endpoint !== '/auth/login') {
         console.error('Request failed:', error);
       }
+      
+      // Auto-log technical failures (Network Error, Timeouts, Internal Server Errors)
+      this.handleRequestError(endpoint, error, duration);
+
       // Errors are normalized by axios interceptor in http.ts
       throw error as ApiError;
     }
+  }
+
+  /**
+   * Internal helper to log technical request failures.
+   * Helps identify zones with poor connectivity or server-side issues.
+   */
+  private async handleRequestError(endpoint: string, error: any, duration: number) {
+    try {
+      // Categorize the technical error
+      let action = 'api-failure';
+      let status = 'error';
+      const isNetworkError = error.code === 'NETWORK_ERROR' || !error.response;
+      const isTimeout = error.code === 'ECONNABORTED' || error.message?.includes('timeout');
+      const isServerError = error.status >= 500;
+
+      if (!isNetworkError && !isTimeout && !isServerError) {
+        return; // Don't log expected client errors (4xx) unless desired
+      }
+
+      if (isNetworkError) action = 'network-error';
+      if (isTimeout) action = 'api-timeout';
+      if (isServerError) action = 'server-error';
+
+      // Avoid infinite loop if logging itself fails
+      if (endpoint === '/audit/client-log') return;
+
+      const userData = await secureStorage.getUserData();
+      if (userData?.companyCode && userData?.employeeNo) {
+        await this.logClientError(
+          userData.companyCode,
+          userData.employeeNo,
+          action,
+          error.message || 'Unknown technical failure',
+          status,
+          {
+            endpoint,
+            durationMs: duration,
+            statusCode: error.status,
+            errorCode: error.code,
+            method: error.config?.method
+          }
+        );
+      }
+    } catch (e) {
+      // Fail silently to avoid crashing the error handler
+    }
+  }
+
+  private async logLatency(endpoint: string, duration: number) {
+    try {
+      if (endpoint === '/audit/client-log') return;
+      const userData = await secureStorage.getUserData();
+      if (userData?.companyCode && userData?.employeeNo) {
+        await this.logClientError(
+          userData.companyCode,
+          userData.employeeNo,
+          'api-latency',
+          `Slow request detected: ${duration}ms`,
+          'warning',
+          { endpoint, durationMs: duration }
+        );
+      }
+    } catch (e) {}
   }
 
   async validateEmployee(credentials: LoginCredentials): Promise<LoginResponse> {

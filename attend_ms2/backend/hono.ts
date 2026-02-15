@@ -2797,7 +2797,11 @@ app.get('/users/profile', async (c) => {
     // Query CX18AILABDEMO.hr_employee table
     const { Pool } = require('pg');
     const hrDb = new Pool({
+<<<<<<< HEAD
       host: process.env.ATTENDANCE_DB_HOST || '192.168.31.135',
+=======
+      host: process.env.ATTENDANCE_DB_HOST || '192.168.1.10',
+>>>>>>> 47c0b0bc0d5dbd0227515fa0905c54847dd7040a
       port: parseInt(process.env.ATTENDANCE_DB_PORT || '5432'),
       database: process.env.ATTENDANCE_DB_NAME || 'CX18AILABDEMO',
       user: process.env.ATTENDANCE_DB_USER || 'postgres',
