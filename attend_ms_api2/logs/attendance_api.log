@@ -160,3 +160,48 @@
 [2026-02-15T09:42:03.561Z] GET /health 304 1.411 ms - res-body: {"status":"healthy"}
 [2026-02-15T09:42:18.548Z] GET /health 304 0.587 ms - res-body: {"status":"healthy"}
 [2026-02-15T09:42:33.510Z] GET /health 304 0.510 ms - res-body: {"status":"healthy"}
+[2026-02-15T09:47:15.179Z] GET /health 304 5.635 ms - res-body: {"status":"healthy"}
+[2026-02-15T09:47:15.322Z] GET /health 304 1.427 ms - res-body: {"status":"healthy"}
+[2026-02-15T09:47:15.366Z] GET /users/profile?companyCode=AILAB&employeeNo=AILAB0012 304 166.546 ms - res-body: {"success":true,"data":{"employeeNo":"AILAB0012","companyCode":"AILAB","name":"Naveen R","role":"employee","profileImageUri":null}}
+[2026-02-15T09:47:15.985Z] GET /attendance/today?employeeNo=AILAB0012&companyCode=AILAB 304 85.358 ms - res-body: {"success":true,"data":{"date":"2026-02-15","clockIn":{"timestamp":1771140240000,"location":{"latitude":"10.77885120","longitude":"79.16106900","latitudeExact":"10.77885120","longitudeExact":"79.16106900","address":"15, Thanjavur, Tamil Nadu, 613001, India"},"imageUri":"data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA... [76396 chars truncated]
+[2026-02-15T09:47:16.001Z] GET /settings/company-name?companyCode=AILAB 404 10.226 ms - res-body: -
+[2026-02-15T09:47:16.005Z] GET /leave/requests 304 19.065 ms - res-body: []
+[2026-02-15T09:47:16.021Z] GET /schedule/assigned?companyCode=AILAB&employeeNo=AILAB0012&date=2026-02-15 404 5.713 ms - res-body: -
+[2026-02-15T09:47:16.022Z] GET /schedule/assigned?companyCode=AILAB&employeeNo=AILAB0012&date=2026-02-15 404 5.502 ms - res-body: -
+[2026-02-15T09:47:16.049Z] GET /leave?companyCode=AILAB&employeeNo=AILAB0012 304 144.965 ms - res-body: {"data":[]}
+[2026-02-15T09:47:16.106Z] GET /leave/balance 304 193.528 ms - res-body: {"success":true,"data":{"balance":{"annual":7,"medical":20,"emergency":0,"unpaid":0},"statistics":{"totalRequests":0,"pendingRequests":0,"approvedDays":0},"details":[{"leaveType":"Annual Leave (7.0 day(s))","leaveTypeId":8,"allocated":7,"taken":0,"pending":0,"balance":7},{"leaveType":"Medical Leave (15 day(s))","leaveTypeId":7,"allocated":15,"taken":0,"pending":0,"balance":15},{"leaveType":"Medical Leave (5.0 day(s))","leaveTypeId":7,"allocated":5,"taken":0,"pending":0,"balance":5}]}}
+[2026-02-15T09:47:16.120Z] GET /company/info?companyCode=AILAB 304 84.501 ms - res-body: {"success":true,"data":{"companyCode":"AILAB","companyName":"AI LAB TECHNOLOGIES PTE LTD","active":true,"payrollEnable":false,"hasLogo":true}}
+[2026-02-15T09:47:18.064Z] GET /users/profile?companyCode=AILAB&employeeNo=AILAB0012 304 12.568 ms - res-body: {"success":true,"data":{"employeeNo":"AILAB0012","companyCode":"AILAB","name":"Naveen R","role":"employee","profileImageUri":null}}
+[2026-02-15T09:47:18.226Z] GET /settings/company-name?companyCode=AILAB 404 3.626 ms - res-body: -
+[2026-02-15T09:47:18.228Z] GET /schedule/assigned?companyCode=AILAB&employeeNo=AILAB0012&date=2026-02-15 404 3.969 ms - res-body: -
+[2026-02-15T09:47:18.229Z] GET /schedule/assigned?companyCode=AILAB&employeeNo=AILAB0012&date=2026-02-15 404 4.537 ms - res-body: -
+[2026-02-15T09:47:18.241Z] GET /company/info?companyCode=AILAB 304 2.314 ms - res-body: {"success":true,"data":{"companyCode":"AILAB","companyName":"AI LAB TECHNOLOGIES PTE LTD","active":true,"payrollEnable":false,"hasLogo":true}}
+[2026-02-15T09:47:30.168Z] GET /health 304 2.158 ms - res-body: {"status":"healthy"}
+[2026-02-15T09:47:45.214Z] GET /health 304 0.734 ms - res-body: {"status":"healthy"}
+[2026-02-15T09:47:52.038Z] POST /auth/login-multi 200 208.119 ms - res-body: {"success":true,"message":"Login success","data":{"employeeNo":"AILAB0012","name":"Naveen R","email":"ailab0012@company.com","role":"employee","companyCode":"AILAB","sessionToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbXBsb3llZUlkIjozMzcsImVtcGxveWVlTm8iOiJBSUxBQjAwMTIiLCJjdXN0b21lcklkIjoxLCJuYW1lIjoiTmF2ZWVuIFIiLCJjb21wYW55Q29kZSI6IkFJTEFCIiwiaWF0IjoxNzcxMTQ4ODcxLCJleHAiOjE3Nzg5MjQ4NzF9.F-w99aJc3sldKqIyNtz7PBeR2JZsztt8enCmnTpEBN4","profileImageUri":null,"modules":{}}}
+[2026-02-15T09:47:52.073Z] GET /users/profile?companyCode=AILAB&employeeNo=AILAB0012 304 7.306 ms - res-body: {"success":true,"data":{"employeeNo":"AILAB0012","companyCode":"AILAB","name":"Naveen R","role":"employee","profileImageUri":null}}
+[2026-02-15T09:47:52.112Z] POST /audit/client-log 200 9.586 ms - res-body: {"success":true}
+[2026-02-15T09:47:52.462Z] GET /settings/company-name?companyCode=AILAB 404 14.287 ms - res-body: -
+[2026-02-15T09:47:52.473Z] GET /attendance/today?employeeNo=AILAB0012&companyCode=AILAB 304 41.347 ms - res-body: {"success":true,"data":{"date":"2026-02-15","clockIn":{"timestamp":1771140240000,"location":{"latitude":"10.77885120","longitude":"79.16106900","latitudeExact":"10.77885120","longitudeExact":"79.16106900","address":"15, Thanjavur, Tamil Nadu, 613001, India"},"imageUri":"data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA... [76396 chars truncated]
+[2026-02-15T09:47:52.489Z] GET /schedule/assigned?companyCode=AILAB&employeeNo=AILAB0012&date=2026-02-15 404 1.525 ms - res-body: -
+[2026-02-15T09:47:52.494Z] GET /schedule/assigned?companyCode=AILAB&employeeNo=AILAB0012&date=2026-02-15 404 2.043 ms - res-body: -
+[2026-02-15T09:47:52.630Z] GET /leave/requests 304 181.254 ms - res-body: []
+[2026-02-15T09:47:52.638Z] GET /leave?companyCode=AILAB&employeeNo=AILAB0012 304 180.918 ms - res-body: {"data":[]}
+[2026-02-15T09:47:52.651Z] GET /leave/balance 304 213.361 ms - res-body: {"success":true,"data":{"balance":{"annual":7,"medical":20,"emergency":0,"unpaid":0},"statistics":{"totalRequests":0,"pendingRequests":0,"approvedDays":0},"details":[{"leaveType":"Annual Leave (7.0 day(s))","leaveTypeId":8,"allocated":7,"taken":0,"pending":0,"balance":7},{"leaveType":"Medical Leave (15 day(s))","leaveTypeId":7,"allocated":15,"taken":0,"pending":0,"balance":15},{"leaveType":"Medical Leave (5.0 day(s))","leaveTypeId":7,"allocated":5,"taken":0,"pending":0,"balance":5}]}}
+[2026-02-15T09:47:52.674Z] GET /company/info?companyCode=AILAB 304 170.260 ms - res-body: {"success":true,"data":{"companyCode":"AILAB","companyName":"AI LAB TECHNOLOGIES PTE LTD","active":true,"payrollEnable":false,"hasLogo":true}}
+[2026-02-15T09:47:52.771Z] GET /users/profile?companyCode=AILAB&employeeNo=AILAB0012 304 11.823 ms - res-body: {"success":true,"data":{"employeeNo":"AILAB0012","companyCode":"AILAB","name":"Naveen R","role":"employee","profileImageUri":null}}
+[2026-02-15T09:47:52.896Z] GET /settings/company-name?companyCode=AILAB 404 2.940 ms - res-body: -
+[2026-02-15T09:47:52.897Z] GET /schedule/assigned?companyCode=AILAB&employeeNo=AILAB0012&date=2026-02-15 404 2.949 ms - res-body: -
+[2026-02-15T09:47:52.899Z] GET /schedule/assigned?companyCode=AILAB&employeeNo=AILAB0012&date=2026-02-15 404 3.198 ms - res-body: -
+[2026-02-15T09:47:52.917Z] GET /company/info?companyCode=AILAB 304 1.668 ms - res-body: {"success":true,"data":{"companyCode":"AILAB","companyName":"AI LAB TECHNOLOGIES PTE LTD","active":true,"payrollEnable":false,"hasLogo":true}}
+[2026-02-15T09:48:00.197Z] GET /health 304 0.628 ms - res-body: {"status":"healthy"}
+[2026-02-15T09:48:14.342Z] GET /face/status?companyCode=AILAB&employeeNo=AILAB0012 304 3.400 ms - res-body: {"success":true,"data":{"employeeNo":"AILAB0012","name":"Naveen R","registered":true,"message":"Face already enrolled. You can clock in/out."}}
+[2026-02-15T09:48:14.344Z] GET /api/simple-sites-with-projects?companyCode=AILAB&employeeNo=AILAB0012 404 3.133 ms - res-body: -
+[2026-02-15T09:48:14.351Z] GET /face/status?companyCode=AILAB&employeeNo=AILAB0012 304 2.738 ms - res-body: {"success":true,"data":{"employeeNo":"AILAB0012","name":"Naveen R","registered":true,"message":"Face already enrolled. You can clock in/out."}}
+[2026-02-15T09:48:14.352Z] GET /settings/clock-methods?companyCode=AILAB&employeeNo=AILAB0012 404 2.946 ms - res-body: -
+[2026-02-15T09:48:14.367Z] GET /company/info?companyCode=AILAB 304 99.195 ms - res-body: {"success":true,"data":{"companyCode":"AILAB","companyName":"AI LAB TECHNOLOGIES PTE LTD","active":true,"payrollEnable":false,"hasLogo":true}}
+[2026-02-15T09:48:14.445Z] GET /attendance/missed-clockout?companyCode=AILAB&employeeNo=AILAB0012 304 8.580 ms - res-body: {"success":true,"hasMissedClockout":false}
+[2026-02-15T09:48:15.198Z] GET /health 304 0.555 ms - res-body: {"status":"healthy"}
+[2026-02-15T09:48:21.785Z] GET /face/status?companyCode=AILAB&employeeNo=AILAB0012 304 3.261 ms - res-body: {"success":true,"data":{"employeeNo":"AILAB0012","name":"Naveen R","registered":true,"message":"Face already enrolled. You can clock in/out."}}
+[2026-02-15T09:48:21.820Z] GET /attendance/status?companyCode=AILAB&employeeNo=AILAB0012 200 9.897 ms - res-body: {"success":true,"isClockedIn":true,"action":"clock_out","data":{"clockingLineId":3415,"clockInTime":"12:54:00","siteName":"15, Thanjavur, Tamil Nadu, 613001, India"}}
+[2026-02-15T09:48:23.173Z] GET /facialAuth/ready 304 18.132 ms - res-body: {"success":true,"ready":true}

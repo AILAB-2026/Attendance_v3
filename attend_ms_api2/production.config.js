@@ -3,28 +3,28 @@
 
 export const productionConfig = {
   // Production domain
-  domain: 'http://192.168.31.45:7012',
+  domain: 'https://led-usually-license-pub.trycloudflare.com',
 
   // API base URL for client applications
-  apiBaseUrl: 'http://192.168.31.45:7012',
+  apiBaseUrl: 'https://led-usually-license-pub.trycloudflare.com',
 
   // Health check endpoint
-  healthCheck: 'http://192.168.31.45:7012/health',
+  healthCheck: 'https://led-usually-license-pub.trycloudflare.com/health',
 
   // Authentication endpoint
-  authEndpoint: 'http://192.168.31.45:7012/auth/login',
+  authEndpoint: 'https://led-usually-license-pub.trycloudflare.com/auth/login',
 
   // Face recognition endpoints
-  faceEnrollment: 'http://192.168.31.45:7012/facialAuth/enroll',
-  faceVerification: 'http://192.168.31.45:7012/facialAuth/verify',
+  faceEnrollment: 'https://led-usually-license-pub.trycloudflare.com/facialAuth/enroll',
+  faceVerification: 'https://led-usually-license-pub.trycloudflare.com/facialAuth/verify',
 
   // Attendance endpoints
-  clockIn: 'http://192.168.31.45:7012/attendance/clock-in',
-  clockOut: 'http://192.168.31.45:7012/attendance/clock-out',
+  clockIn: 'https://led-usually-license-pub.trycloudflare.com/attendance/clock-in',
+  clockOut: 'https://led-usually-license-pub.trycloudflare.com/attendance/clock-out',
 
   // CORS settings for production
   corsOrigins: [
-    'http://192.168.31.45:7012'
+    'https://led-usually-license-pub.trycloudflare.com'
   ]
 };
 
