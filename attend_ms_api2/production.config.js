@@ -3,28 +3,28 @@
 
 export const productionConfig = {
   // Production domain
-  domain: 'https://tab-summer-charity-anyway.trycloudflare.com',
+  domain: 'http://192.168.31.45:7012',
 
   // API base URL for client applications
-  apiBaseUrl: 'https://tab-summer-charity-anyway.trycloudflare.com',
+  apiBaseUrl: 'http://192.168.31.45:7012',
 
   // Health check endpoint
-  healthCheck: 'https://tab-summer-charity-anyway.trycloudflare.com/health',
+  healthCheck: 'http://192.168.31.45:7012/health',
 
   // Authentication endpoint
-  authEndpoint: 'https://tab-summer-charity-anyway.trycloudflare.com/auth/login',
+  authEndpoint: 'http://192.168.31.45:7012/auth/login',
 
   // Face recognition endpoints
-  faceEnrollment: 'https://tab-summer-charity-anyway.trycloudflare.com/facialAuth/enroll',
-  faceVerification: 'https://tab-summer-charity-anyway.trycloudflare.com/facialAuth/verify',
+  faceEnrollment: 'http://192.168.31.45:7012/facialAuth/enroll',
+  faceVerification: 'http://192.168.31.45:7012/facialAuth/verify',
 
   // Attendance endpoints
-  clockIn: 'https://tab-summer-charity-anyway.trycloudflare.com/attendance/clock-in',
-  clockOut: 'https://tab-summer-charity-anyway.trycloudflare.com/attendance/clock-out',
+  clockIn: 'http://192.168.31.45:7012/attendance/clock-in',
+  clockOut: 'http://192.168.31.45:7012/attendance/clock-out',
 
   // CORS settings for production
   corsOrigins: [
-    'https://tab-summer-charity-anyway.trycloudflare.com'
+    'http://192.168.31.45:7012'
   ]
 };
 
