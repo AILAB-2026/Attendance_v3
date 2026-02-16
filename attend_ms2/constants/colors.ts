@@ -1,0 +1,103 @@
+export type ThemeMode = 'light' | 'dark';
+
+const lightColors = {
+  primary: '#3366FF',
+  primaryDark: '#2952CC',
+  primaryLight: '#D6E4FF',
+  secondary: '#FF9500',
+  secondaryDark: '#CC7700',
+  secondaryLight: '#FFEBCC',
+  success: '#00C853',
+  error: '#FF3B30',
+  warning: '#FFCC00',
+  info: '#0A84FF',
+  background: '#F7F9FC',
+  card: '#FFFFFF',
+  text: '#1A2138',
+  textSecondary: '#8F9BB3',
+  border: '#E4E9F2',
+  disabled: '#C5CEE0',
+  placeholder: '#8F9BB3',
+  statusBar: '#FFFFFF',
+  clockIn: '#00C853',
+  clockOut: '#FF3B30',
+  leave: {
+    annual: '#3366FF',
+    medical: '#FF9500',
+    compensatory: '#7B1FA2',
+    hospitalised: '#D32F2F',
+    childcare: '#00796B',
+    unpaid: '#9E9D24',
+    others: '#616161',
+  },
+  status: {
+    pending: '#FFCC00',
+    approved: '#00C853',
+    rejected: '#FF3B30',
+  },
+  attendance: {
+    present: '#00C853',
+    absent: '#FF3B30',
+    late: '#FFCC00',
+    'early-exit': '#FF9500',
+    leave: '#3366FF',
+  },
+  badge: {
+    companyBg: '#D6E4FF',
+    companyBorder: '#3366FF',
+    companyText: '#3366FF',
+  },
+};
+
+const darkColors = {
+  primary: '#5383EC',
+  primaryDark: '#3A6FE8',
+  primaryLight: '#1A56DB',
+  secondary: '#FF9F0A',
+  secondaryDark: '#E68A00',
+  secondaryLight: '#FFB74D',
+  success: '#10B981',
+  error: '#EF4444',
+  warning: '#F59E0B',
+  info: '#3B82F6',
+  background: '#121212',
+  card: '#1E1E1E',
+  text: '#E0E0E0',
+  textSecondary: '#9E9E9E',
+  border: '#333333',
+  disabled: '#555555',
+  placeholder: '#757575',
+  statusBar: '#121212',
+  clockIn: '#10B981',
+  clockOut: '#EF4444',
+  muted: '#757575',
+  leave: {
+    annual: '#5383EC',
+    medical: '#FF9F0A',
+    compensatory: '#AB47BC',
+    hospitalised: '#E57373',
+    childcare: '#26A69A',
+    unpaid: '#C0CA33',
+    others: '#9E9E9E',
+  },
+  status: {
+    pending: '#F59E0B',
+    approved: '#10B981',
+    rejected: '#EF4444',
+    inProgress: '#3B82F6',
+    completed: '#10B981',
+  },
+  badge: {
+    background: '#2A2A2A',
+    text: '#E0E0E0',
+  },
+};
+
+const colors = {
+  ...lightColors,
+  light: lightColors,
+  dark: darkColors,
+  mode: 'light' as ThemeMode,
+};
+
+export default colors;

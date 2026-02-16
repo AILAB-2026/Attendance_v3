@@ -1,0 +1,11 @@
+{
+  "images": {
+    "icon": "./images/icon.png",
+    "adaptiveIcon": "./images/adaptive-icon.png",
+    "favicon": "./images/favicon.png",
+    "splashIcon": "./images/splash-icon.png",
+    "companyLogo": "./images/company-logo.png"
+  },
+  "fonts": {},
+  "version": "1.0.0"
+}

@@ -1,0 +1,19 @@
+﻿--- STARTING INSPECTION ---
+Found 3 active companies.
+
+Checking Company: [BRK] BRK INTERNATIONAL PTE. LTD.
+  Target DB: CX18BRKERP @ 223.25.76.162
+  Γ£à Table "hr_leave" exists with 39 columns.
+  Γ£à Column "holiday_type" FOUND.
+
+Checking Company: [SKK] SKK TECHNOLOGIES PTE LTD
+  Target DB: CX18SKK_TECH @ 122.11.149.158
+  Γ£à Table "hr_leave" exists with 35 columns.
+  Γ¥î Column "holiday_type" NOT FOUND.
+
+Checking Company: [AILAB] AI LAB TECHNOLOGIES PTE LTD
+  Target DB: CX18AI @ 180.255.119.74
+  Γ£à Table "hr_leave" exists with 38 columns.
+  Γ£à Column "holiday_type" FOUND.
+
+--- INSPECTION COMPLETE ---

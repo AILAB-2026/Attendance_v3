@@ -1,0 +1,154 @@
+﻿Password  undefined
+≡ƒöì VERIFYING LEAVE SYSTEM FOR EMPLOYEE B1-E079 (ID: 267)
+
+Database: CX18BRKERP
+Host: localhost
+
+================================================================================
+
+STEP 1: Checking hr_leave table structure...
+
+DB Host: localhost
+hr_leave table columns (first 20):
+  - id (integer)
+  - message_main_attachment_id (integer)
+  - user_id (integer)
+  - manager_id (integer)
+  - holiday_status_id (integer)
+  - employee_id (integer)
+  - employee_company_id (integer)
+  - company_id (integer)
+  - department_id (integer)
+  - resource_calendar_id (integer)
+  - meeting_id (integer)
+  - first_approver_id (integer)
+  - second_approver_id (integer)
+  - create_uid (integer)
+  - write_uid (integer)
+  - private_name (character varying)
+  - state (character varying)
+  - duration_display (character varying)
+  - request_date_from_period (character varying)
+  - request_date_from (date)
+
+================================================================================
+
+STEP 2: Checking hr_leave_allocation table structure...
+
+hr_leave_allocation table columns (first 20):
+  - id (integer)
+  - holiday_status_id (integer)
+  - employee_id (integer)
+  - employee_company_id (integer)
+  - manager_id (integer)
+  - approver_id (integer)
+  - second_approver_id (integer)
+  - department_id (integer)
+  - accrual_plan_id (integer)
+  - create_uid (integer)
+  - write_uid (integer)
+  - name (character varying)
+  - state (character varying)
+  - allocation_type (character varying)
+  - date_from (date)
+  - date_to (date)
+  - last_executed_carryover_date (date)
+  - lastcall (date)
+  - actual_lastcall (date)
+  - nextcall (date)
+
+================================================================================
+
+STEP 3: Checking leave applications (hr_leave) for employee 267...
+
+Found 2 leave application(s):
+
+1. Leave ID: 666
+   Type: [object Object] (ID: 11)
+   From: Thu Jul 17 2025 00:00:00 GMT+0800 (Singapore Standard Time) To: Thu Jul 17 2025 00:00:00 GMT+0800 (Singapore Standard Time)
+   Days: 1
+   Status: validate
+   Applied: null
+
+2. Leave ID: 509
+   Type: [object Object] (ID: 6)
+   From: Wed Mar 05 2025 02:30:00 GMT+0800 (Singapore Standard Time) To: Wed Mar 05 2025 11:30:00 GMT+0800 (Singapore Standard Time)
+   Days: 1
+   Status: validate
+   Applied: Wed Apr 09 2025 06:23:42 GMT+0800 (Singapore Standard Time)
+
+
+================================================================================
+
+STEP 4: Checking leave allocations (hr_leave_allocation) for employee 267...
+
+Found 2 leave allocation(s):
+
+1. Allocation ID: 57
+   Type: [object Object] (ID: 11)
+   Allocated Days: 14
+   Period: Wed Jan 01 2025 00:00:00 GMT+0800 (Singapore Standard Time) to Wed Dec 31 2025 00:00:00 GMT+0800 (Singapore Standard Time)
+   Status: validate
+   Name: Medical Leave (14.0 day(s))
+   Created: Wed Feb 12 2025 03:37:05 GMT+0800 (Singapore Standard Time)
+
+2. Allocation ID: 49
+   Type: [object Object] (ID: 6)
+   Allocated Days: 14
+   Period: Mon Feb 10 2025 00:00:00 GMT+0800 (Singapore Standard Time) to Wed Dec 31 2025 00:00:00 GMT+0800 (Singapore Standard Time)
+   Status: validate
+   Name: Annual Leave (14.0 day(s))
+   Created: Mon Feb 10 2025 10:04:28 GMT+0800 (Singapore Standard Time)
+
+
+================================================================================
+
+STEP 5: Calculating leave balance by type...
+
+Leave Balance Summary:
+
+ΓöîΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓö¼ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓö¼ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓö¼ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÉ
+Γöé Leave Type                 Γöé Allocated Γöé Taken  Γöé Balance Γöé
+Γö£ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓö╝ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓö╝ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓö╝ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöñ
+node : C:\inetpub\wwwroot\attendance_api_mobile
+\node_modules\pg\lib\query.js:145
+At line:1 char:1
++ node verify_leave_system.js 2>&1 | Out-File 
+-FilePath "leave_verifica ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (C 
+   :\inetpub\wwwr...ib\query.js:145:String) [  
+  ], RemoteException
+    + FullyQualifiedErrorId : NativeCommandErr 
+   or
+ 
+          throw err
+          ^
+
+TypeError: (row.leave_type_name || 
+"Unknown").padEnd is not a function
+    at file:///C:/inetpub/wwwroot/attendance_ap
+i_mobile/verify_leave_system.js:187:63
+    at Array.forEach (<anonymous>)
+    at file:///C:/inetpub/wwwroot/attendance_ap
+i_mobile/verify_leave_system.js:186:23
+    at Query.<anonymous> (C:\inetpub\wwwroot\at
+tendance_api_mobile\node_modules\pg-pool\index.
+js:428:18)
+    at Query.handleReadyForQuery (C:\inetpub\ww
+wroot\attendance_api_mobile\node_modules\pg\lib
+\query.js:142:14)
+    at Client._handleReadyForQuery (C:\inetpub\
+wwwroot\attendance_api_mobile\node_modules\pg\l
+ib\client.js:311:19)
+    at Connection.emit (node:events:519:28)
+    at C:\inetpub\wwwroot\attendance_api_mobile
+\node_modules\pg\lib\connection.js:116:12
+    at Parser.parse (C:\inetpub\wwwroot\attenda
+nce_api_mobile\node_modules\pg-protocol\dist\pa
+rser.js:36:17)
+    at Socket.<anonymous> (C:\inetpub\wwwroot\a
+ttendance_api_mobile\node_modules\pg-protocol\d
+ist\index.js:11:42)
+
+Node.js v22.19.0

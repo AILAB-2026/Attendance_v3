@@ -1,0 +1,113 @@
+{
+  "expo": {
+    "name": "AI ATTENDANCE",
+    "slug": "ai-attend-tracker-e8j784c",
+    "version": "1.0.8",
+    "orientation": "portrait",
+    "icon": "./assets/images/icon.png",
+    "scheme": "myapp",
+    "userInterfaceStyle": "automatic",
+    "newArchEnabled": true,
+    "assetBundlePatterns": [
+      "assets/**/*",
+      "assets/images/*"
+    ],
+    "splash": {
+      "image": "./assets/images/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.attendance.ai-attend-tracker-e8j784c",
+      "buildNumber": "1",
+      "infoPlist": {
+        "NSLocationAlwaysAndWhenInUseUsageDescription": "AI Attend Tracker needs your location to verify attendance at work sites and track your location during work hours for accurate attendance records.",
+        "NSLocationAlwaysUsageDescription": "AI Attend Tracker requires background location access to track your attendance during work hours, even when the app is not in use.",
+        "NSLocationWhenInUseUsageDescription": "AI Attend Tracker uses your location to verify you are at the correct work site when marking attendance.",
+        "UIBackgroundModes": [
+          "location"
+        ],
+        "NSCameraUsageDescription": "AI Attend Tracker needs camera access for face recognition-based attendance verification. Your face data is securely encrypted and stored.",
+        "NSMicrophoneUsageDescription": "AI Attend Tracker may need microphone access for video recording features.",
+        "NSPhotoLibraryUsageDescription": "AI Attend Tracker needs access to your photo library to allow you to select profile pictures and upload images for attendance records.",
+        "NSFaceIDUsageDescription": "AI Attend Tracker uses Face ID for secure and quick authentication to access your attendance records."
+      },
+      "icon": "./assets/images/icon.png"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/images/adaptive-icon.png",
+        "backgroundColor": "#ffffff"
+      },
+      "icon": "./assets/images/icon.png",
+      "package": "com.ailabtech.aiattendtrackere8j784c",
+      "versionCode": 10,
+      "permissions": [
+        "android.permission.VIBRATE",
+        "android.permission.ACCESS_COARSE_LOCATION",
+        "android.permission.ACCESS_FINE_LOCATION",
+        "android.permission.FOREGROUND_SERVICE",
+        "android.permission.FOREGROUND_SERVICE_LOCATION",
+        "android.permission.ACCESS_BACKGROUND_LOCATION",
+        "android.permission.CAMERA",
+        "android.permission.RECORD_AUDIO",
+        "android.permission.READ_EXTERNAL_STORAGE",
+        "android.permission.WRITE_EXTERNAL_STORAGE"
+      ],
+      "splash": {
+        "image": "./assets/images/splash.png",
+        "resizeMode": "contain",
+        "backgroundColor": "#ffffff"
+      }
+    },
+    "web": {
+      "favicon": "./assets/images/favicon.png"
+    },
+    "plugins": [
+      [
+        "expo-router",
+        {}
+      ],
+      [
+        "expo-location",
+        {
+          "isAndroidForegroundServiceEnabled": true,
+          "isAndroidBackgroundLocationEnabled": true,
+          "isIosBackgroundLocationEnabled": true,
+          "locationAlwaysAndWhenInUsePermission": "Allow $(PRODUCT_NAME) to use your location."
+        }
+      ],
+      [
+        "expo-camera",
+        {
+          "cameraPermission": "Allow $(PRODUCT_NAME) to access your camera",
+          "microphonePermission": "Allow $(PRODUCT_NAME) to access your microphone",
+          "recordAudioAndroid": true
+        }
+      ],
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "The app accesses your photos to let you share them with your friends."
+        }
+      ],
+      "expo-secure-store",
+      "expo-font",
+      "expo-web-browser"
+    ],
+    "experiments": {
+      "typedRoutes": true
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "0702fcf3-0be6-4aa6-a257-d050fb90dbbe"
+      }
+    },
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {}
+  }
+}
