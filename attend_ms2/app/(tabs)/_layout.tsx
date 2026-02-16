@@ -116,19 +116,12 @@ export default function TabLayout() {
                 width: 44,
                 height: 44,
                 borderRadius: 22,
-                backgroundColor: '#fef2f2',
+                backgroundColor: colors.primary + '15',
                 justifyContent: 'center',
                 alignItems: 'center',
-                borderWidth: 1.5,
-                borderColor: '#fecaca',
-                shadowColor: '#ef4444',
-                shadowOffset: { width: 0, height: 3 },
-                shadowOpacity: 0.15,
-                shadowRadius: 6,
-                elevation: 4,
               }}
             >
-              <MaterialIcons name="logout" size={22} color="#dc2626" />
+              <MaterialIcons name="home" size={24} color={colors.primary} />
             </TouchableOpacity >
           ),
         }}

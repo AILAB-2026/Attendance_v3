@@ -327,9 +327,7 @@ export default function DashboardScreen() {
                         </View>
 
                         <View style={styles.headerActions}>
-                            <TouchableOpacity style={styles.iconBtn}>
-                                <Ionicons name="settings-outline" size={24} color="white" />
-                            </TouchableOpacity>
+
                             <TouchableOpacity style={styles.iconBtn}>
                                 <Ionicons name="notifications-outline" size={24} color="white" />
                             </TouchableOpacity>
@@ -417,9 +415,9 @@ const styles = StyleSheet.create({
     header: {
         backgroundColor: colors.primary,
         paddingHorizontal: 20,
-        paddingBottom: 30, // Increased padding for curve effect
-        borderBottomLeftRadius: 30,
-        borderBottomRightRadius: 30,
+        paddingBottom: 10, // Reduced padding
+        borderBottomLeftRadius: 20, // Reduced radius slightly to match tighter layout
+        borderBottomRightRadius: 20,
         zIndex: 10, // Ensure it sits on top if we overlap
         shadowColor: '#000',
         shadowOffset: { width: 0, height: 2 },
@@ -473,15 +471,15 @@ const styles = StyleSheet.create({
     },
     scrollContent: {
         paddingHorizontal: 24,
-        paddingTop: 24,
-        paddingBottom: 20,
+        paddingTop: 10,
+        paddingBottom: 10,
     },
     sectionTitle: {
         fontSize: 18,
         fontWeight: '700',
         color: '#1e293b',
         textAlign: 'center',
-        marginBottom: 28,
+        marginBottom: 10,
         letterSpacing: 0.3,
     },
     grid: {
@@ -493,7 +491,7 @@ const styles = StyleSheet.create({
     gridItem: {
         width: '30%',
         alignItems: 'center',
-        marginBottom: 28,
+        marginBottom: 10,
     },
     iconShadow: {
         shadowColor: '#000',
@@ -501,7 +499,7 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.15,
         shadowRadius: 10,
         elevation: 6,
-        marginBottom: 12,
+        marginBottom: 4,
         borderRadius: 99, // Circular shadow
     },
     iconContainer: {
@@ -531,11 +529,11 @@ const styles = StyleSheet.create({
         borderRadius: 33,
     },
     itemTitle: {
-        fontSize: 12,
+        fontSize: 14,
         color: '#475569',
         textAlign: 'center',
         fontWeight: '600',
-        lineHeight: 16,
+        lineHeight: 18,
     },
     footerContainer: {
         paddingHorizontal: 24,

@@ -576,7 +576,7 @@ export default function ClockScreen() {
               const empNo = (user as any)?.empNo || (user as any)?.employeeNo || '';
               showAlert(
                 '⏰ Clock In',
-                `EMP NO : ${empNo}\n\nYou are not clocked in yet.\n\nScanning your face will clock you IN.`,
+                `EMP NO : ${empNo}\n\nYou are not clocked in yet.\n\nScan your face to start your shift.`,
                 'clock-in',
                 [
                   {
@@ -1139,7 +1139,7 @@ export default function ClockScreen() {
           } else {
             showAlert(
               '⏰ Clock In',
-              `You are not clocked in yet.\n\nScanning your face will clock you IN.`,
+              `You are not clocked in yet.\n\nScan your face to start your shift.`,
               'clock-in',
               [
                 { text: 'Cancel', style: 'cancel', onPress: () => { } },
@@ -1376,7 +1376,7 @@ export default function ClockScreen() {
 
           <View style={styles.methodSection}>
 
-            <Text style={styles.methodTitle}>Clock In/Out</Text>
+
             {!!selectedMeta && (
               <View style={[styles.chipsRow, { alignItems: 'center', justifyContent: 'space-between' }]}>
                 <View style={{ flexDirection: 'row', gap: 8, flexShrink: 1 }}>
@@ -1427,6 +1427,9 @@ export default function ClockScreen() {
                   <Text style={styles.methodButtonText}>{faceRegistered === true ? 'Clock In/Out' : 'Register Face'}</Text>
                 </TouchableOpacity>
               )}
+
+              {/* Helper text below the button */}
+              <Text style={styles.clockHelpText}>Please clock in or out to record your attendance</Text>
 
               {/* Clock In/Out buttons removed as per user request - only Face Recognition is used */}
 
@@ -2070,6 +2073,13 @@ const styles = StyleSheet.create({
     fontSize: 12,
     color: colors.textSecondary,
     textAlign: 'center',
+  },
+  clockHelpText: {
+    marginTop: 2,
+    fontSize: 13,
+    color: colors.textSecondary,
+    textAlign: 'center',
+    fontStyle: 'italic',
   },
   infoSection: {
     padding: 16,

@@ -139,8 +139,8 @@ export default function CustomSplashScreen({ onFinish }: CustomSplashScreenProps
                         transform: [{ translateY: textTranslateY }]
                     }
                 ]}>
-                    <Text style={styles.title}>AI ATTEND</Text>
-                    <Text style={styles.subtitle}>SECURE • FAST • INTELLIGENT</Text>
+                    <Text style={styles.title}>ATLAS</Text>
+                    <Text style={styles.subtitle}>Attendance Tracking, Leave & Administration System</Text>
                 </Animated.View>
 
             </View>
@@ -211,17 +211,19 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     title: {
-        fontSize: 28,
-        fontWeight: '800',
+        fontSize: 42,
+        fontWeight: '900',
         color: colors.primary,
-        letterSpacing: 2,
-        marginBottom: 8,
+        letterSpacing: 4,
+        marginBottom: 4,
     },
     subtitle: {
-        fontSize: 12,
+        fontSize: 10,
         fontWeight: '600',
         color: colors.textSecondary,
-        letterSpacing: 1,
+        textAlign: 'center',
+        paddingHorizontal: 10,
+        letterSpacing: 0.5,
     },
     bgGrid: {
         position: 'absolute',

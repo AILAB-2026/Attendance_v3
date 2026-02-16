@@ -662,7 +662,7 @@ const FastFacialClocking = ({ intendedAction = 'in', onClockAction, onCancel, mo
 
           {scanningState === 'ready' && !autoScanEnabled && (
             <Text style={styles.autoScanText}>
-              Tap "Scan Face" when ready
+              Tap "Start Scan" when ready
             </Text>
           )}
         </View>
@@ -676,7 +676,7 @@ const FastFacialClocking = ({ intendedAction = 'in', onClockAction, onCancel, mo
             >
               <Scan size={24} color="#fff" />
               <Text style={styles.scanButtonText}>
-                {scanningState === 'failed' ? 'Try Again' : 'Scan Face'}
+                {scanningState === 'failed' ? 'Try Again' : 'Start Scan'}
               </Text>
             </TouchableOpacity>
           ) : scanningState === 'scanning' ? (
@@ -735,7 +735,10 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     padding: 20,
-    paddingTop: 50,
+    paddingTop: 40,
+    paddingBottom: 20,
+    zIndex: 10,
+    marginBottom: 20,
   },
   actionPill: {
     color: '#0AA0FF',
@@ -746,7 +749,7 @@ const styles = StyleSheet.create({
     paddingVertical: 6,
     borderRadius: 999,
     fontWeight: '800',
-    fontSize: 14,
+    fontSize: 16,
   },
   closeButton: {
     padding: 8,
@@ -797,18 +800,25 @@ const styles = StyleSheet.create({
   statusContainer: {
     alignItems: 'center',
     paddingHorizontal: 20,
-    marginBottom: 30,
+    marginBottom: 10,
+    marginTop: 40,
   },
   statusText: {
-    fontSize: 18,
+    fontSize: 20,
     fontWeight: '600',
     textAlign: 'center',
     marginBottom: 8,
+    textShadowColor: 'rgba(0, 0, 0, 0.75)',
+    textShadowOffset: { width: 0, height: 1 },
+    textShadowRadius: 3,
   },
   autoScanText: {
-    color: '#999',
-    fontSize: 14,
+    color: '#ddd',
+    fontSize: 16,
     textAlign: 'center',
+    textShadowColor: 'rgba(0, 0, 0, 0.75)',
+    textShadowOffset: { width: 0, height: 1 },
+    textShadowRadius: 3,
   },
   buttonContainer: {
     alignItems: 'center',
@@ -826,7 +836,7 @@ const styles = StyleSheet.create({
   },
   scanButtonText: {
     color: '#fff',
-    fontSize: 16,
+    fontSize: 18,
     fontWeight: 'bold',
     marginLeft: 10,
   },
@@ -838,7 +848,7 @@ const styles = StyleSheet.create({
   },
   cancelScanText: {
     color: '#fff',
-    fontSize: 16,
+    fontSize: 18,
     fontWeight: '600',
   },
   instructionsContainer: {
@@ -846,10 +856,13 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   instructionText: {
-    color: '#ccc',
-    fontSize: 14,
+    color: '#fff',
+    fontSize: 16,
     textAlign: 'center',
     marginBottom: 4,
+    textShadowColor: 'rgba(0, 0, 0, 0.75)',
+    textShadowOffset: { width: 0, height: 1 },
+    textShadowRadius: 3,
   },
   flipButton: {
     position: 'absolute',
@@ -905,7 +918,7 @@ const styles = StyleSheet.create({
   },
   processingText: {
     color: '#fff',
-    fontSize: 18,
+    fontSize: 20,
     fontWeight: '600',
     marginTop: 20,
   },
@@ -916,8 +929,11 @@ const styles = StyleSheet.create({
   },
   title: {
     color: '#fff',
-    fontSize: 18,
+    fontSize: 22,
     fontWeight: 'bold',
+    textShadowColor: 'rgba(0, 0, 0, 0.75)',
+    textShadowOffset: { width: 0, height: 1 },
+    textShadowRadius: 3,
   },
   placeholder: {
     width: 40,
@@ -928,9 +944,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   faceGuide: {
-    width: 280,
-    height: 350,
-    borderRadius: 140,
+    width: 220,
+    height: 280,
+    borderRadius: 110,
     borderWidth: 4,
     justifyContent: 'center',
     alignItems: 'center',
@@ -939,9 +955,9 @@ const styles = StyleSheet.create({
   },
   pulseRing: {
     position: 'absolute',
-    width: 280,
-    height: 350,
-    borderRadius: 140,
+    width: 220,
+    height: 280,
+    borderRadius: 110,
     borderWidth: 2,
     borderColor: '#0AA0FF',
   },
