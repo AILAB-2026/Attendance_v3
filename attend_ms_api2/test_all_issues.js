@@ -1,6 +1,6 @@
-import fetch from 'node-fetch';
+﻿import fetch from 'node-fetch';
 
-const API_BASE = 'http://localhost:3001/api';
+const API_BASE = 'http://192.168.1.5:7012/api';
 
 // Test credentials - using B1-W422 from memory
 const TEST_USER = {
@@ -36,25 +36,25 @@ async function apiCall(endpoint, method = 'GET', body = null, token = null) {
 }
 
 async function testLogin() {
-  console.log('\n🔐 TEST 1: Login');
+  console.log('\nðŸ” TEST 1: Login');
   console.log('='.repeat(60));
   
   const result = await apiCall('/auth/login', 'POST', TEST_USER);
   
   if (result.status === 200 && result.data.token) {
     authToken = result.data.token;
-    console.log('✅ Login successful');
+    console.log('âœ… Login successful');
     console.log(`   Employee: ${result.data.employeeName} (${result.data.employeeNo})`);
     console.log(`   Token: ${authToken.substring(0, 30)}...`);
     return true;
   } else {
-    console.log('❌ Login failed:', result.data);
+    console.log('âŒ Login failed:', result.data);
     return false;
   }
 }
 
 async function testFaceEnrollment() {
-  console.log('\n👤 TEST 2: Face Enrollment Status');
+  console.log('\nðŸ‘¤ TEST 2: Face Enrollment Status');
   console.log('='.repeat(60));
   
   // Check if face is enrolled
@@ -64,17 +64,17 @@ async function testFaceEnrollment() {
   console.log(`   Response:`, result.data);
   
   if (result.data.enrolled) {
-    console.log('✅ Face is enrolled');
+    console.log('âœ… Face is enrolled');
     console.log(`   Employee: ${result.data.employeeName}`);
     return true;
   } else {
-    console.log('⚠️  Face not enrolled for this employee');
+    console.log('âš ï¸  Face not enrolled for this employee');
     return false;
   }
 }
 
 async function testLeaveApplication() {
-  console.log('\n📝 TEST 3: Leave Application & Database Storage');
+  console.log('\nðŸ“ TEST 3: Leave Application & Database Storage');
   console.log('='.repeat(60));
   
   // First, get leave balance
@@ -103,7 +103,7 @@ async function testLeaveApplication() {
   console.log(`   Response:`, applyResult.data);
   
   if (applyResult.data.success) {
-    console.log('✅ Leave application submitted successfully');
+    console.log('âœ… Leave application submitted successfully');
     console.log(`   Leave ID: ${applyResult.data.data?.leaveId}`);
     console.log(`   Message: ${applyResult.data.message}`);
     
@@ -113,19 +113,19 @@ async function testLeaveApplication() {
     console.log(`   Total leave requests: ${requestsResult.data.length}`);
     
     if (requestsResult.data.length > 0) {
-      console.log('✅ Leave data is stored in hr_leave table');
+      console.log('âœ… Leave data is stored in hr_leave table');
       console.log('   Latest request:', requestsResult.data[0]);
     }
     
     return true;
   } else {
-    console.log('❌ Leave application failed:', applyResult.data.message);
+    console.log('âŒ Leave application failed:', applyResult.data.message);
     return false;
   }
 }
 
 async function testPayslips() {
-  console.log('\n💰 TEST 4: Payslip Page & Data Display');
+  console.log('\nðŸ’° TEST 4: Payslip Page & Data Display');
   console.log('='.repeat(60));
   
   const result = await apiCall('/payroll/payslips', 'GET', null, authToken);
@@ -135,13 +135,13 @@ async function testPayslips() {
   
   if (result.data.success) {
     if (!result.data.isActive) {
-      console.log('⚠️  Employee is inactive - showing friendly message');
+      console.log('âš ï¸  Employee is inactive - showing friendly message');
       console.log(`   Message: ${result.data.message}`);
       return true;
     }
     
     if (result.data.data && result.data.data.length > 0) {
-      console.log('✅ Payslips fetched successfully');
+      console.log('âœ… Payslips fetched successfully');
       console.log(`   Total payslips: ${result.data.data.length}`);
       console.log('\n   Sample payslip details:');
       const sample = result.data.data[0];
@@ -155,26 +155,26 @@ async function testPayslips() {
       console.log(`   - Payslip URL: ${sample.payslipUrl}`);
       return true;
     } else {
-      console.log('⚠️  No payslips found for this employee');
+      console.log('âš ï¸  No payslips found for this employee');
       return true;
     }
   } else {
-    console.log('❌ Failed to fetch payslips:', result.data.message);
+    console.log('âŒ Failed to fetch payslips:', result.data.message);
     return false;
   }
 }
 
 async function runAllTests() {
   console.log('\n');
-  console.log('╔════════════════════════════════════════════════════════════╗');
-  console.log('║  COMPREHENSIVE API TESTING - ALL ISSUES                    ║');
-  console.log('╚════════════════════════════════════════════════════════════╝');
+  console.log('â•”â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•—');
+  console.log('â•‘  COMPREHENSIVE API TESTING - ALL ISSUES                    â•‘');
+  console.log('â•šâ•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•');
   
   try {
     // Test 1: Login
     const loginSuccess = await testLogin();
     if (!loginSuccess) {
-      console.log('\n❌ Cannot proceed without successful login');
+      console.log('\nâŒ Cannot proceed without successful login');
       return;
     }
     
@@ -188,15 +188,17 @@ async function runAllTests() {
     await testPayslips();
     
     console.log('\n');
-    console.log('╔════════════════════════════════════════════════════════════╗');
-    console.log('║  TESTING COMPLETE                                          ║');
-    console.log('╚════════════════════════════════════════════════════════════╝');
+    console.log('â•”â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•—');
+    console.log('â•‘  TESTING COMPLETE                                          â•‘');
+    console.log('â•šâ•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•');
     console.log('\n');
     
   } catch (error) {
-    console.error('\n❌ Test error:', error.message);
+    console.error('\nâŒ Test error:', error.message);
     console.error(error.stack);
   }
 }
 
 runAllTests();
+
+

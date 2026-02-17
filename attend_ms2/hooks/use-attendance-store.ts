@@ -1,4 +1,4 @@
-import createContextHook from '@nkzw/create-context-hook';
+﻿import createContextHook from '@nkzw/create-context-hook';
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { Platform, AppState } from 'react-native';
 import * as Location from 'expo-location';
@@ -753,6 +753,22 @@ export const [AttendanceContext, useAttendance] = createContextHook(() => {
         return result;
       } catch (error: any) {
         console.error('❌ CLOCK IN EXCEPTION:', error?.message || error);
+
+        // Log client-side error before rethrowing
+        apiService.logClientError(
+          (user as any).companyCode || 'UNKNOWN',
+          user.empNo || 'UNKNOWN',
+          'clock_in_failure',
+          error?.message || 'Unknown clock in error',
+          'failure',
+          {
+            method,
+            siteName: meta?.siteName,
+            projectName: meta?.projectName,
+            stack: error?.stack
+          }
+        ).catch(() => { });
+
         console.error('❌ Error stack:', error?.stack);
         console.log('==================== CLOCK IN END (EXCEPTION) ====================');
         throw error;
@@ -816,6 +832,22 @@ export const [AttendanceContext, useAttendance] = createContextHook(() => {
         return result;
       } catch (error: any) {
         console.error('❌ CLOCK OUT EXCEPTION:', error?.message || error);
+
+        // Log client-side error before rethrowing
+        apiService.logClientError(
+          (user as any).companyCode || 'UNKNOWN',
+          user.empNo || 'UNKNOWN',
+          'clock_out_failure',
+          error?.message || 'Unknown clock out error',
+          'failure',
+          {
+            method,
+            siteName: meta?.siteName,
+            projectName: meta?.projectName,
+            stack: error?.stack
+          }
+        ).catch(() => { });
+
         console.error('❌ Error stack:', error?.stack);
         console.log('==================== CLOCK OUT END (EXCEPTION) ====================');
         throw error;

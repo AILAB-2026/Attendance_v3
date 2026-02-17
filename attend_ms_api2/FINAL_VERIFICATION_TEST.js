@@ -1,9 +1,9 @@
-import dotenv from 'dotenv';
+﻿import dotenv from 'dotenv';
 dotenv.config();
 import { query } from './src/dbconn.js';
 import fetch from 'node-fetch';
 
-const API_BASE = 'http://localhost:3001';
+const API_BASE = 'http://192.168.1.5:7012';
 const TEST_USER = {
   companyCode: '1',
   employeeNo: 'B1-E079',
@@ -32,12 +32,12 @@ async function apiCall(endpoint, method = 'GET', body = null, token = null) {
 }
 
 async function login() {
-  console.log('🔐 Step 1: Login Test');
-  console.log('─'.repeat(80));
+  console.log('ðŸ” Step 1: Login Test');
+  console.log('â”€'.repeat(80));
   const result = await apiCall('/auth/login', 'POST', TEST_USER);
   if (result.status === 200 && result.data.success) {
     authToken = result.data.data.sessionToken;
-    console.log(`✅ Login successful: ${result.data.data.name} (${result.data.data.employeeNo})`);
+    console.log(`âœ… Login successful: ${result.data.data.name} (${result.data.data.employeeNo})`);
     
     // Get employee ID from database
     const empResult = await new Promise((resolve, reject) => {
@@ -50,19 +50,19 @@ async function login() {
     console.log(`   Employee ID: ${employeeId}\n`);
     return true;
   }
-  console.log('❌ Login failed\n');
+  console.log('âŒ Login failed\n');
   return false;
 }
 
 async function testFaceRecognition() {
-  console.log('👤 ISSUE 1: Face Recognition - Verify Enrolled Face Detection');
-  console.log('─'.repeat(80));
+  console.log('ðŸ‘¤ ISSUE 1: Face Recognition - Verify Enrolled Face Detection');
+  console.log('â”€'.repeat(80));
   
   // Check face enrollment status
   const statusResult = await apiCall(`/face/status?companyCode=1&employeeNo=${TEST_USER.employeeNo}`, 'GET');
   
   if (statusResult.data.success && statusResult.data.data?.registered) {
-    console.log('✅ Face Recognition Status: ENROLLED');
+    console.log('âœ… Face Recognition Status: ENROLLED');
     console.log(`   Message: ${statusResult.data.data.message}`);
     console.log(`   Employee: ${statusResult.data.data.name}`);
     
@@ -76,22 +76,22 @@ async function testFaceRecognition() {
     });
     
     if (dbResult.rows[0].has_face) {
-      console.log('✅ Database Verification: Face descriptor exists in hr_employee.l_face_descriptor');
+      console.log('âœ… Database Verification: Face descriptor exists in hr_employee.l_face_descriptor');
     }
   } else {
-    console.log('⚠️  Face not enrolled');
+    console.log('âš ï¸  Face not enrolled');
   }
   console.log('\n');
 }
 
 async function testLeaveApplication() {
-  console.log('📝 ISSUE 2: Leave Application - Mobile → Database → ERP UI');
-  console.log('─'.repeat(80));
+  console.log('ðŸ“ ISSUE 2: Leave Application - Mobile â†’ Database â†’ ERP UI');
+  console.log('â”€'.repeat(80));
   
   // Step 1: Check current leave balance
   const balanceResult = await apiCall('/leave/balance', 'GET', null, authToken);
   if (balanceResult.data.success) {
-    console.log('✅ Leave Balance API Working');
+    console.log('âœ… Leave Balance API Working');
     console.log('   Balance:', JSON.stringify(balanceResult.data.data.balance));
   }
   
@@ -115,7 +115,7 @@ async function testLeaveApplication() {
   
   if (applyResult.data.success) {
     const leaveId = applyResult.data.data.leaveId;
-    console.log('✅ Mobile API: Leave application successful');
+    console.log('âœ… Mobile API: Leave application successful');
     console.log(`   Leave ID: ${leaveId}`);
     
     // Step 3: Verify in hr_leave table
@@ -131,7 +131,7 @@ async function testLeaveApplication() {
     
     if (dbResult.rows.length > 0) {
       const leave = dbResult.rows[0];
-      console.log('✅ Database: Leave stored in hr_leave table');
+      console.log('âœ… Database: Leave stored in hr_leave table');
       console.log(`   Table: hr_leave`);
       console.log(`   Record ID: ${leave.id}`);
       console.log(`   Employee ID: ${leave.employee_id}`);
@@ -140,41 +140,41 @@ async function testLeaveApplication() {
       console.log(`   State: ${leave.state}`);
       console.log(`   Reason: ${leave.name}`);
       
-      console.log('\n✅ ERP UI Visibility: YES');
-      console.log('   📌 To verify in ERP:');
+      console.log('\nâœ… ERP UI Visibility: YES');
+      console.log('   ðŸ“Œ To verify in ERP:');
       console.log('      1. Login to https://cx.brk.sg');
-      console.log('      2. Navigate to: HR → Leaves → Leave Requests');
+      console.log('      2. Navigate to: HR â†’ Leaves â†’ Leave Requests');
       console.log(`      3. Filter by Employee: ${TEST_USER.employeeNo}`);
       console.log(`      4. Look for leave on: ${leaveDate}`);
       console.log(`      5. State should be: ${leave.state}`);
     }
   } else {
-    console.log('❌ Leave application failed:', applyResult.data.message);
+    console.log('âŒ Leave application failed:', applyResult.data.message);
   }
   console.log('\n');
 }
 
 async function testPayslips() {
-  console.log('💰 ISSUE 3: Payslip Page - Display Salary Details from Database');
-  console.log('─'.repeat(80));
+  console.log('ðŸ’° ISSUE 3: Payslip Page - Display Salary Details from Database');
+  console.log('â”€'.repeat(80));
   
   // Step 1: Fetch payslips via Mobile API
   const result = await apiCall('/payroll/payslips', 'GET', null, authToken);
   
   if (result.data.success && result.data.data && result.data.data.length > 0) {
-    console.log('✅ Mobile API: Payslips fetched successfully');
+    console.log('âœ… Mobile API: Payslips fetched successfully');
     console.log(`   Total payslips: ${result.data.data.length}`);
     console.log(`   Employee: ${result.data.employee.name}`);
     
     const latestPayslip = result.data.data[0];
     console.log('\n   Latest Payslip (Mobile UI Display):');
-    console.log(`   ├─ Month/Year: ${latestPayslip.monthYear}`);
-    console.log(`   ├─ Pay Date: ${latestPayslip.payDate}`);
-    console.log(`   ├─ Basic Salary: $${latestPayslip.basicSalary.toLocaleString()}`);
-    console.log(`   ├─ Allowance: $${latestPayslip.allowance.toLocaleString()}`);
-    console.log(`   ├─ Deduction: $${latestPayslip.deduction.toLocaleString()}`);
-    console.log(`   ├─ Gross Pay: $${latestPayslip.grossPay.toLocaleString()}`);
-    console.log(`   └─ Net Pay: $${latestPayslip.totalSalary.toLocaleString()}`);
+    console.log(`   â”œâ”€ Month/Year: ${latestPayslip.monthYear}`);
+    console.log(`   â”œâ”€ Pay Date: ${latestPayslip.payDate}`);
+    console.log(`   â”œâ”€ Basic Salary: $${latestPayslip.basicSalary.toLocaleString()}`);
+    console.log(`   â”œâ”€ Allowance: $${latestPayslip.allowance.toLocaleString()}`);
+    console.log(`   â”œâ”€ Deduction: $${latestPayslip.deduction.toLocaleString()}`);
+    console.log(`   â”œâ”€ Gross Pay: $${latestPayslip.grossPay.toLocaleString()}`);
+    console.log(`   â””â”€ Net Pay: $${latestPayslip.totalSalary.toLocaleString()}`);
     
     // Step 2: Verify in employee_payslip table
     const dbResult = await new Promise((resolve, reject) => {
@@ -192,7 +192,7 @@ async function testPayslips() {
     
     if (dbResult.rows.length > 0) {
       const dbPayslip = dbResult.rows[0];
-      console.log('\n✅ Database: Payslip data in employee_payslip table');
+      console.log('\nâœ… Database: Payslip data in employee_payslip table');
       console.log(`   Table: employee_payslip`);
       console.log(`   Record ID: ${dbPayslip.id}`);
       console.log(`   Employee: ${dbPayslip.employee_name} (${dbPayslip.x_emp_no})`);
@@ -202,16 +202,16 @@ async function testPayslips() {
       console.log(`   Net Pay: $${dbPayslip.net_pay_amount}`);
     }
     
-    console.log('\n✅ Mobile UI Display: Working (shows salary details)');
+    console.log('\nâœ… Mobile UI Display: Working (shows salary details)');
   } else {
-    console.log('⚠️  No payslips found for this employee');
+    console.log('âš ï¸  No payslips found for this employee');
   }
   console.log('\n');
 }
 
 async function testClockInOut() {
-  console.log('⏰ BONUS: Clock In/Out - Mobile → Database → ERP UI');
-  console.log('─'.repeat(80));
+  console.log('â° BONUS: Clock In/Out - Mobile â†’ Database â†’ ERP UI');
+  console.log('â”€'.repeat(80));
   
   // Check recent clock records
   const dbResult = await new Promise((resolve, reject) => {
@@ -229,37 +229,37 @@ async function testClockInOut() {
   });
   
   if (dbResult.rows.length > 0) {
-    console.log('✅ Database: Clock records in employee_clocking_line table');
+    console.log('âœ… Database: Clock records in employee_clocking_line table');
     console.log(`   Total recent records: ${dbResult.rows.length}`);
     
     dbResult.rows.forEach((record, idx) => {
       console.log(`\n   Record ${idx + 1}:`);
-      console.log(`   ├─ ID: ${record.id}`);
-      console.log(`   ├─ Clock In: ${record.clock_in || 'N/A'}`);
-      console.log(`   ├─ Clock Out: ${record.clock_out || 'N/A'}`);
-      console.log(`   ├─ Location: ${record.clock_in_location || 'N/A'}`);
-      console.log(`   ├─ Address: ${record.in_addr || 'N/A'}`);
-      console.log(`   ├─ Project ID: ${record.project_id || 'N/A'}`);
-      console.log(`   └─ Mobile Clocking: ${record.is_mobile_clocking ? 'Yes' : 'No'}`);
+      console.log(`   â”œâ”€ ID: ${record.id}`);
+      console.log(`   â”œâ”€ Clock In: ${record.clock_in || 'N/A'}`);
+      console.log(`   â”œâ”€ Clock Out: ${record.clock_out || 'N/A'}`);
+      console.log(`   â”œâ”€ Location: ${record.clock_in_location || 'N/A'}`);
+      console.log(`   â”œâ”€ Address: ${record.in_addr || 'N/A'}`);
+      console.log(`   â”œâ”€ Project ID: ${record.project_id || 'N/A'}`);
+      console.log(`   â””â”€ Mobile Clocking: ${record.is_mobile_clocking ? 'Yes' : 'No'}`);
     });
     
-    console.log('\n✅ ERP UI Visibility: YES');
-    console.log('   📌 To verify in ERP:');
+    console.log('\nâœ… ERP UI Visibility: YES');
+    console.log('   ðŸ“Œ To verify in ERP:');
     console.log('      1. Login to https://cx.brk.sg');
-    console.log('      2. Navigate to: HR → Attendance → Attendances');
+    console.log('      2. Navigate to: HR â†’ Attendance â†’ Attendances');
     console.log(`      3. Filter by Employee: ${TEST_USER.employeeNo}`);
     console.log('      4. View clock in/out records with GPS and face images');
   } else {
-    console.log('ℹ️  No recent clock records found');
+    console.log('â„¹ï¸  No recent clock records found');
   }
   console.log('\n');
 }
 
 async function main() {
   console.log('\n');
-  console.log('╔════════════════════════════════════════════════════════════════════════════╗');
-  console.log('║           FINAL VERIFICATION - Mobile → Database → ERP UI                 ║');
-  console.log('╚════════════════════════════════════════════════════════════════════════════╝');
+  console.log('â•”â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•—');
+  console.log('â•‘           FINAL VERIFICATION - Mobile â†’ Database â†’ ERP UI                 â•‘');
+  console.log('â•šâ•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•');
   console.log('\n');
   
   try {
@@ -270,18 +270,18 @@ async function main() {
     await testPayslips();
     await testClockInOut();
     
-    console.log('╔════════════════════════════════════════════════════════════════════════════╗');
-    console.log('║                          ✅ ALL SYSTEMS VERIFIED                           ║');
-    console.log('╠════════════════════════════════════════════════════════════════════════════╣');
-    console.log('║  1. Face Recognition: Working ✓                                            ║');
-    console.log('║  2. Leave Application: Mobile → hr_leave → ERP UI ✓                        ║');
-    console.log('║  3. Payslips: employee_payslip → Mobile UI ✓                               ║');
-    console.log('║  4. Clock In/Out: Mobile → employee_clocking_line → ERP UI ✓               ║');
-    console.log('╚════════════════════════════════════════════════════════════════════════════╝');
+    console.log('â•”â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•—');
+    console.log('â•‘                          âœ… ALL SYSTEMS VERIFIED                           â•‘');
+    console.log('â• â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•£');
+    console.log('â•‘  1. Face Recognition: Working âœ“                                            â•‘');
+    console.log('â•‘  2. Leave Application: Mobile â†’ hr_leave â†’ ERP UI âœ“                        â•‘');
+    console.log('â•‘  3. Payslips: employee_payslip â†’ Mobile UI âœ“                               â•‘');
+    console.log('â•‘  4. Clock In/Out: Mobile â†’ employee_clocking_line â†’ ERP UI âœ“               â•‘');
+    console.log('â•šâ•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•');
     console.log('\n');
     
   } catch (error) {
-    console.error('\n❌ Error:', error.message);
+    console.error('\nâŒ Error:', error.message);
     console.error(error.stack);
   }
   
@@ -289,3 +289,5 @@ async function main() {
 }
 
 main();
+
+

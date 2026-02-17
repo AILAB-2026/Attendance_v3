@@ -1,12 +1,12 @@
-import fetch from 'node-fetch';
+﻿import fetch from 'node-fetch';
 
 async function testCompanyNameEndpoint() {
   const testCodes = ['BRK', 'SKK', 'AILAB', 'brk', 'skk'];
   
   for (const code of testCodes) {
     try {
-      const url = `http://localhost:7010/settings/company-name?companyCode=${code}`;
-      console.log(`\n📡 Testing: ${url}`);
+      const url = `http://192.168.1.5:7012/settings/company-name?companyCode=${code}`;
+      console.log(`\nðŸ“¡ Testing: ${url}`);
       
       const response = await fetch(url);
       const data = await response.json();
@@ -19,3 +19,5 @@ async function testCompanyNameEndpoint() {
 }
 
 testCompanyNameEndpoint();
+
+

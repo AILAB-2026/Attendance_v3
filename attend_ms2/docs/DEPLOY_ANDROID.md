@@ -1,4 +1,4 @@
-# Android — Production Build & Play Store Deployment
+﻿# Android — Production Build & Play Store Deployment
 
 This guide walks through building a production Android app with Expo Application Services (EAS) and publishing it to Google Play.
 

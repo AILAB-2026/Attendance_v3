@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Test User Setup Script
  * Creates a test user for face recognition integration testing
  * 
@@ -23,7 +23,7 @@ const attendancePool = new Pool({
 
 async function setupTestUser() {
   try {
-    console.log('🔄 Setting up test user for face recognition integration...\n');
+    console.log('ðŸ”„ Setting up test user for face recognition integration...\n');
 
     // 1. Find employee in attendance database
     console.log('Step 1: Checking attendance database (CX18AILABDEMO)...');
@@ -32,7 +32,7 @@ async function setupTestUser() {
     );
     
     if (empResult.rows.length === 0) {
-      console.log('❌ Employee with id=14 not found in hr_employee table');
+      console.log('âŒ Employee with id=14 not found in hr_employee table');
       console.log('   Trying to find any employee...');
       
       const anyEmp = await attendancePool.query(
@@ -40,17 +40,17 @@ async function setupTestUser() {
       );
       
       if (anyEmp.rows.length === 0) {
-        console.log('❌ No employees found in hr_employee table');
+        console.log('âŒ No employees found in hr_employee table');
         console.log('   Please create an employee first');
         return;
       }
       
-      console.log(`ℹ️  Found employee: ID=${anyEmp.rows[0].id}, Name=${anyEmp.rows[0].name}`);
+      console.log(`â„¹ï¸  Found employee: ID=${anyEmp.rows[0].id}, Name=${anyEmp.rows[0].name}`);
       console.log(`   Using this employee instead`);
       var employee = anyEmp.rows[0];
     } else {
       var employee = empResult.rows[0];
-      console.log(`✅ Found employee: ID=${employee.id}, Name=${employee.name}`);
+      console.log(`âœ… Found employee: ID=${employee.id}, Name=${employee.name}`);
     }
 
     // 2. Create/update company in AIAttend_v2
@@ -62,12 +62,12 @@ async function setupTestUser() {
        RETURNING id, company_code, company_name`
     );
     const company = companyResult.rows[0];
-    console.log(`✅ Company ready: ${company.company_code} - ${company.company_name} (ID: ${company.id})`);
+    console.log(`âœ… Company ready: ${company.company_code} - ${company.company_name} (ID: ${company.id})`);
 
     // 3. Set password (plaintext for development)
     console.log('\nStep 3: Setting password to "password123"...');
     const password = 'password123';
-    console.log(`✅ Password ready`);
+    console.log(`âœ… Password ready`);
 
     // 4. Create/update user in AIAttend_v2
     console.log('\nStep 4: Creating user in AIAttend_v2...');
@@ -97,7 +97,7 @@ async function setupTestUser() {
     );
     
     const user = userResult.rows[0];
-    console.log(`✅ User ready: ${user.emp_no} - ${user.name} (ID: ${user.id})`);
+    console.log(`âœ… User ready: ${user.emp_no} - ${user.name} (ID: ${user.id})`);
     console.log(`   Email: ${user.email}`);
 
     // 5. Create face mapping
@@ -114,7 +114,7 @@ async function setupTestUser() {
         updated_at = NOW()`,
       [user.id, employee.id, 'AI-EMP-014', 'AILAB']
     );
-    console.log(`✅ Face mapping created: AIAttend User ${user.id} → Attendance Employee ${employee.id}`);
+    console.log(`âœ… Face mapping created: AIAttend User ${user.id} â†’ Attendance Employee ${employee.id}`);
 
     // 6. Verify mapping
     console.log('\nStep 6: Verifying setup...');
@@ -134,7 +134,7 @@ async function setupTestUser() {
     
     if (verifyResult.rows.length > 0) {
       const v = verifyResult.rows[0];
-      console.log(`✅ Verification successful:`);
+      console.log(`âœ… Verification successful:`);
       console.log(`   User ID: ${v.user_id}`);
       console.log(`   Employee No: ${v.emp_no}`);
       console.log(`   Name: ${v.name}`);
@@ -144,33 +144,33 @@ async function setupTestUser() {
 
     // 7. Summary
     console.log('\n' + '='.repeat(70));
-    console.log('✅ TEST USER SETUP COMPLETE!');
+    console.log('âœ… TEST USER SETUP COMPLETE!');
     console.log('='.repeat(70));
-    console.log('\n📋 Login Credentials:');
-    console.log('   ┌────────────────────────────────────────┐');
-    console.log('   │  Company Code:  AILAB                  │');
-    console.log('   │  Employee No:   AI-EMP-014             │');
-    console.log('   │  Password:      password123            │');
-    console.log('   └────────────────────────────────────────┘');
-    console.log('\n🔗 Service URLs:');
-    console.log(`   AIAttend_v2 Backend:  http://localhost:3000`);
+    console.log('\nðŸ“‹ Login Credentials:');
+    console.log('   â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”');
+    console.log('   â”‚  Company Code:  AILAB                  â”‚');
+    console.log('   â”‚  Employee No:   AI-EMP-014             â”‚');
+    console.log('   â”‚  Password:      password123            â”‚');
+    console.log('   â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜');
+    console.log('\nðŸ”— Service URLs:');
+    console.log(`   AIAttend_v2 Backend:  http://192.168.1.5:7012`);
     console.log(`   Face Recognition API: http://127.0.0.1:3001`);
-    console.log('\n📝 Next Steps:');
+    console.log('\nðŸ“ Next Steps:');
     console.log('   1. Test login with above credentials');
     console.log('   2. Enroll face using POST /v1/enroll');
     console.log('   3. Test face authentication using POST /v1/verify');
-    console.log('\n💡 Quick Test:');
+    console.log('\nðŸ’¡ Quick Test:');
     console.log('   $body = @{');
     console.log('       companyCode = "AILAB"');
     console.log('       employeeNo = "AI-EMP-014"');
     console.log('       password = "password123"');
     console.log('   } | ConvertTo-Json');
-    console.log('   Invoke-RestMethod -Method POST -Uri "http://localhost:3000/auth/login" `');
+    console.log('   Invoke-RestMethod -Method POST -Uri "http://192.168.1.5:7012/auth/login" `');
     console.log('       -ContentType "application/json" -Body $body');
     console.log('');
 
   } catch (error) {
-    console.error('\n❌ Error during setup:', error.message);
+    console.error('\nâŒ Error during setup:', error.message);
     if (error.code) {
       console.error(`   Error Code: ${error.code}`);
     }
@@ -186,3 +186,5 @@ async function setupTestUser() {
 
 // Run the setup
 setupTestUser().catch(console.error);
+
+

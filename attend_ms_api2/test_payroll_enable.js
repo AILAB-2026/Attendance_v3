@@ -1,6 +1,6 @@
-import fetch from 'node-fetch';
+﻿import fetch from 'node-fetch';
 
-const API_BASE_URL = 'http://localhost:7010';
+const API_BASE_URL = 'http://192.168.1.5:7012';
 
 const testCases = [
   {
@@ -28,7 +28,7 @@ async function testPayrollEnable() {
 
   for (const testCase of testCases) {
     try {
-      console.log(`📋 Testing: ${testCase.description}`);
+      console.log(`ðŸ“‹ Testing: ${testCase.description}`);
       console.log(`   Company: ${testCase.company}, Employee: ${testCase.employeeNo}`);
 
       const url = `${API_BASE_URL}/users/profile?companyCode=${testCase.company}&employeeNo=${testCase.employeeNo}`;
@@ -43,7 +43,7 @@ async function testPayrollEnable() {
       const data = await response.json();
 
       if (!data.success) {
-        console.log(`   ❌ Error: ${data.message}`);
+        console.log(`   âŒ Error: ${data.message}`);
         continue;
       }
 
@@ -51,9 +51,9 @@ async function testPayrollEnable() {
       const matches = payrollEnable === testCase.expectedPayrollEnable;
 
       if (matches) {
-        console.log(`   ✅ PASS: payrollEnable = ${payrollEnable} (expected: ${testCase.expectedPayrollEnable})`);
+        console.log(`   âœ… PASS: payrollEnable = ${payrollEnable} (expected: ${testCase.expectedPayrollEnable})`);
       } else {
-        console.log(`   ❌ FAIL: payrollEnable = ${payrollEnable} (expected: ${testCase.expectedPayrollEnable})`);
+        console.log(`   âŒ FAIL: payrollEnable = ${payrollEnable} (expected: ${testCase.expectedPayrollEnable})`);
       }
 
       console.log(`   Response data:`, {
@@ -63,7 +63,7 @@ async function testPayrollEnable() {
       });
 
     } catch (err) {
-      console.error(`   ❌ Error: ${err.message}`);
+      console.error(`   âŒ Error: ${err.message}`);
     }
 
     console.log('');
@@ -73,3 +73,5 @@ async function testPayrollEnable() {
 }
 
 testPayrollEnable();
+
+

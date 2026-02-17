@@ -1,9 +1,10 @@
-import express from "express";
+﻿import express from "express";
 import jwt from "jsonwebtoken";
 import faceapi from "face-api.js";
 import { SECRET_KEY } from "./constants.js";
 import { getTokenFromHeader } from "./helper.js";
 import { getCompanyPool } from "./multiCompanyDb.js";
+import { logActivity } from "./utils/auditLogger.js";
 import { createCanvas, loadImage, Canvas, Image } from "canvas";
 import multer from "multer";
 import path from "path";
@@ -136,6 +137,7 @@ router.post(
       console.log("decoded employeeId " + decoded.employeeId);
       console.log("decoded customerId " + decoded.customerId);
       if (!req.files || !req.files["faceImage"] || !req.files["faceImage"][0]) {
+        await logActivity("face-enroll", "failure", "No face image uploaded", { companyCode: decoded.companyCode, employeeNo: decoded.employeeNo, userId: decoded.employeeId });
         return res.status(400).json({ success: false, status_code: 1, message: "No face image uploaded" });
       }
 
@@ -144,18 +146,22 @@ router.post(
       await fs.unlink(imagePath).catch(console.error);
 
       if (!det) {
+        await logActivity("face-enroll", "failure", "Face not detected in image", { companyCode: decoded.companyCode, employeeNo: decoded.employeeNo, userId: decoded.employeeId });
         return res.status(400).json({ success: false, status_code: 1, message: "Face not detected in the image. Please try again." });
       }
       if (det.error === "MODELS_NOT_READY") {
         return res.status(503).json({ success: false, status_code: 1, message: "Face models are initializing, please retry in a few seconds" });
       }
       if (det.error === "MULTIPLE_FACES") {
+        await logActivity("face-enroll", "failure", "Multiple faces detected", { companyCode: decoded.companyCode, employeeNo: decoded.employeeNo, userId: decoded.employeeId });
         return res.status(400).json({ success: false, status_code: 1, message: "Multiple faces detected. Please ensure only your face is in the frame." });
       }
       if (det.error === "LOW_DETECTION_SCORE") {
+        await logActivity("face-enroll", "failure", "Low face detection score", { companyCode: decoded.companyCode, employeeNo: decoded.employeeNo, userId: decoded.employeeId });
         return res.status(400).json({ success: false, status_code: 1, message: "Low face detection confidence. Improve lighting and face the camera directly." });
       }
       if (det.error === "BAD_FACE_SIZE") {
+        await logActivity("face-enroll", "failure", "Bad face size", { companyCode: decoded.companyCode, employeeNo: decoded.employeeNo, userId: decoded.employeeId });
         return res.status(400).json({ success: false, status_code: 1, message: "Face is too small or too large in the frame. Please reframe and try again." });
       }
 
@@ -201,6 +207,7 @@ router.post(
                 detectionScore: det.detectionScore ?? undefined,
               }
             });
+            await logActivity("face-enroll", "success", "Face enrolled successfully", { companyCode, employeeNo: dbRes.rows[0].employee_no, userId: decoded.employeeId });
           } else {
             console.log("❌ Employee not found");
             res.status(404).json({
@@ -272,6 +279,8 @@ router.post(
               error: "Liveness verification failed: insufficient frames",
               livenessCheck: "failed"
             });
+            await logActivity("face-auth", "failure", "Liveness failed: insufficient frames", { companyCode, employeeNo: decoded.employeeNo, userId: decoded.employeeId });
+            return response;
           }
 
           // Verify frame signatures are unique (static images would have identical signatures)
@@ -286,6 +295,8 @@ router.post(
               error: "Liveness verification failed: static image detected",
               livenessCheck: "failed"
             });
+            await logActivity("face-auth", "failure", "Liveness failed: static image detected", { companyCode, employeeNo: decoded.employeeNo, userId: decoded.employeeId });
+            return response;
           }
 
           // Verify frame sizes are consistent (manipulation detection)
@@ -301,6 +312,8 @@ router.post(
               error: "Liveness verification failed: suspicious frame variance",
               livenessCheck: "failed"
             });
+            await logActivity("face-auth", "failure", "Liveness failed: suspicious frame variance", { companyCode, employeeNo: decoded.employeeNo, userId: decoded.employeeId });
+            return response;
           }
 
           console.log(`✅ [SECURITY] Liveness verification passed: ${uniqueSignatures.size} unique frames, variance=${(maxVariance * 100).toFixed(1)}%`);
@@ -335,9 +348,11 @@ router.post(
       console.log(`⏱️ DB query: ${Date.now() - dbStart}ms`);
 
       if (userResult.rows.length === 0) {
+        await logActivity("face-auth", "failure", "User not found", { companyCode, employeeNo: decoded.employeeNo, userId: decoded.employeeId });
         return res.status(404).json({ success: false, error: "User not found" });
       }
       if (userResult.rows[0].l_face_descriptor == null) {
+        await logActivity("face-auth", "failure", "No face data enrolled", { companyCode, employeeNo: decoded.employeeNo, userId: decoded.employeeId });
         return res
           .status(400)
           .json({ success: false, error: "No face data enrolled for this user" });
@@ -347,6 +362,7 @@ router.post(
 
       // Get face descriptor from uploaded image
       if (!req.files || !req.files["faceImage"] || !req.files["faceImage"][0]) {
+        await logActivity("face-auth", "failure", "No face image uploaded", { companyCode, employeeNo: decoded.employeeNo, userId: decoded.employeeId });
         return res.status(400).json({ success: false, status_code: 1, error: "No face image uploaded" });
       }
       const imagePath = req.files["faceImage"][0].path;
@@ -361,17 +377,22 @@ router.post(
           status_code: 1,
           error: "Face not detected in the image. Please try again."
         });
+        await logActivity("face-auth", "failure", "Face not detected", { companyCode, employeeNo: decoded.employeeNo, userId: decoded.employeeId });
+        return response;
       }
       if (detection.error === "MODELS_NOT_READY") {
         return res.status(503).json({ success: false, status_code: 1, error: "Face models are initializing, please retry in a few seconds" });
       }
       if (detection.error === "MULTIPLE_FACES") {
+        await logActivity("face-auth", "failure", "Multiple faces detected", { companyCode, employeeNo: decoded.employeeNo, userId: decoded.employeeId });
         return res.status(400).json({ success: false, status_code: 1, error: "Multiple faces detected. Please ensure only your face is in the frame." });
       }
       if (detection.error === "LOW_DETECTION_SCORE") {
+        await logActivity("face-auth", "failure", "Low face detection score", { companyCode, employeeNo: decoded.employeeNo, userId: decoded.employeeId });
         return res.status(400).json({ success: false, status_code: 1, error: "Low face detection confidence. Improve lighting and face the camera directly." });
       }
       if (detection.error === "BAD_FACE_SIZE") {
+        await logActivity("face-auth", "failure", "Bad face size", { companyCode, employeeNo: decoded.employeeNo, userId: decoded.employeeId });
         return res.status(400).json({ success: false, status_code: 1, error: "Face is too small or too large in the frame. Please reframe and try again." });
       }
 
@@ -416,6 +437,18 @@ router.post(
         distance: Number(distance.toFixed(4)),
         livenessCheck: livenessData ? "passed" : "skipped"
       });
+
+      await logActivity(
+        "face-auth",
+        isMatch ? "success" : "failure",
+        isMatch ? "Face authenticated successfully" : `Face mismatch (Distance: ${distance.toFixed(3)})`,
+        {
+          companyCode,
+          employeeNo: decoded.employeeNo,
+          userId: decoded.employeeId,
+          metadata: { distance, confidence: confidenceScore, threshold: matchThreshold }
+        }
+      );
     } catch (err) {
       console.error("❌ Auth error:", err);
       res.status(500).json({ success: false, error: err.message });
@@ -513,6 +546,8 @@ router.post(
             error: `No face detected in frame ${i + 1}. Please ensure your face is visible.`,
             livenessCheck: "failed"
           });
+          await logActivity("face-auth-live", "failure", `No face detected in frame ${i + 1}`, { companyCode, employeeNo: decoded.employeeNo, userId: decoded.employeeId });
+          return response;
         }
         if (det.error) {
           return res.status(400).json({
@@ -564,6 +599,8 @@ router.post(
           livenessCheck: "failed",
           interFrameDistance: avgInterFrameDistance
         });
+        await logActivity("face-auth-live", "failure", "Liveness failed: Static image detected", { companyCode, employeeNo: decoded.employeeNo, userId: decoded.employeeId, metadata: { interFrameDistance: avgInterFrameDistance } });
+        return response;
       }
 
       if (avgInterFrameDistance > LIVENESS_MAX_THRESHOLD) {
@@ -575,6 +612,8 @@ router.post(
           livenessCheck: "failed",
           interFrameDistance: avgInterFrameDistance
         });
+        await logActivity("face-auth-live", "failure", "Liveness failed: Inconsistent face data", { companyCode, employeeNo: decoded.employeeNo, userId: decoded.employeeId, metadata: { interFrameDistance: avgInterFrameDistance } });
+        return response;
       }
 
       console.log(`✅ [SECURITY] LIVENESS VERIFIED! Inter-frame distance ${avgInterFrameDistance.toFixed(4)} is within acceptable range.`);
@@ -631,6 +670,18 @@ router.post(
         livenessScore: avgInterFrameDistance,
         processingTime: totalTime
       });
+
+      await logActivity(
+        "face-auth-live",
+        isMatch ? "success" : "failure",
+        isMatch ? "Face authenticated with liveness verification" : `Face mismatch (Distance: ${identityDistance.toFixed(3)})`,
+        {
+          companyCode,
+          employeeNo: decoded.employeeNo,
+          userId: decoded.employeeId,
+          metadata: { identityDistance, confidence: confidenceScore, threshold: matchThreshold, livenessScore: avgInterFrameDistance }
+        }
+      );
 
     } catch (err) {
       console.error("❌ Liveness auth error:", err);

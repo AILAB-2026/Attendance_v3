@@ -1,4 +1,4 @@
-# AI Attend Tracker - Automated Backend Deployment Script
+﻿# AI Attend Tracker - Automated Backend Deployment Script
 # This script automates the deployment of backend services on Windows Server 2022
 
 param(
@@ -29,10 +29,10 @@ if (-not (Get-Command Write-Warning -ErrorAction SilentlyContinue)) {
 
 # Banner
 Write-Host @"
-╔═══════════════════════════════════════════════════════════╗
-║   AI Attend Tracker - Backend Deployment Script          ║
-║   Version 1.0.0                                           ║
-╚═══════════════════════════════════════════════════════════╝
+â•”â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•—
+â•‘   AI Attend Tracker - Backend Deployment Script          â•‘
+â•‘   Version 1.0.0                                           â•‘
+â•šâ•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
 "@ -ForegroundColor Cyan
 
 # Check if running as administrator
@@ -268,7 +268,7 @@ Write-Info "Verifying services..."
 
 # Test Backend API
 try {
-    $response = Invoke-WebRequest -Uri "http://localhost:3000/health" -UseBasicParsing -TimeoutSec 10
+    $response = Invoke-WebRequest -Uri "http://192.168.1.5:7012/health" -UseBasicParsing -TimeoutSec 10
     if ($response.StatusCode -eq 200) {
         Write-Success "Backend API is responding"
     } else {
@@ -286,9 +286,9 @@ Get-AIAttendServiceStatus
 # Display log locations
 Write-Host @"
 
-╔═══════════════════════════════════════════════════════════╗
-║   Deployment Complete!                                    ║
-╚═══════════════════════════════════════════════════════════╝
+â•”â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•—
+â•‘   Deployment Complete!                                    â•‘
+â•šâ•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
 
 Log Files:
   Backend:  $LogPath\backend.log
@@ -309,3 +309,5 @@ Quick Restart:
 "@ -ForegroundColor Green
 
 Write-Success "Deployment completed successfully!"
+
+

@@ -1,4 +1,4 @@
-# Attendance App — User Guide
+﻿# Attendance App — User Guide
 
 This guide covers setup, environment config, database commands, running the backend and app, API usage, and troubleshooting.
 

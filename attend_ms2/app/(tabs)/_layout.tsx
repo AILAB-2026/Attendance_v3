@@ -1,4 +1,4 @@
-import { Tabs, useRouter } from "expo-router";
+﻿import { Tabs, useRouter } from "expo-router";
 import { MaterialIcons, MaterialCommunityIcons, FontAwesome5 } from "@expo/vector-icons";
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { TouchableOpacity, Image, View } from "react-native";

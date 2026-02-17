@@ -1,4 +1,4 @@
-// Production Configuration
+﻿// Production Configuration
 // This file contains production-specific settings for the attendance API
 
 export const productionConfig = {

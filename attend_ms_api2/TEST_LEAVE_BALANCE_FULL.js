@@ -1,8 +1,8 @@
-import fetch from 'node-fetch';
+﻿import fetch from 'node-fetch';
 
-const API = 'http://localhost:3001';
+const API = 'http://192.168.1.5:7012';
 
-console.log('\n🔍 TESTING LEAVE BALANCE - FULL FLOW\n');
+console.log('\nðŸ” TESTING LEAVE BALANCE - FULL FLOW\n');
 
 // 1. Login
 const loginRes = await fetch(`${API}/auth/login`, {
@@ -13,7 +13,7 @@ const loginRes = await fetch(`${API}/auth/login`, {
 const loginData = await loginRes.json();
 const token = loginData.data?.sessionToken;
 
-console.log('✅ Login successful');
+console.log('âœ… Login successful');
 console.log(`   Token: ${token?.substring(0, 30)}...`);
 
 // 2. Get Leave Balance
@@ -22,24 +22,24 @@ const balanceRes = await fetch(`${API}/leave/balance`, {
 });
 const balanceData = await balanceRes.json();
 
-console.log('\n📊 LEAVE BALANCE RESPONSE:');
+console.log('\nðŸ“Š LEAVE BALANCE RESPONSE:');
 console.log(JSON.stringify(balanceData, null, 2));
 
 if (balanceData.success && balanceData.data?.balance) {
   const b = balanceData.data.balance;
-  console.log('\n✅ LEAVE BALANCE VALUES:');
+  console.log('\nâœ… LEAVE BALANCE VALUES:');
   console.log(`   Annual: ${b.annual} days`);
   console.log(`   Medical: ${b.medical} days`);
   console.log(`   Emergency: ${b.emergency} days`);
   console.log(`   Unpaid: ${b.unpaid} days`);
 
   if (b.annual > 0 || b.medical > 0) {
-    console.log('\n✅ SUCCESS: Leave balance shows actual numbers (NOT zeros)!');
+    console.log('\nâœ… SUCCESS: Leave balance shows actual numbers (NOT zeros)!');
   } else {
-    console.log('\n❌ FAIL: All balances are zero');
+    console.log('\nâŒ FAIL: All balances are zero');
   }
 } else {
-  console.log('\n❌ FAIL: Could not get leave balance');
+  console.log('\nâŒ FAIL: Could not get leave balance');
 }
 
 // 3. Get Leave Requests
@@ -48,9 +48,9 @@ const requestsRes = await fetch(`${API}/leave/requests`, {
 });
 const requestsData = await requestsRes.json();
 
-console.log('\n📋 LEAVE REQUESTS RESPONSE:');
+console.log('\nðŸ“‹ LEAVE REQUESTS RESPONSE:');
 if (Array.isArray(requestsData)) {
-  console.log(`✅ Found ${requestsData.length} leave requests`);
+  console.log(`âœ… Found ${requestsData.length} leave requests`);
   if (requestsData.length > 0) {
     console.log('\n   Recent requests:');
     requestsData.slice(0, 3).forEach((req, i) => {
@@ -58,8 +58,10 @@ if (Array.isArray(requestsData)) {
     });
   }
 } else {
-  console.log('❌ FAIL: Response is not an array');
+  console.log('âŒ FAIL: Response is not an array');
   console.log(JSON.stringify(requestsData, null, 2));
 }
 
-console.log('\n✅ TEST COMPLETE\n');
+console.log('\nâœ… TEST COMPLETE\n');
+
+

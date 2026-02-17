@@ -1,13 +1,13 @@
-import fetch from 'node-fetch';
+﻿import fetch from 'node-fetch';
 
-const API_BASE_URL = 'http://localhost:7010';
+const API_BASE_URL = 'http://192.168.1.5:7012';
 
 async function testBRKLogin() {
   console.log('\n=== Testing BRK Login ===\n');
 
   try {
     // Step 1: Login
-    console.log('📋 Step 1: Attempting login...');
+    console.log('ðŸ“‹ Step 1: Attempting login...');
     const loginResponse = await fetch(`${API_BASE_URL}/auth/login-multi`, {
       method: 'POST',
       headers: {
@@ -25,16 +25,16 @@ async function testBRKLogin() {
     console.log('Login Response:', JSON.stringify(loginData, null, 2));
 
     if (!loginData.success) {
-      console.log('❌ Login failed:', loginData.message);
+      console.log('âŒ Login failed:', loginData.message);
       return;
     }
 
     const sessionToken = loginData.data?.sessionToken;
-    console.log('✅ Login successful');
+    console.log('âœ… Login successful');
     console.log('   SessionToken:', sessionToken?.substring(0, 30) + '...');
 
     // Step 2: Get user profile
-    console.log('\n📋 Step 2: Fetching user profile...');
+    console.log('\nðŸ“‹ Step 2: Fetching user profile...');
     const profileResponse = await fetch(`${API_BASE_URL}/users/profile?companyCode=BRK&employeeNo=TEST-002`, {
       method: 'GET',
       headers: {
@@ -48,20 +48,22 @@ async function testBRKLogin() {
     console.log('Profile Response:', JSON.stringify(profileData, null, 2));
 
     if (profileData.success) {
-      console.log('\n✅ Profile fetched successfully');
+      console.log('\nâœ… Profile fetched successfully');
       console.log('   Employee:', profileData.data?.name);
       console.log('   Employee No:', profileData.data?.employeeNo);
       console.log('   Company Code:', profileData.data?.companyCode);
       console.log('   Payroll Enable:', profileData.data?.payrollEnable);
     } else {
-      console.log('❌ Profile fetch failed:', profileData.message);
+      console.log('âŒ Profile fetch failed:', profileData.message);
     }
 
   } catch (err) {
-    console.error('❌ Error:', err.message);
+    console.error('âŒ Error:', err.message);
   }
 
   console.log('\n=== Test Complete ===\n');
 }
 
 testBRKLogin();
+
+

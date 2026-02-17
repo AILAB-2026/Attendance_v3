@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Test script for clock-in with face recognition
  * Run: node test-clock-in.js
  */
@@ -6,7 +6,7 @@
 require('dotenv').config({ path: '.env.production' });
 const fetch = require('node-fetch');
 
-const API_BASE = process.env.API_BASE_URL || 'http://localhost:3000';
+const API_BASE = process.env.API_BASE_URL || 'http://192.168.1.5:7012';
 
 async function testClockIn() {
   console.log('=== Testing Clock-In Flow ===\n');
@@ -39,20 +39,22 @@ async function testClockIn() {
     console.log('Response Body:', JSON.stringify(result, null, 2));
 
     if (result.success) {
-      console.log('\n✅ Clock-in successful!');
+      console.log('\nâœ… Clock-in successful!');
       console.log('Event ID:', result.data?.id);
       console.log('Timestamp:', result.data?.timestamp);
       console.log('Location:', result.data?.location);
     } else {
-      console.log('\n❌ Clock-in failed!');
+      console.log('\nâŒ Clock-in failed!');
       console.log('Error:', result.message);
     }
 
   } catch (error) {
-    console.error('\n❌ Test failed with error:');
+    console.error('\nâŒ Test failed with error:');
     console.error(error.message);
   }
 }
 
 // Run test
 testClockIn().catch(console.error);
+
+

@@ -1,4 +1,4 @@
-# NSSM Service Installation Script for Attendance API using npm start
+﻿# NSSM Service Installation Script for Attendance API using npm start
 # Run this script as Administrator
 
 param(
@@ -117,7 +117,7 @@ if ($service.Status -eq 'Running') {
     Write-Host "  Status: Running" -ForegroundColor Green
     Write-Host "  Command: npm start" -ForegroundColor White
     Write-Host "  Working Dir: $WorkingDir" -ForegroundColor White
-    Write-Host "  API URL: http://localhost:3001" -ForegroundColor White
+    Write-Host "  API URL: http://192.168.1.5:7012" -ForegroundColor White
     Write-Host ""
     Write-Host "Management Commands:" -ForegroundColor Cyan
     Write-Host "  Start:   Start-Service -Name $ServiceName" -ForegroundColor White
@@ -146,3 +146,5 @@ if ($service.Status -eq 'Running') {
 Write-Host ""
 Write-Host "Press any key to continue..."
 $null = $Host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
+
+

@@ -1,10 +1,10 @@
-
+﻿
 import axios from 'axios';
 import dotenv from "dotenv";
 dotenv.config();
 import { getCompanyPool } from "./src/multiCompanyDb.js";
 
-const BASE_URL = 'http://localhost:7010';
+const BASE_URL = 'http://192.168.1.5:7012';
 const COMPANY_CODE = 'AILAB';
 const EMPLOYEE_NO = 'AILAB0004'; // Punitha S
 
@@ -25,20 +25,20 @@ async function verifyInDb(checkClockOut = false) {
     `, [EMPLOYEE_NO]);
 
     if (res.rows.length === 0) {
-        console.log("❌ DB Verify: No record found for today.");
+        console.log("âŒ DB Verify: No record found for today.");
         return null;
     }
 
     const row = res.rows[0];
-    console.log(`✅ DB Verify: Found record ID ${row.id}`);
+    console.log(`âœ… DB Verify: Found record ID ${row.id}`);
     console.log(`   Clock In: ${row.clock_in}`);
     console.log(`   Clock Out: ${row.clock_out}`);
 
     if (checkClockOut) {
         if (row.clock_out) {
-            console.log("✅ DB Verify: Clock Out is SET.");
+            console.log("âœ… DB Verify: Clock Out is SET.");
         } else {
-            console.error("❌ DB Verify: Clock Out is NULL (Update Failed).");
+            console.error("âŒ DB Verify: Clock Out is NULL (Update Failed).");
         }
     }
     return row;
@@ -49,7 +49,7 @@ async function run() {
         console.log("--- Starting AILAB API Test ---");
 
         // 1. Clock In
-        console.log("\n1️⃣ Sending Clock In Request...");
+        console.log("\n1ï¸âƒ£ Sending Clock In Request...");
         try {
             const resIn = await axios.post(`${BASE_URL}/attendance/clock-in`, {
                 companyCode: COMPANY_CODE,
@@ -64,9 +64,9 @@ async function run() {
             console.log("Response:", resIn.data);
         } catch (e) {
             if (e.response && e.response.data && e.response.data.message.includes("already have an open clock-in")) {
-                console.log("⚠️ Already clocked in, proceeding to clock out...");
+                console.log("âš ï¸ Already clocked in, proceeding to clock out...");
             } else {
-                console.error("❌ Clock In Failed:", e.message);
+                console.error("âŒ Clock In Failed:", e.message);
                 if (e.response) console.error("   Data:", e.response.data);
                 // process.exit(1); 
             }
@@ -77,7 +77,7 @@ async function run() {
         await sleep(2000);
 
         // 2. Clock Out
-        console.log("\n2️⃣ Sending Clock Out Request...");
+        console.log("\n2ï¸âƒ£ Sending Clock Out Request...");
         try {
             const resOut = await axios.post(`${BASE_URL}/attendance/clock-out`, {
                 companyCode: COMPANY_CODE,
@@ -91,12 +91,12 @@ async function run() {
             });
             console.log("Response:", resOut.data);
         } catch (e) {
-            console.error("❌ Clock Out Failed:", e.message);
+            console.error("âŒ Clock Out Failed:", e.message);
             if (e.response) console.error("   Data:", e.response.data);
         }
 
         // 3. Verify Final State
-        console.log("\n3️⃣ Verifying Final DB State...");
+        console.log("\n3ï¸âƒ£ Verifying Final DB State...");
         await verifyInDb(true);
 
         process.exit(0);
@@ -107,3 +107,5 @@ async function run() {
 }
 
 run();
+
+

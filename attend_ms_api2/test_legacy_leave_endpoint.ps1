@@ -1,4 +1,4 @@
-# Test the legacy /leave endpoint that mobile app uses
+﻿# Test the legacy /leave endpoint that mobile app uses
 Write-Host "Testing legacy /leave endpoint..." -ForegroundColor Cyan
 
 try {
@@ -9,7 +9,7 @@ try {
         password = "Test@123"
     } | ConvertTo-Json
 
-    $loginResponse = Invoke-RestMethod -Uri "http://localhost:3001/auth/login" -Method POST -Body $loginBody -ContentType "application/json"
+    $loginResponse = Invoke-RestMethod -Uri "http://192.168.1.5:7012/auth/login" -Method POST -Body $loginBody -ContentType "application/json"
     
     if ($loginResponse.success) {
         Write-Host "Login successful" -ForegroundColor Green
@@ -23,7 +23,7 @@ try {
         # Test legacy /leave endpoint (what mobile app calls)
         Write-Host "Testing /leave endpoint (legacy)..." -ForegroundColor Yellow
         try {
-            $leaveResponse = Invoke-RestMethod -Uri "http://localhost:3001/leave?companyCode=1&employeeNo=B1-E079" -Method GET -Headers $headers
+            $leaveResponse = Invoke-RestMethod -Uri "http://192.168.1.5:7012/leave?companyCode=1&employeeNo=B1-E079" -Method GET -Headers $headers
             
             Write-Host "Legacy leave endpoint response:" -ForegroundColor Green
             $leaveResponse | ConvertTo-Json -Depth 3 | Write-Host
@@ -46,3 +46,5 @@ try {
 } catch {
     Write-Host "Error: $($_.Exception.Message)" -ForegroundColor Red
 }
+
+

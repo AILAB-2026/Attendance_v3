@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+﻿import React, { useEffect, useRef, useState } from 'react';
 import { View, StyleSheet, Animated, Text, Dimensions, Easing, Platform } from 'react-native';
 import { ScanFace, User, Scan, Zap, CheckCircle2, Server } from 'lucide-react-native';
 import colors from '@/constants/colors';

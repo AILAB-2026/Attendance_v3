@@ -1,7 +1,7 @@
-
+﻿
 import axios from 'axios';
 
-const BASE_URL = 'http://localhost:7010/auth/login-multi';
+const BASE_URL = 'http://192.168.1.5:7012/auth/login-multi';
 
 const testCases = [
     {
@@ -35,19 +35,19 @@ async function runTests() {
             });
 
             if (response.status === 200 && response.data.success) {
-                console.log('✅ SUCCESS');
+                console.log('âœ… SUCCESS');
                 console.log('Message:', response.data.message);
                 console.log('Data:', {
                     ...response.data.data,
                     sessionToken: response.data.data.sessionToken ? 'Valid Token (Truncated)' : 'Missing Token'
                 });
             } else {
-                console.log('❌ FAILED (Logic)');
+                console.log('âŒ FAILED (Logic)');
                 console.log('Status:', response.status);
                 console.log('Response:', response.data);
             }
         } catch (error) {
-            console.log('❌ FAILED (Error)');
+            console.log('âŒ FAILED (Error)');
             if (error.response) {
                 console.log('Status:', error.response.status);
                 console.log('Data:', error.response.data);
@@ -60,3 +60,5 @@ async function runTests() {
 }
 
 runTests();
+
+

@@ -1,13 +1,13 @@
-import dotenv from "dotenv";
+﻿import dotenv from "dotenv";
 dotenv.config();
 
 import fetch from 'node-fetch';
 
 async function finalApiTest() {
-  console.log("🔍 FINAL API TEST - Complete Verification");
+  console.log("ðŸ” FINAL API TEST - Complete Verification");
   console.log("=" .repeat(50));
   
-  const baseUrl = 'http://localhost:3001';
+  const baseUrl = 'http://192.168.1.5:7012';
   
   try {
     // Step 1: Login
@@ -23,20 +23,20 @@ async function finalApiTest() {
     });
     
     if (!loginResponse.ok) {
-      console.log("❌ LOGIN FAILED");
+      console.log("âŒ LOGIN FAILED");
       return;
     }
     
     const loginData = await loginResponse.json();
     
     if (!loginData.success || !loginData.data || !loginData.data.token) {
-      console.log("❌ LOGIN FAILED - No token in response");
+      console.log("âŒ LOGIN FAILED - No token in response");
       console.log("Response:", loginData);
       return;
     }
     
     const token = loginData.data.token;
-    console.log("✅ LOGIN SUCCESS");
+    console.log("âœ… LOGIN SUCCESS");
     console.log(`   Token: ${token.substring(0, 20)}...`);
     
     // Step 2: Test /sites endpoint
@@ -51,12 +51,12 @@ async function finalApiTest() {
     
     if (sitesResponse.ok) {
       const sitesData = await sitesResponse.json();
-      console.log(`✅ /sites SUCCESS - ${sitesData.length} sites found`);
+      console.log(`âœ… /sites SUCCESS - ${sitesData.length} sites found`);
       sitesData.slice(0, 3).forEach((site, i) => {
         console.log(`   ${i+1}. ${site.siteLocationName}`);
       });
     } else {
-      console.log(`❌ /sites FAILED - Status: ${sitesResponse.status}`);
+      console.log(`âŒ /sites FAILED - Status: ${sitesResponse.status}`);
     }
     
     // Step 3: Test /faceRecognition/sites-projects endpoint
@@ -73,7 +73,7 @@ async function finalApiTest() {
     
     if (faceRecResponse.ok) {
       const faceRecData = await faceRecResponse.json();
-      console.log(`✅ /faceRecognition/sites-projects SUCCESS`);
+      console.log(`âœ… /faceRecognition/sites-projects SUCCESS`);
       console.log(`   Sites count: ${faceRecData.data.sites.length}`);
       faceRecData.data.sites.slice(0, 3).forEach((site, i) => {
         console.log(`   ${i+1}. ID: ${site.siteId}, Name: "${site.siteName}"`);
@@ -94,22 +94,22 @@ async function finalApiTest() {
         
         if (projectsResponse.ok) {
           const projectsData = await projectsResponse.json();
-          console.log(`✅ /faceRecognition/projects SUCCESS`);
+          console.log(`âœ… /faceRecognition/projects SUCCESS`);
           console.log(`   Projects count: ${projectsData.data.projects.length}`);
           projectsData.data.projects.forEach((project, i) => {
             console.log(`   ${i+1}. ${project.projectName}`);
           });
         } else {
-          console.log(`❌ /faceRecognition/projects FAILED - Status: ${projectsResponse.status}`);
+          console.log(`âŒ /faceRecognition/projects FAILED - Status: ${projectsResponse.status}`);
         }
       }
       
       // Final summary
       console.log("\n" + "=" .repeat(50));
-      console.log("🎉 ALL ENDPOINTS WORKING!");
+      console.log("ðŸŽ‰ ALL ENDPOINTS WORKING!");
       console.log("=" .repeat(50));
-      console.log("\n✅ Backend API Status: READY FOR PRODUCTION");
-      console.log("\n📱 NEXT STEPS:");
+      console.log("\nâœ… Backend API Status: READY FOR PRODUCTION");
+      console.log("\nðŸ“± NEXT STEPS:");
       console.log("1. The backend API is now fully functional");
       console.log("2. You can now rebuild your mobile APK");
       console.log("3. The APK will connect to: https://cx.brk.sg/attendance_api_mobile");
@@ -121,19 +121,21 @@ async function finalApiTest() {
       
     } else {
       const errorText = await faceRecResponse.text();
-      console.log(`❌ /faceRecognition/sites-projects FAILED`);
+      console.log(`âŒ /faceRecognition/sites-projects FAILED`);
       console.log(`   Error: ${errorText}`);
-      console.log("\n❌ Backend still has issues - DO NOT rebuild APK yet");
+      console.log("\nâŒ Backend still has issues - DO NOT rebuild APK yet");
     }
     
   } catch (error) {
-    console.error("❌ TEST ERROR:", error.message);
+    console.error("âŒ TEST ERROR:", error.message);
     console.error(error.stack);
   }
 }
 
 finalApiTest().then(() => {
-  console.log("\n✅ Final API test completed");
+  console.log("\nâœ… Final API test completed");
 }).catch(error => {
-  console.error("❌ Test failed:", error);
+  console.error("âŒ Test failed:", error);
 });
+
+

@@ -1,15 +1,15 @@
-import https from 'https';
+﻿import https from 'https';
 import http from 'http';
 
 async function testAttendanceAPI() {
   try {
-    console.log('🧪 Testing /attendance/today API endpoint');
+    console.log('ðŸ§ª Testing /attendance/today API endpoint');
     console.log('==========================================');
     
     // Test the exact API call that the mobile app makes
-    const url = 'http://localhost:3001/api/attendance/today?companyCode=1&employeeNo=B1-L157';
+    const url = 'http://192.168.1.5:7012/api/attendance/today?companyCode=1&employeeNo=B1-L157';
     
-    console.log('📡 Making request to:', url);
+    console.log('ðŸ“¡ Making request to:', url);
     
     // Use Node.js built-in http module
     const response = await new Promise((resolve, reject) => {
@@ -30,12 +30,12 @@ async function testAttendanceAPI() {
     
     const data = await response.json();
     
-    console.log('📊 API Response Status:', response.status);
-    console.log('📊 API Response Data:', JSON.stringify(data, null, 2));
+    console.log('ðŸ“Š API Response Status:', response.status);
+    console.log('ðŸ“Š API Response Data:', JSON.stringify(data, null, 2));
     
     if (data.success && data.data) {
       const attendanceData = data.data;
-      console.log('\n🎯 Parsed Attendance Data:');
+      console.log('\nðŸŽ¯ Parsed Attendance Data:');
       console.log('Date:', attendanceData.date);
       console.log('Clock In:', attendanceData.clockIn);
       console.log('Clock Out:', attendanceData.clockOut);
@@ -43,7 +43,7 @@ async function testAttendanceAPI() {
       console.log('Status:', attendanceData.status);
       
       if (attendanceData.entries && attendanceData.entries.length > 0) {
-        console.log('\n📋 Entry Details:');
+        console.log('\nðŸ“‹ Entry Details:');
         attendanceData.entries.forEach((entry, idx) => {
           console.log(`  Entry ${idx + 1}:`);
           console.log(`    Site: ${entry.siteName || 'NULL'}`);
@@ -55,8 +55,10 @@ async function testAttendanceAPI() {
     }
     
   } catch (error) {
-    console.error('❌ API Test Error:', error);
+    console.error('âŒ API Test Error:', error);
   }
 }
 
 testAttendanceAPI();
+
+

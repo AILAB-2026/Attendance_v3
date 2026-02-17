@@ -1,6 +1,6 @@
-import fetch from 'node-fetch';
+﻿import fetch from 'node-fetch';
 
-const API = 'http://localhost:3001';
+const API = 'http://192.168.1.5:7012';
 let token = '';
 
 console.log('\n=== TESTING ALL 4 ISSUES ===\n');
@@ -13,12 +13,12 @@ const loginRes = await fetch(`${API}/auth/login`, {
 });
 const loginData = await loginRes.json();
 token = loginData.data?.sessionToken;
-console.log('1. LOGIN:', loginData.success ? '✅ PASS' : '❌ FAIL');
+console.log('1. LOGIN:', loginData.success ? 'âœ… PASS' : 'âŒ FAIL');
 
 // 2. Face Recognition
 const faceRes = await fetch(`${API}/face/status?companyCode=1&employeeNo=B1-E079`);
 const faceData = await faceRes.json();
-console.log('2. FACE RECOGNITION:', faceData.data?.registered ? '✅ PASS - Enrolled' : '❌ FAIL - Not enrolled');
+console.log('2. FACE RECOGNITION:', faceData.data?.registered ? 'âœ… PASS - Enrolled' : 'âŒ FAIL - Not enrolled');
 
 // 3. Leave Balance
 const balanceRes = await fetch(`${API}/leave/balance`, {
@@ -26,20 +26,22 @@ const balanceRes = await fetch(`${API}/leave/balance`, {
 });
 const balanceData = await balanceRes.json();
 const hasBalance = balanceData.data?.balance?.annual > 0 || balanceData.data?.balance?.medical > 0;
-console.log('3. LEAVE BALANCE:', hasBalance ? `✅ PASS - Annual:${balanceData.data.balance.annual} Medical:${balanceData.data.balance.medical}` : '❌ FAIL - All zeros');
+console.log('3. LEAVE BALANCE:', hasBalance ? `âœ… PASS - Annual:${balanceData.data.balance.annual} Medical:${balanceData.data.balance.medical}` : 'âŒ FAIL - All zeros');
 
 // 4. Leave Requests
 const requestsRes = await fetch(`${API}/leave/requests`, {
   headers: { 'Authorization': `Bearer ${token}` }
 });
 const requestsData = await requestsRes.json();
-console.log('4. LEAVE REQUESTS:', Array.isArray(requestsData) ? `✅ PASS - Found ${requestsData.length} requests` : '❌ FAIL');
+console.log('4. LEAVE REQUESTS:', Array.isArray(requestsData) ? `âœ… PASS - Found ${requestsData.length} requests` : 'âŒ FAIL');
 
 // 5. Payslips
 const payslipsRes = await fetch(`${API}/payroll/payslips`, {
   headers: { 'Authorization': `Bearer ${token}` }
 });
 const payslipsData = await payslipsRes.json();
-console.log('5. PAYSLIPS:', payslipsData.success && payslipsData.data?.length > 0 ? `✅ PASS - Found ${payslipsData.data.length} payslips` : '❌ FAIL');
+console.log('5. PAYSLIPS:', payslipsData.success && payslipsData.data?.length > 0 ? `âœ… PASS - Found ${payslipsData.data.length} payslips` : 'âŒ FAIL');
 
 console.log('\n=== TEST COMPLETE ===\n');
+
+

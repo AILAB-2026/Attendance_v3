@@ -1,8 +1,8 @@
-# PowerShell script to test the attendance API
+﻿# PowerShell script to test the attendance API
 Write-Host "Testing Attendance API Response" -ForegroundColor Cyan
 Write-Host "================================" -ForegroundColor Cyan
 
-$url = "http://localhost:3001/attendance/today?companyCode=1&employeeNo=B1-L157"
+$url = "http://192.168.1.5:7012/attendance/today?companyCode=1&employeeNo=B1-L157"
 Write-Host "Making request to: $url" -ForegroundColor Yellow
 
 try {
@@ -40,3 +40,5 @@ try {
 catch {
     Write-Host "Error: $($_.Exception.Message)" -ForegroundColor Red
 }
+
+

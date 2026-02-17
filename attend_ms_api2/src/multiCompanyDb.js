@@ -1,4 +1,4 @@
-import pkg from "pg";
+﻿import pkg from "pg";
 const { Pool } = pkg;
 
 // Master DB (attendance_db) connection pool

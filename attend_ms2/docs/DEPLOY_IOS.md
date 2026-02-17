@@ -1,4 +1,4 @@
-# iOS — Production Build & App Store Submission
+﻿# iOS — Production Build & App Store Submission
 
 This guide covers building an iOS production app with EAS and submitting to App Store Connect.
 

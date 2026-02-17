@@ -1,9 +1,9 @@
-
+﻿
 import axios from 'axios';
 import dotenv from "dotenv";
 dotenv.config();
 
-const BASE_URL = 'http://localhost:7010';
+const BASE_URL = 'http://192.168.1.5:7012';
 const COMPANY_CODE = 'AILAB';
 const EMPLOYEE_NO = 'AILAB0004';
 
@@ -34,9 +34,9 @@ async function run() {
         console.log(`   Clocked Out ID: ${clockOutId}`);
 
         if (String(clockInId) === String(clockOutId)) {
-            console.log("✅ SUCCESS: Clock Out targeted the correct session ID.");
+            console.log("âœ… SUCCESS: Clock Out targeted the correct session ID.");
         } else {
-            console.error(`❌ FAILURE: Clock In ID (${clockInId}) != Clock Out ID (${clockOutId}).`);
+            console.error(`âŒ FAILURE: Clock In ID (${clockInId}) != Clock Out ID (${clockOutId}).`);
             console.error("   The system likely closed an old ghost record instead of the current one.");
             process.exit(1);
         }
@@ -48,3 +48,5 @@ async function run() {
 }
 
 run();
+
+

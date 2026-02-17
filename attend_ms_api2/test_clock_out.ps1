@@ -1,4 +1,4 @@
-# Test clock-out API endpoint
+﻿# Test clock-out API endpoint
 Write-Host "Testing Clock-Out API" -ForegroundColor Cyan
 Write-Host "====================" -ForegroundColor Cyan
 
@@ -15,7 +15,7 @@ $clockOutData = @{
     imageUri = "test://image.jpg"
 } | ConvertTo-Json
 
-$url = "http://localhost:3001/attendance/clock-out"
+$url = "http://192.168.1.5:7012/attendance/clock-out"
 
 try {
     Write-Host "Making clock-out request to: $url" -ForegroundColor Yellow
@@ -34,3 +34,5 @@ try {
         Write-Host "Response body: $responseBody" -ForegroundColor Red
     }
 }
+
+

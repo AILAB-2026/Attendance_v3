@@ -1,9 +1,9 @@
-/**
+﻿/**
  * Test Strict Database-Only Login
  * Run: node test-strict-login.js
  */
 
-const API_BASE_URL = process.env.API_BASE_URL || 'http://localhost:3000';
+const API_BASE_URL = process.env.API_BASE_URL || 'http://192.168.1.5:7012';
 
 async function testLogin(companyCode, employeeNo, password, testName) {
   console.log(`\n=== ${testName} ===`);
@@ -19,16 +19,16 @@ async function testLogin(companyCode, employeeNo, password, testName) {
     const data = await response.json();
     
     if (response.ok) {
-      console.log(`✅ SUCCESS (${response.status})`);
+      console.log(`âœ… SUCCESS (${response.status})`);
       console.log(`   Message: ${data.message}`);
       console.log(`   User: ${data.data?.name}`);
       console.log(`   Session: ${data.data?.sessionToken ? 'Created' : 'None'}`);
     } else {
-      console.log(`❌ FAILED (${response.status})`);
+      console.log(`âŒ FAILED (${response.status})`);
       console.log(`   Message: ${data.message}`);
     }
   } catch (error) {
-    console.log(`❌ ERROR: ${error.message}`);
+    console.log(`âŒ ERROR: ${error.message}`);
   }
 }
 
@@ -62,10 +62,10 @@ async function runTests() {
       body: JSON.stringify({ companyCode: 'AILAB' }) // Missing employeeNo and password
     });
     const data = await response.json();
-    console.log(`❌ FAILED (${response.status})`);
+    console.log(`âŒ FAILED (${response.status})`);
     console.log(`   Message: ${data.message}`);
   } catch (error) {
-    console.log(`❌ ERROR: ${error.message}`);
+    console.log(`âŒ ERROR: ${error.message}`);
   }
 
   console.log('\n===========================================');
@@ -73,14 +73,16 @@ async function runTests() {
   console.log('===========================================\n');
   
   console.log('Expected Results:');
-  console.log('✅ Test 1: Should succeed (valid credentials)');
-  console.log('❌ Test 2: Should fail (wrong password)');
-  console.log('❌ Test 3: Should fail (user not found)');
-  console.log('❌ Test 4: Should fail (company not found)');
-  console.log('❌ Test 5: Should fail (empty password)');
-  console.log('❌ Test 6: Should fail (missing fields)');
+  console.log('âœ… Test 1: Should succeed (valid credentials)');
+  console.log('âŒ Test 2: Should fail (wrong password)');
+  console.log('âŒ Test 3: Should fail (user not found)');
+  console.log('âŒ Test 4: Should fail (company not found)');
+  console.log('âŒ Test 5: Should fail (empty password)');
+  console.log('âŒ Test 6: Should fail (missing fields)');
   console.log('\nNote: Update test credentials to match your database');
 }
 
 // Run tests
 runTests().catch(console.error);
+
+

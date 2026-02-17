@@ -1,13 +1,13 @@
-import dotenv from "dotenv";
+﻿import dotenv from "dotenv";
 dotenv.config();
 
 import fetch from 'node-fetch';
 
 async function debugEndpoints() {
-  console.log("🔍 DEBUG: Checking Each Endpoint Individually");
+  console.log("ðŸ” DEBUG: Checking Each Endpoint Individually");
   console.log("=" .repeat(50));
   
-  const baseUrl = 'http://localhost:3001';
+  const baseUrl = 'http://192.168.1.5:7012';
   
   try {
     // Login first
@@ -23,7 +23,7 @@ async function debugEndpoints() {
     
     const loginData = await loginResponse.json();
     const token = loginData.data.token;
-    console.log("✅ Login successful");
+    console.log("âœ… Login successful");
     
     // Test /sites endpoint
     console.log("\n1. Testing /sites endpoint...");
@@ -38,10 +38,10 @@ async function debugEndpoints() {
       
       if (sitesResponse.ok) {
         const sitesData = JSON.parse(sitesText);
-        console.log(`✅ /sites working - ${sitesData.length} sites found`);
+        console.log(`âœ… /sites working - ${sitesData.length} sites found`);
       }
     } catch (e) {
-      console.log(`❌ /sites error: ${e.message}`);
+      console.log(`âŒ /sites error: ${e.message}`);
     }
     
     // Test /faceRecognition/sites-projects endpoint
@@ -57,19 +57,21 @@ async function debugEndpoints() {
       
       if (faceRecResponse.ok) {
         const faceRecData = JSON.parse(faceRecText);
-        console.log(`✅ /faceRecognition/sites-projects working - ${faceRecData.data?.sites?.length || 0} sites found`);
+        console.log(`âœ… /faceRecognition/sites-projects working - ${faceRecData.data?.sites?.length || 0} sites found`);
       }
     } catch (e) {
-      console.log(`❌ /faceRecognition/sites-projects error: ${e.message}`);
+      console.log(`âŒ /faceRecognition/sites-projects error: ${e.message}`);
     }
     
   } catch (error) {
-    console.error("❌ Debug error:", error.message);
+    console.error("âŒ Debug error:", error.message);
   }
 }
 
 debugEndpoints().then(() => {
-  console.log("\n✅ Debug completed");
+  console.log("\nâœ… Debug completed");
 }).catch(error => {
-  console.error("❌ Debug failed:", error);
+  console.error("âŒ Debug failed:", error);
 });
+
+

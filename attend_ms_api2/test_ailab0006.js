@@ -1,4 +1,4 @@
-
+﻿
 import dotenv from "dotenv";
 dotenv.config();
 import { getCompanyPool } from "./src/multiCompanyDb.js";
@@ -6,7 +6,7 @@ import axios from 'axios';
 
 const COMPANY_CODE = 'AILAB';
 const EMPLOYEE_NO = 'AILAB0006';
-const BASE_URL = 'http://localhost:7010';
+const BASE_URL = 'http://192.168.1.5:7012';
 
 async function run() {
     console.log(`=== Testing AILAB0006 ===\n`);
@@ -22,7 +22,7 @@ async function run() {
     `, [EMPLOYEE_NO]);
 
     if (empRes.rows.length === 0) {
-        console.log(`   ❌ Employee ${EMPLOYEE_NO} NOT FOUND in AILAB database!`);
+        console.log(`   âŒ Employee ${EMPLOYEE_NO} NOT FOUND in AILAB database!`);
 
         // Try case-insensitive search
         const fuzzyRes = await pool.query(`
@@ -39,7 +39,7 @@ async function run() {
     }
 
     const emp = empRes.rows[0];
-    console.log(`   ✅ Found: ${emp.name} (ID: ${emp.id}, Active: ${emp.active})\n`);
+    console.log(`   âœ… Found: ${emp.name} (ID: ${emp.id}, Active: ${emp.active})\n`);
 
     // 2. Check for existing open clockings
     console.log("2. Checking open clockings...");
@@ -118,7 +118,7 @@ async function run() {
     `, [emp.id]);
 
     if (finalRes.rows.length === 0) {
-        console.log("   ❌ No records found for today!");
+        console.log("   âŒ No records found for today!");
     } else {
         finalRes.rows.forEach(r => {
             console.log(`   ID: ${r.id} | Date: ${r.date} | In: ${r.in_time} | Out: ${r.out_time || 'NULL'} | State: ${r.state}`);
@@ -132,3 +132,5 @@ run().catch(err => {
     console.error("Fatal:", err);
     process.exit(1);
 });
+
+

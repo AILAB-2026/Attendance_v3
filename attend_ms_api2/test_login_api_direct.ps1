@@ -1,4 +1,4 @@
-# Test login API directly
+﻿# Test login API directly
 Write-Host "Testing Login API for AI-EMP-014..." -ForegroundColor Cyan
 Write-Host ""
 
@@ -13,12 +13,12 @@ Write-Host $body
 Write-Host ""
 
 try {
-    $response = Invoke-RestMethod -Uri "http://localhost:3000/auth/login" `
+    $response = Invoke-RestMethod -Uri "http://192.168.1.5:7012/auth/login" `
         -Method Post `
         -ContentType "application/json" `
         -Body $body
     
-    Write-Host "✅ LOGIN SUCCESSFUL!" -ForegroundColor Green
+    Write-Host "âœ… LOGIN SUCCESSFUL!" -ForegroundColor Green
     Write-Host ""
     Write-Host "Response:" -ForegroundColor Yellow
     $response | ConvertTo-Json -Depth 10
@@ -34,7 +34,7 @@ try {
     Write-Host "  Company Name: $($response.companyName)"
     
 } catch {
-    Write-Host "❌ LOGIN FAILED!" -ForegroundColor Red
+    Write-Host "âŒ LOGIN FAILED!" -ForegroundColor Red
     Write-Host ""
     Write-Host "Error Details:" -ForegroundColor Yellow
     Write-Host $_.Exception.Message
@@ -44,3 +44,5 @@ try {
         Write-Host $_.ErrorDetails.Message
     }
 }
+
+

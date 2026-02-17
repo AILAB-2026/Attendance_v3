@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+﻿import { useState, useEffect, useCallback } from 'react';
 import createContextHook from '@nkzw/create-context-hook';
 import { Platform } from 'react-native';
 import Constants from 'expo-constants';
@@ -118,7 +118,9 @@ export const [AuthProvider, useAuth] = createContextHook<AuthContextType>(() => 
       });
 
       if (!response.success) {
-        throw new Error(response.message || 'Invalid company code, employee number, or password.');
+        const error = new Error(response.message || 'Invalid company code, employee number, or password.') as any;
+        error.title = response.title;
+        throw error;
       }
 
       // After validation, enforce DB membership and allowed roles using profile endpoint
@@ -152,14 +154,43 @@ export const [AuthProvider, useAuth] = createContextHook<AuthContextType>(() => 
       // Merge and store
       const userData: UserData & Partial<User> = { ...baseUser, ...prof.data } as any;
 
-      // Store user data securely
+      // Store tokens and user data
+      const token = userData.sessionToken || `session_${Date.now()}`;
+      await secureStorage.storeAuthTokens({
+        sessionToken: token,
+        refreshToken: token, // Simple token based auth
+        expiresAt: new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString(), // 24 hours
+      });
+
       await secureStorage.storeUserData(userData);
 
-      // Update state
+      // Update state to trigger navigation
       setUser(userData);
       setIsAuthenticated(true);
 
-    } catch (error: unknown) {
+      // Log successful login
+      apiService.logClientError(
+        normalizedCompanyCode,
+        canonicalEmpNo,
+        'login',
+        'Login successful',
+        'info'
+      );
+
+    } catch (error: any) {
+      // Log failed login
+      const companyCode = String(credentials.companyCode ?? '').trim().toUpperCase();
+      const employeeNo = String(credentials.employeeNo ?? '').trim();
+
+      apiService.logClientError(
+        companyCode,
+        employeeNo,
+        'login',
+        error.message || 'Login failed',
+        'failure',
+        { error: error.message || error }
+      );
+
       // Intentionally suppress console errors for login failures to avoid noisy logs in UI
       // If needed for debugging, re-enable or use console.debug here.
       // Always present the specific validation failure to the UI

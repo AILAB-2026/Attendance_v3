@@ -1,4 +1,4 @@
-import fetch from 'node-fetch';
+﻿import fetch from 'node-fetch';
 
 async function finalTest() {
   try {
@@ -15,7 +15,7 @@ async function finalTest() {
     console.log("- Employee Number:", credentials.employeeNo);
     console.log("- Password:", credentials.password);
     
-    const apiUrl = "http://localhost:3001/auth/login";
+    const apiUrl = "http://192.168.1.5:7012/auth/login";
     console.log("\nAPI Endpoint:", apiUrl);
     
     const response = await fetch(apiUrl, {
@@ -40,14 +40,14 @@ async function finalTest() {
       console.log("Email:", result.data.email);
       console.log("Role:", result.data.role);
       console.log("Company Code:", result.data.companyCode);
-      console.log("Session Token:", result.data.sessionToken ? "✅ Generated" : "❌ Missing");
+      console.log("Session Token:", result.data.sessionToken ? "âœ… Generated" : "âŒ Missing");
       
-      console.log("\n🎉 LOGIN SUCCESSFUL!");
+      console.log("\nðŸŽ‰ LOGIN SUCCESSFUL!");
       console.log("The mobile app should now be able to login with these credentials.");
       
       // Test token validation
       console.log("\n=== Testing Token Validation ===");
-      const validateResponse = await fetch("http://localhost:3001/auth/validatetoken", {
+      const validateResponse = await fetch("http://192.168.1.5:7012/auth/validatetoken", {
         method: 'GET',
         headers: {
           'Authorization': `Bearer ${result.data.sessionToken}`,
@@ -57,20 +57,22 @@ async function finalTest() {
       
       if (validateResponse.ok) {
         const validateResult = await validateResponse.json();
-        console.log("✅ Token validation successful");
+        console.log("âœ… Token validation successful");
         console.log("Validated user:", validateResult.employeeNo);
       } else {
-        console.log("⚠️ Token validation failed:", validateResponse.status);
+        console.log("âš ï¸ Token validation failed:", validateResponse.status);
       }
       
     } else {
-      console.log("\n❌ LOGIN FAILED");
+      console.log("\nâŒ LOGIN FAILED");
       console.log("Full response:", JSON.stringify(result, null, 2));
     }
     
   } catch (error) {
-    console.error("❌ Test failed:", error.message);
+    console.error("âŒ Test failed:", error.message);
   }
 }
 
 finalTest();
+
+

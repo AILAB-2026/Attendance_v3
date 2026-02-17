@@ -1,7 +1,7 @@
-import dotenv from 'dotenv';
+﻿import dotenv from 'dotenv';
 dotenv.config();
 
-console.log('🧪 Testing Clock In for B1-E079...\n');
+console.log('ðŸ§ª Testing Clock In for B1-E079...\n');
 
 const testClockIn = async () => {
   try {
@@ -18,11 +18,11 @@ const testClockIn = async () => {
       imageUri: "test_image_uri"
     };
 
-    console.log('📤 Sending clock-in request...');
+    console.log('ðŸ“¤ Sending clock-in request...');
     console.log('Data:', JSON.stringify(clockInData, null, 2));
     console.log('');
 
-    const response = await fetch('http://localhost:3001/attendance/clock-in', {
+    const response = await fetch('http://192.168.1.5:7012/attendance/clock-in', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -32,18 +32,18 @@ const testClockIn = async () => {
 
     const result = await response.json();
     
-    console.log('📥 Response Status:', response.status);
-    console.log('📥 Response:', JSON.stringify(result, null, 2));
+    console.log('ðŸ“¥ Response Status:', response.status);
+    console.log('ðŸ“¥ Response:', JSON.stringify(result, null, 2));
     console.log('');
 
     if (result.success) {
-      console.log('✅ Clock-in successful!');
+      console.log('âœ… Clock-in successful!');
       console.log('   Record ID:', result.data?.id);
       console.log('   Employee:', result.data?.name);
       console.log('   Clock In Time:', result.data?.clockInTime);
       
       // Now check if it's in the database
-      console.log('\n🔍 Verifying in database...\n');
+      console.log('\nðŸ” Verifying in database...\n');
       
       const { query } = await import('./src/dbconn.js');
       
@@ -55,12 +55,12 @@ const testClockIn = async () => {
         LIMIT 1
       `, [], (err, res) => {
         if (err) {
-          console.error('❌ Database check error:', err.message);
+          console.error('âŒ Database check error:', err.message);
           process.exit(1);
         }
 
         if (res.rows.length > 0) {
-          console.log('✅ Record found in database!');
+          console.log('âœ… Record found in database!');
           console.log('   ID:', res.rows[0].id);
           console.log('   Employee ID:', res.rows[0].employee_id);
           console.log('   Clock In:', res.rows[0].clock_in);
@@ -68,23 +68,25 @@ const testClockIn = async () => {
           console.log('   Project ID:', res.rows[0].project_id);
           console.log('   Created:', res.rows[0].create_date);
         } else {
-          console.log('❌ NO RECORD FOUND in database!');
+          console.log('âŒ NO RECORD FOUND in database!');
           console.log('   This means the INSERT failed or was rolled back.');
         }
 
         process.exit(0);
       });
     } else {
-      console.log('❌ Clock-in failed!');
+      console.log('âŒ Clock-in failed!');
       console.log('   Message:', result.message);
       console.log('   Error:', result.error);
       process.exit(1);
     }
 
   } catch (error) {
-    console.error('❌ Test error:', error.message);
+    console.error('âŒ Test error:', error.message);
     process.exit(1);
   }
 };
 
 testClockIn();
+
+

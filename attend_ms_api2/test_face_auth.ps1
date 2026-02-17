@@ -1,4 +1,4 @@
-# Test Face Authentication (Clock In/Out)
+﻿# Test Face Authentication (Clock In/Out)
 # Usage: Place a photo of yourself in the project root as "test_face.jpg"
 # Then run this script
 
@@ -46,7 +46,7 @@ try {
     
     $requestBytes = $bodyLinesBytes + $fileBytes + $endBytes
     
-    $response = Invoke-RestMethod -Uri "http://localhost:3000/facial-auth/authenticate" `
+    $response = Invoke-RestMethod -Uri "http://192.168.1.5:7012/facial-auth/authenticate" `
         -Method Post `
         -ContentType "multipart/form-data; boundary=$boundary" `
         -Body $requestBytes
@@ -59,12 +59,12 @@ try {
     Write-Host ""
     
     if ($response.match -eq $true) {
-        Write-Host "✓ Face Match: YES" -ForegroundColor Green
-        Write-Host "✓ Confidence: $([math]::Round($response.confidence * 100, 2))%" -ForegroundColor Green
-        Write-Host "✓ Employee: $($response.employeeNo) - $($response.name)" -ForegroundColor Green
+        Write-Host "âœ“ Face Match: YES" -ForegroundColor Green
+        Write-Host "âœ“ Confidence: $([math]::Round($response.confidence * 100, 2))%" -ForegroundColor Green
+        Write-Host "âœ“ Employee: $($response.employeeNo) - $($response.name)" -ForegroundColor Green
     } else {
-        Write-Host "✗ Face Match: NO" -ForegroundColor Red
-        Write-Host "✗ Confidence: $([math]::Round($response.confidence * 100, 2))%" -ForegroundColor Red
+        Write-Host "âœ— Face Match: NO" -ForegroundColor Red
+        Write-Host "âœ— Confidence: $([math]::Round($response.confidence * 100, 2))%" -ForegroundColor Red
     }
     
 } catch {
@@ -75,3 +75,5 @@ try {
         Write-Host "Details: $($_.ErrorDetails.Message)" -ForegroundColor Red
     }
 }
+
+

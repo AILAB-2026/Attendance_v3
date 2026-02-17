@@ -1,4 +1,4 @@
-import dotenv from 'dotenv';
+﻿import dotenv from 'dotenv';
 dotenv.config();
 
 import { query } from './src/dbconn.js';
@@ -13,11 +13,11 @@ console.log(`Testing Leave Balance for Employee: ${employeeNumber} (ID: ${employ
 console.log('='.repeat(80));
 
 // Step 1: Check all allocations
-console.log('\n📋 STEP 1: Fetching all leave allocations...\n');
+console.log('\nðŸ“‹ STEP 1: Fetching all leave allocations...\n');
 
 query(`SELECT * FROM hr_leave_allocation WHERE employee_id = $1`, [employeeId], (err1, res1) => {
   if (err1) {
-    console.error('❌ Error:', err1.message);
+    console.error('âŒ Error:', err1.message);
     process.exit(1);
   }
 
@@ -29,11 +29,11 @@ query(`SELECT * FROM hr_leave_allocation WHERE employee_id = $1`, [employeeId], 
   });
 
   // Step 2: Check applied leaves
-  console.log('📋 STEP 2: Fetching applied leaves...\n');
+  console.log('ðŸ“‹ STEP 2: Fetching applied leaves...\n');
 
   query(`SELECT * FROM hr_leave WHERE employee_id = $1`, [employeeId], (err2, res2) => {
     if (err2) {
-      console.error('❌ Error:', err2.message);
+      console.error('âŒ Error:', err2.message);
       process.exit(1);
     }
 
@@ -49,16 +49,18 @@ query(`SELECT * FROM hr_leave_allocation WHERE employee_id = $1`, [employeeId], 
     }
 
     // Step 3: Test the API endpoint
-    console.log('🔌 STEP 3: Testing /api/leave/balance endpoint...\n');
+    console.log('ðŸ”Œ STEP 3: Testing /api/leave/balance endpoint...\n');
 
     const token = jwt.sign({ employeeId, employeeNumber }, SECRET_KEY, { expiresIn: '24h' });
     
     console.log('Generated JWT Token:');
     console.log(token);
-    console.log('\n📝 Test with curl:\n');
-    console.log(`curl -X GET "http://localhost:3001/api/leave/balance" -H "Authorization: Bearer ${token}"`);
+    console.log('\nðŸ“ Test with curl:\n');
+    console.log(`curl -X GET "http://192.168.1.5:7012/api/leave/balance" -H "Authorization: Bearer ${token}"`);
     console.log('\n' + '='.repeat(80));
 
     process.exit(0);
   });
 });
+
+

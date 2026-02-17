@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+﻿import React, { useState, useRef, useEffect } from 'react';
 import { StyleSheet, View, Text, TouchableOpacity, Platform, Animated } from 'react-native';
 import CustomLoader from '@/components/CustomLoader';
 import { CameraView, CameraType, useCameraPermissions } from 'expo-camera';
@@ -338,6 +338,18 @@ const FastFacialClocking = ({ intendedAction = 'in', onClockAction, onCancel, mo
       setScanningState('failed');
       setStatusMessage('Verification failed. Please try again.');
       setIsProcessing(false);
+
+      // Log generic verification error
+      if (user?.empNo && (user as any)?.companyCode) {
+        apiService.logClientError(
+          (user as any).companyCode,
+          user.empNo,
+          'face_verification',
+          error.message || 'Face verification exception',
+          'failure',
+          { error: error }
+        );
+      }
     }
   };
 

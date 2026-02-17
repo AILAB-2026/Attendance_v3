@@ -1,10 +1,10 @@
-import dotenv from "dotenv";
+﻿import dotenv from "dotenv";
 dotenv.config();
 
 import fetch from 'node-fetch';
 
 async function simpleTest() {
-  const baseUrl = 'http://localhost:3001';
+  const baseUrl = 'http://192.168.1.5:7012';
   
   // Login
   const loginRes = await fetch(`${baseUrl}/auth/login`, {
@@ -36,3 +36,5 @@ async function simpleTest() {
 }
 
 simpleTest();
+
+

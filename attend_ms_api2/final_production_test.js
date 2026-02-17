@@ -1,14 +1,14 @@
-import fetch from 'node-fetch';
+﻿import fetch from 'node-fetch';
 
 async function finalProductionTest() {
   try {
-    console.log("🚨 FINAL PRODUCTION TEST - EMPLOYEE CLOCK IN");
+    console.log("ðŸš¨ FINAL PRODUCTION TEST - EMPLOYEE CLOCK IN");
     console.log("Testing if employees can now clock in successfully");
     console.log("=" .repeat(50));
     
     // Step 1: Login (simulate employee login)
-    console.log("\n1. 👤 EMPLOYEE LOGIN TEST");
-    const loginResponse = await fetch("http://localhost:3001/auth/login", {
+    console.log("\n1. ðŸ‘¤ EMPLOYEE LOGIN TEST");
+    const loginResponse = await fetch("http://192.168.1.5:7012/auth/login", {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -19,23 +19,23 @@ async function finalProductionTest() {
     });
     
     if (!loginResponse.ok) {
-      console.log("❌ CRITICAL: Employee cannot login!");
+      console.log("âŒ CRITICAL: Employee cannot login!");
       return;
     }
     
     const loginResult = await loginResponse.json();
     if (!loginResult.success) {
-      console.log("❌ CRITICAL: Login failed -", loginResult.message);
+      console.log("âŒ CRITICAL: Login failed -", loginResult.message);
       return;
     }
     
     const sessionToken = loginResult.data.sessionToken;
-    console.log("✅ Employee login successful");
+    console.log("âœ… Employee login successful");
     console.log(`   Employee: ${loginResult.data.name} (${loginResult.data.employeeNo})`);
     
     // Step 2: Get sites for clock in (what APK does)
-    console.log("\n2. 🏢 SITES DROPDOWN TEST");
-    const sitesResponse = await fetch("http://localhost:3001/sites", {
+    console.log("\n2. ðŸ¢ SITES DROPDOWN TEST");
+    const sitesResponse = await fetch("http://192.168.1.5:7012/sites", {
       method: 'GET',
       headers: {
         'Authorization': `Bearer ${sessionToken}`,
@@ -46,7 +46,7 @@ async function finalProductionTest() {
     console.log(`   API Response: ${sitesResponse.status} ${sitesResponse.statusText}`);
     
     if (!sitesResponse.ok) {
-      console.log("❌ CRITICAL: Sites API failed!");
+      console.log("âŒ CRITICAL: Sites API failed!");
       const errorText = await sitesResponse.text();
       console.log("   Error:", errorText);
       return;
@@ -56,7 +56,7 @@ async function finalProductionTest() {
     
     // Check if it's the format APK expects
     if (Array.isArray(sitesResult) && sitesResult.length > 0) {
-      console.log("✅ Sites dropdown data received");
+      console.log("âœ… Sites dropdown data received");
       console.log(`   Format: Array with ${sitesResult.length} sites`);
       console.log("   Sample sites:");
       
@@ -69,12 +69,12 @@ async function finalProductionTest() {
       });
       
       // Step 3: Simulate clock in process
-      console.log("\n3. 🕐 CLOCK IN SIMULATION");
+      console.log("\n3. ðŸ• CLOCK IN SIMULATION");
       const selectedSite = sitesResult[0];
       console.log(`   Employee selects: ${selectedSite.siteLocationName || 'Unknown Site'}`);
       
       // Test clock in API
-      const clockInResponse = await fetch("http://localhost:3001/attendance/clock-in", {
+      const clockInResponse = await fetch("http://192.168.1.5:7012/attendance/clock-in", {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${sessionToken}`,
@@ -92,41 +92,43 @@ async function finalProductionTest() {
       
       if (clockInResponse.ok) {
         const clockInResult = await clockInResponse.json();
-        console.log("✅ Clock in successful!");
+        console.log("âœ… Clock in successful!");
         console.log(`   Message: ${clockInResult.message || 'Clock in recorded'}`);
       } else {
         const clockInError = await clockInResponse.text();
-        console.log("⚠️ Clock in API issue (but sites dropdown works)");
+        console.log("âš ï¸ Clock in API issue (but sites dropdown works)");
         console.log(`   Error: ${clockInError}`);
       }
       
       // Final status
       console.log("\n" + "=" .repeat(50));
-      console.log("🎯 PRODUCTION STATUS SUMMARY:");
-      console.log("✅ Employee Login: WORKING");
-      console.log("✅ Sites Dropdown: WORKING");
-      console.log(`✅ Available Sites: ${sitesResult.length} sites`);
-      console.log("✅ APK Compatibility: CONFIRMED");
+      console.log("ðŸŽ¯ PRODUCTION STATUS SUMMARY:");
+      console.log("âœ… Employee Login: WORKING");
+      console.log("âœ… Sites Dropdown: WORKING");
+      console.log(`âœ… Available Sites: ${sitesResult.length} sites`);
+      console.log("âœ… APK Compatibility: CONFIRMED");
       console.log("");
-      console.log("📱 EMPLOYEES CAN NOW:");
-      console.log("   ✅ Login to the app");
-      console.log("   ✅ See sites in dropdown");
-      console.log("   ✅ Select a site for clock in");
-      console.log("   ✅ Complete clock in process");
+      console.log("ðŸ“± EMPLOYEES CAN NOW:");
+      console.log("   âœ… Login to the app");
+      console.log("   âœ… See sites in dropdown");
+      console.log("   âœ… Select a site for clock in");
+      console.log("   âœ… Complete clock in process");
       console.log("");
-      console.log("🚨 EMERGENCY RESOLVED: Clock in functionality restored!");
+      console.log("ðŸš¨ EMERGENCY RESOLVED: Clock in functionality restored!");
       
     } else {
-      console.log("❌ CRITICAL: Wrong sites format!");
+      console.log("âŒ CRITICAL: Wrong sites format!");
       console.log("   Expected: Array of { siteLocationName: '...' }");
       console.log("   Received:", typeof sitesResult);
       console.log("   Data:", JSON.stringify(sitesResult, null, 2));
     }
     
   } catch (error) {
-    console.error("❌ CRITICAL ERROR:", error.message);
-    console.log("\n🚨 PRODUCTION ISSUE: Employees cannot clock in!");
+    console.error("âŒ CRITICAL ERROR:", error.message);
+    console.log("\nðŸš¨ PRODUCTION ISSUE: Employees cannot clock in!");
   }
 }
 
 finalProductionTest();
+
+

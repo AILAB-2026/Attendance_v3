@@ -1,5 +1,5 @@
-param(
-    [string]$BaseUrl = 'http://localhost:7010',
+﻿param(
+    [string]$BaseUrl = 'http://192.168.1.5:7012',
     [string]$CompanyCode = '1',
     [string]$EmployeeNo = 'B1-E079'
 )
@@ -27,3 +27,5 @@ try {
 } catch { Write-Host "Error: $($_.Exception.Message)" -ForegroundColor Red }
 
 Write-Host "=== Done ===" -ForegroundColor Green
+
+

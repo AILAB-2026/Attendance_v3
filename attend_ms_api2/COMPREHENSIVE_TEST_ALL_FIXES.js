@@ -1,9 +1,9 @@
-import dotenv from 'dotenv';
+﻿import dotenv from 'dotenv';
 dotenv.config();
 import { query } from './src/dbconn.js';
 import fetch from 'node-fetch';
 
-const API_BASE = 'http://localhost:3001';
+const API_BASE = 'http://192.168.1.5:7012';
 const TEST_USER = {
   companyCode: '1',
   employeeNo: 'B1-E079',
@@ -13,13 +13,13 @@ const TEST_USER = {
 let sessionToken = '';
 let employeeId = null;
 
-console.log('\n╔════════════════════════════════════════════════════════════════════════════╗');
-console.log('║           COMPREHENSIVE TEST - ALL 4 ISSUES VERIFICATION                   ║');
-console.log('╚════════════════════════════════════════════════════════════════════════════╝\n');
+console.log('\nâ•”â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•—');
+console.log('â•‘           COMPREHENSIVE TEST - ALL 4 ISSUES VERIFICATION                   â•‘');
+console.log('â•šâ•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•\n');
 
 async function test1_Login() {
   console.log('TEST 1: LOGIN & TOKEN');
-  console.log('─'.repeat(80));
+  console.log('â”€'.repeat(80));
   
   const response = await fetch(`${API_BASE}/auth/login`, {
     method: 'POST',
@@ -31,7 +31,7 @@ async function test1_Login() {
   
   if (data.success && data.data?.sessionToken) {
     sessionToken = data.data.sessionToken;
-    console.log('✅ Login successful');
+    console.log('âœ… Login successful');
     console.log(`   Employee: ${data.data.name} (${data.data.employeeNo})`);
     console.log(`   Token: ${sessionToken.substring(0, 40)}...`);
     
@@ -46,14 +46,14 @@ async function test1_Login() {
     console.log(`   Employee ID: ${employeeId}`);
     return true;
   } else {
-    console.log('❌ Login failed:', data);
+    console.log('âŒ Login failed:', data);
     return false;
   }
 }
 
 async function test2_FaceRecognition() {
   console.log('\n\nTEST 2: FACE RECOGNITION - ENROLLED FACE DETECTION');
-  console.log('─'.repeat(80));
+  console.log('â”€'.repeat(80));
   
   // Check face enrollment status
   const response = await fetch(`${API_BASE}/face/status?companyCode=1&employeeNo=${TEST_USER.employeeNo}`);
@@ -62,7 +62,7 @@ async function test2_FaceRecognition() {
   console.log('API Response:', JSON.stringify(data, null, 2));
   
   if (data.success && data.data?.registered) {
-    console.log('✅ PASS: Face enrollment detected correctly');
+    console.log('âœ… PASS: Face enrollment detected correctly');
     console.log(`   Status: ${data.data.message}`);
     console.log(`   Employee: ${data.data.name}`);
     
@@ -76,11 +76,11 @@ async function test2_FaceRecognition() {
     });
     
     if (dbResult.rows[0].has_face) {
-      console.log('✅ Database confirmed: Face descriptor exists');
+      console.log('âœ… Database confirmed: Face descriptor exists');
     }
     return true;
   } else {
-    console.log('❌ FAIL: Face not enrolled or not detected correctly');
+    console.log('âŒ FAIL: Face not enrolled or not detected correctly');
     console.log('   Response:', data);
     return false;
   }
@@ -88,7 +88,7 @@ async function test2_FaceRecognition() {
 
 async function test3_LeaveBalance() {
   console.log('\n\nTEST 3: LEAVE BALANCE - MUST SHOW DAYS (NOT 0)');
-  console.log('─'.repeat(80));
+  console.log('â”€'.repeat(80));
   
   const response = await fetch(`${API_BASE}/leave/balance`, {
     method: 'GET',
@@ -101,7 +101,7 @@ async function test3_LeaveBalance() {
   
   if (data.success && data.data?.balance) {
     const balance = data.data.balance;
-    console.log('\n✅ Leave Balance Retrieved:');
+    console.log('\nâœ… Leave Balance Retrieved:');
     console.log(`   Annual: ${balance.annual} days`);
     console.log(`   Medical: ${balance.medical} days`);
     console.log(`   Emergency: ${balance.emergency} days`);
@@ -111,15 +111,15 @@ async function test3_LeaveBalance() {
     const hasBalance = balance.annual > 0 || balance.medical > 0 || balance.emergency > 0;
     
     if (hasBalance) {
-      console.log('\n✅ PASS: Leave balance shows actual days (not all zeros)');
+      console.log('\nâœ… PASS: Leave balance shows actual days (not all zeros)');
       return true;
     } else {
-      console.log('\n❌ FAIL: All leave balances are 0');
+      console.log('\nâŒ FAIL: All leave balances are 0');
       console.log('   Check hr_leave_allocation table for this employee');
       return false;
     }
   } else {
-    console.log('❌ FAIL: Could not retrieve leave balance');
+    console.log('âŒ FAIL: Could not retrieve leave balance');
     console.log('   Response:', data);
     return false;
   }
@@ -127,7 +127,7 @@ async function test3_LeaveBalance() {
 
 async function test4_LeaveRequests() {
   console.log('\n\nTEST 4: LEAVE REQUESTS - APPLIED LEAVES MUST SHOW IN MOBILE');
-  console.log('─'.repeat(80));
+  console.log('â”€'.repeat(80));
   
   const response = await fetch(`${API_BASE}/leave/requests`, {
     method: 'GET',
@@ -139,7 +139,7 @@ async function test4_LeaveRequests() {
   console.log('API Response:', JSON.stringify(data, null, 2));
   
   if (Array.isArray(data) && data.length > 0) {
-    console.log(`\n✅ PASS: Found ${data.length} leave requests`);
+    console.log(`\nâœ… PASS: Found ${data.length} leave requests`);
     console.log('\n   Recent Leave Requests:');
     data.slice(0, 3).forEach((leave, idx) => {
       console.log(`\n   ${idx + 1}. ${leave.leaveType}`);
@@ -151,7 +151,7 @@ async function test4_LeaveRequests() {
     });
     return true;
   } else {
-    console.log('⚠️  WARNING: No leave requests found');
+    console.log('âš ï¸  WARNING: No leave requests found');
     console.log('   This might be OK if employee has never applied for leave');
     console.log('   But the endpoint is working correctly');
     return true;
@@ -160,7 +160,7 @@ async function test4_LeaveRequests() {
 
 async function test5_LeaveApplication() {
   console.log('\n\nTEST 5: LEAVE APPLICATION - MUST BE ABLE TO APPLY');
-  console.log('─'.repeat(80));
+  console.log('â”€'.repeat(80));
   
   // Try to apply for leave
   const tomorrow = new Date();
@@ -193,7 +193,7 @@ async function test5_LeaveApplication() {
   console.log('API Response:', JSON.stringify(data, null, 2));
   
   if (data.success) {
-    console.log('\n✅ PASS: Leave application successful');
+    console.log('\nâœ… PASS: Leave application successful');
     console.log(`   Leave ID: ${data.data.leaveId}`);
     console.log(`   Message: ${data.message}`);
     
@@ -206,11 +206,11 @@ async function test5_LeaveApplication() {
     });
     
     if (dbResult.rows.length > 0) {
-      console.log('✅ Database confirmed: Leave stored in hr_leave table');
+      console.log('âœ… Database confirmed: Leave stored in hr_leave table');
     }
     return true;
   } else {
-    console.log('❌ FAIL: Leave application failed');
+    console.log('âŒ FAIL: Leave application failed');
     console.log(`   Error: ${data.message}`);
     return false;
   }
@@ -218,7 +218,7 @@ async function test5_LeaveApplication() {
 
 async function test6_Payslips() {
   console.log('\n\nTEST 6: PAYSLIPS - MUST SHOW SALARY DETAILS');
-  console.log('─'.repeat(80));
+  console.log('â”€'.repeat(80));
   
   const response = await fetch(`${API_BASE}/payroll/payslips`, {
     method: 'GET',
@@ -230,7 +230,7 @@ async function test6_Payslips() {
   console.log('API Response:', JSON.stringify(data, null, 2));
   
   if (data.success && data.data && data.data.length > 0) {
-    console.log(`\n✅ PASS: Found ${data.data.length} payslips`);
+    console.log(`\nâœ… PASS: Found ${data.data.length} payslips`);
     console.log(`   Employee: ${data.employee.name}`);
     
     const latest = data.data[0];
@@ -245,18 +245,18 @@ async function test6_Payslips() {
     console.log(`   - Status: ${latest.status}`);
     
     if (latest.basicSalary > 0) {
-      console.log('\n✅ PASS: Payslip shows salary details correctly');
+      console.log('\nâœ… PASS: Payslip shows salary details correctly');
       return true;
     } else {
-      console.log('\n❌ FAIL: Basic salary is 0');
+      console.log('\nâŒ FAIL: Basic salary is 0');
       return false;
     }
   } else if (data.success && !data.isActive) {
-    console.log('⚠️  Employee is inactive');
+    console.log('âš ï¸  Employee is inactive');
     console.log(`   Message: ${data.message}`);
     return true;
   } else {
-    console.log('❌ FAIL: Could not retrieve payslips');
+    console.log('âŒ FAIL: Could not retrieve payslips');
     console.log('   Response:', data);
     return false;
   }
@@ -275,7 +275,7 @@ async function runAllTests() {
   try {
     results.login = await test1_Login();
     if (!results.login) {
-      console.log('\n❌ CRITICAL: Cannot proceed without login');
+      console.log('\nâŒ CRITICAL: Cannot proceed without login');
       return results;
     }
     
@@ -286,38 +286,40 @@ async function runAllTests() {
     results.payslips = await test6_Payslips();
     
   } catch (error) {
-    console.error('\n❌ Test error:', error.message);
+    console.error('\nâŒ Test error:', error.message);
   }
   
   // Final Summary
   console.log('\n\n');
-  console.log('╔════════════════════════════════════════════════════════════════════════════╗');
-  console.log('║                          FINAL TEST RESULTS                                ║');
-  console.log('╠════════════════════════════════════════════════════════════════════════════╣');
-  console.log(`║  1. Login & Token:           ${results.login ? '✅ PASS' : '❌ FAIL'}                                    ║`);
-  console.log(`║  2. Face Recognition:        ${results.faceRecognition ? '✅ PASS' : '❌ FAIL'}                                    ║`);
-  console.log(`║  3. Leave Balance (Days):    ${results.leaveBalance ? '✅ PASS' : '❌ FAIL'}                                    ║`);
-  console.log(`║  4. Leave Requests (List):   ${results.leaveRequests ? '✅ PASS' : '❌ FAIL'}                                    ║`);
-  console.log(`║  5. Leave Application:       ${results.leaveApplication ? '✅ PASS' : '❌ FAIL'}                                    ║`);
-  console.log(`║  6. Payslips (Salary):       ${results.payslips ? '✅ PASS' : '❌ FAIL'}                                    ║`);
-  console.log('╠════════════════════════════════════════════════════════════════════════════╣');
+  console.log('â•”â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•—');
+  console.log('â•‘                          FINAL TEST RESULTS                                â•‘');
+  console.log('â• â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•£');
+  console.log(`â•‘  1. Login & Token:           ${results.login ? 'âœ… PASS' : 'âŒ FAIL'}                                    â•‘`);
+  console.log(`â•‘  2. Face Recognition:        ${results.faceRecognition ? 'âœ… PASS' : 'âŒ FAIL'}                                    â•‘`);
+  console.log(`â•‘  3. Leave Balance (Days):    ${results.leaveBalance ? 'âœ… PASS' : 'âŒ FAIL'}                                    â•‘`);
+  console.log(`â•‘  4. Leave Requests (List):   ${results.leaveRequests ? 'âœ… PASS' : 'âŒ FAIL'}                                    â•‘`);
+  console.log(`â•‘  5. Leave Application:       ${results.leaveApplication ? 'âœ… PASS' : 'âŒ FAIL'}                                    â•‘`);
+  console.log(`â•‘  6. Payslips (Salary):       ${results.payslips ? 'âœ… PASS' : 'âŒ FAIL'}                                    â•‘`);
+  console.log('â• â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•£');
   
   const allPassed = Object.values(results).every(r => r === true);
   
   if (allPassed) {
-    console.log('║                                                                            ║');
-    console.log('║  ✅✅✅ ALL TESTS PASSED - READY FOR APK BUILD ✅✅✅                      ║');
-    console.log('║                                                                            ║');
+    console.log('â•‘                                                                            â•‘');
+    console.log('â•‘  âœ…âœ…âœ… ALL TESTS PASSED - READY FOR APK BUILD âœ…âœ…âœ…                      â•‘');
+    console.log('â•‘                                                                            â•‘');
   } else {
-    console.log('║                                                                            ║');
-    console.log('║  ❌❌❌ SOME TESTS FAILED - DO NOT BUILD APK YET ❌❌❌                    ║');
-    console.log('║                                                                            ║');
+    console.log('â•‘                                                                            â•‘');
+    console.log('â•‘  âŒâŒâŒ SOME TESTS FAILED - DO NOT BUILD APK YET âŒâŒâŒ                    â•‘');
+    console.log('â•‘                                                                            â•‘');
   }
   
-  console.log('╚════════════════════════════════════════════════════════════════════════════╝');
+  console.log('â•šâ•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•');
   console.log('\n');
   
   process.exit(allPassed ? 0 : 1);
 }
 
 runAllTests();
+
+

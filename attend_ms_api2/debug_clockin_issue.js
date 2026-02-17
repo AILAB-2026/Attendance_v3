@@ -1,10 +1,10 @@
-
+﻿
 import axios from 'axios';
 import dotenv from "dotenv";
 dotenv.config();
 import { getCompanyPool } from "./src/multiCompanyDb.js";
 
-const BASE_URL = 'http://localhost:7010';
+const BASE_URL = 'http://192.168.1.5:7012';
 const COMPANY_CODE = 'AILAB';
 const EMPLOYEE_NO = 'AILAB0004';
 
@@ -28,10 +28,10 @@ async function run() {
         `, [EMPLOYEE_NO]);
 
         if (empCheck.rows.length === 0) {
-            console.log(`   ❌ Employee ${EMPLOYEE_NO} NOT FOUND`);
+            console.log(`   âŒ Employee ${EMPLOYEE_NO} NOT FOUND`);
             process.exit(1);
         }
-        console.log(`   ✅ Found: ${empCheck.rows[0].name} (ID: ${empCheck.rows[0].id}, Active: ${empCheck.rows[0].active})\n`);
+        console.log(`   âœ… Found: ${empCheck.rows[0].name} (ID: ${empCheck.rows[0].id}, Active: ${empCheck.rows[0].active})\n`);
 
         const employeeId = empCheck.rows[0].id;
 
@@ -61,9 +61,9 @@ async function run() {
                 latitude: 1.0,
                 longitude: 1.0
             });
-            console.log(`   ✅ Clock-In Response:`, resIn.data);
+            console.log(`   âœ… Clock-In Response:`, resIn.data);
         } catch (e) {
-            console.log(`   ⚠️ Clock-In Error: ${e.message}`);
+            console.log(`   âš ï¸ Clock-In Error: ${e.message}`);
             if (e.response) {
                 console.log(`   Response Status: ${e.response.status}`);
                 console.log(`   Response Data:`, e.response.data);
@@ -82,9 +82,9 @@ async function run() {
                 latitude: 1.0,
                 longitude: 1.0
             });
-            console.log(`   ✅ Clock-Out Response:`, resOut.data);
+            console.log(`   âœ… Clock-Out Response:`, resOut.data);
         } catch (e) {
-            console.log(`   ❌ Clock-Out Error: ${e.message}`);
+            console.log(`   âŒ Clock-Out Error: ${e.message}`);
             if (e.response) {
                 console.log(`   Response Status: ${e.response.status}`);
                 console.log(`   Response Data:`, e.response.data);
@@ -115,3 +115,5 @@ async function run() {
 }
 
 run();
+
+

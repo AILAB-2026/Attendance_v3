@@ -1,4 +1,4 @@
-# Test Face Enrollment
+﻿# Test Face Enrollment
 # Usage: Place a photo of yourself in the project root as "test_face.jpg"
 # Then run this script
 
@@ -46,7 +46,7 @@ try {
     
     $requestBytes = $bodyLinesBytes + $fileBytes + $endBytes
     
-    $response = Invoke-RestMethod -Uri "http://localhost:3000/facial-auth/enroll" `
+    $response = Invoke-RestMethod -Uri "http://192.168.1.5:7012/facial-auth/enroll" `
         -Method Post `
         -ContentType "multipart/form-data; boundary=$boundary" `
         -Body $requestBytes
@@ -65,3 +65,5 @@ try {
         Write-Host "Details: $($_.ErrorDetails.Message)" -ForegroundColor Red
     }
 }
+
+

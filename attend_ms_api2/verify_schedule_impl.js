@@ -1,10 +1,10 @@
-
+﻿
 import dotenv from "dotenv";
 dotenv.config();
 import { getCompanyPool } from "./src/multiCompanyDb.js";
 
 const COMPANY_CODE = 'AILAB';
-const BASE_URL = 'http://localhost:7010';
+const BASE_URL = 'http://192.168.1.5:7012';
 
 const run = async () => {
     try {
@@ -87,3 +87,5 @@ const run = async () => {
 };
 
 run();
+
+

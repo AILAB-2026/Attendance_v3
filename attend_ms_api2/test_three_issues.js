@@ -1,8 +1,8 @@
-import fetch from 'node-fetch';
+﻿import fetch from 'node-fetch';
 import FormData from 'form-data';
 import fs from 'fs';
 
-const API_BASE = 'http://localhost:3001';
+const API_BASE = 'http://192.168.1.5:7012';
 
 // Test with B1-E079 (has payslip data)
 const TEST_USER = {
@@ -43,25 +43,25 @@ async function apiCall(endpoint, method = 'GET', body = null, token = null) {
 }
 
 async function testLogin() {
-  console.log('\n🔐 ISSUE 0: Login Test');
+  console.log('\nðŸ” ISSUE 0: Login Test');
   console.log('='.repeat(70));
   
   const result = await apiCall('/auth/login', 'POST', TEST_USER);
   
   if (result.status === 200 && result.data.success && result.data.data?.sessionToken) {
     authToken = result.data.data.sessionToken;
-    console.log('✅ Login successful');
+    console.log('âœ… Login successful');
     console.log(`   Employee: ${result.data.data.name} (${result.data.data.employeeNo})`);
     console.log(`   Token: ${authToken.substring(0, 50)}...`);
     return true;
   } else {
-    console.log('❌ Login failed:', result.data);
+    console.log('âŒ Login failed:', result.data);
     return false;
   }
 }
 
 async function testFaceRecognition() {
-  console.log('\n👤 ISSUE 1: Face Recognition - Enrolled Face Showing Unauthorized');
+  console.log('\nðŸ‘¤ ISSUE 1: Face Recognition - Enrolled Face Showing Unauthorized');
   console.log('='.repeat(70));
   
   // First check if face is enrolled
@@ -73,11 +73,11 @@ async function testFaceRecognition() {
   console.log('   Face enrollment status:', statusResult.data);
   
   if (!statusResult.data.data?.registered) {
-    console.log('⚠️  Face not enrolled. Skipping authentication test.');
+    console.log('âš ï¸  Face not enrolled. Skipping authentication test.');
     return false;
   }
   
-  console.log('✅ Face is enrolled');
+  console.log('âœ… Face is enrolled');
   
   // Create a dummy image for testing (1x1 pixel PNG)
   const dummyImageBuffer = Buffer.from(
@@ -98,22 +98,22 @@ async function testFaceRecognition() {
   console.log(`   Response:`, authResult.data);
   
   if (authResult.data.status_code === 0) {
-    console.log('✅ Face authenticated successfully');
+    console.log('âœ… Face authenticated successfully');
     console.log(`   Confidence: ${(authResult.data.confidence * 100).toFixed(1)}%`);
     return true;
   } else if (authResult.data.status_code === 1) {
-    console.log('⚠️  Face authentication failed (this might be expected with dummy image)');
+    console.log('âš ï¸  Face authentication failed (this might be expected with dummy image)');
     console.log(`   Confidence: ${(authResult.data.confidence * 100).toFixed(1)}%`);
     console.log(`   Message: ${authResult.data.message}`);
     return true; // Not a bug, just low confidence
   } else {
-    console.log('❌ Unexpected response:', authResult.data);
+    console.log('âŒ Unexpected response:', authResult.data);
     return false;
   }
 }
 
 async function testLeaveApplication() {
-  console.log('\n📝 ISSUE 2: Leave Application - Verify DB Storage & ERP Visibility');
+  console.log('\nðŸ“ ISSUE 2: Leave Application - Verify DB Storage & ERP Visibility');
   console.log('='.repeat(70));
   
   // Get current leave balance
@@ -121,11 +121,11 @@ async function testLeaveApplication() {
   const balanceResult = await apiCall('/leave/balance', 'GET', null, authToken);
   
   if (!balanceResult.data.success) {
-    console.log('❌ Failed to get leave balance:', balanceResult.data);
+    console.log('âŒ Failed to get leave balance:', balanceResult.data);
     return false;
   }
   
-  console.log('✅ Current leave balance:', balanceResult.data.data.balance);
+  console.log('âœ… Current leave balance:', balanceResult.data.data.balance);
   
   // Apply for leave
   const tomorrow = new Date();
@@ -148,7 +148,7 @@ async function testLeaveApplication() {
   console.log(`   Status: ${applyResult.status}`);
   
   if (applyResult.data.success) {
-    console.log('✅ Leave application submitted successfully');
+    console.log('âœ… Leave application submitted successfully');
     console.log(`   Leave ID: ${applyResult.data.data.leaveId}`);
     console.log(`   Message: ${applyResult.data.message}`);
     
@@ -157,7 +157,7 @@ async function testLeaveApplication() {
     const requestsResult = await apiCall('/leave/requests', 'GET', null, authToken);
     
     if (requestsResult.data && requestsResult.data.length > 0) {
-      console.log('✅ Leave data confirmed in database');
+      console.log('âœ… Leave data confirmed in database');
       console.log(`   Total leave requests: ${requestsResult.data.length}`);
       console.log('   Latest request:', {
         from: requestsResult.data[0].leaveRequestFrom,
@@ -166,24 +166,24 @@ async function testLeaveApplication() {
         status: requestsResult.data[0].leaveStatus,
         days: requestsResult.data[0].days
       });
-      console.log('\n   ℹ️  To verify in ERP UI:');
+      console.log('\n   â„¹ï¸  To verify in ERP UI:');
       console.log('      1. Login to ERP at https://cx.brk.sg');
       console.log('      2. Go to: HR > Leaves > Leave Requests');
       console.log(`      3. Filter by Employee: ${TEST_USER.employeeNo}`);
       console.log(`      4. Look for leave on: ${leaveDate}`);
       return true;
     } else {
-      console.log('⚠️  Leave request not found in database');
+      console.log('âš ï¸  Leave request not found in database');
       return false;
     }
   } else {
-    console.log('❌ Leave application failed:', applyResult.data.message);
+    console.log('âŒ Leave application failed:', applyResult.data.message);
     return false;
   }
 }
 
 async function testPayslips() {
-  console.log('\n💰 ISSUE 3: Payslip Page - Fix Error & Show Salary Details');
+  console.log('\nðŸ’° ISSUE 3: Payslip Page - Fix Error & Show Salary Details');
   console.log('='.repeat(70));
   
   console.log('   Testing /payroll/payslips endpoint...');
@@ -192,27 +192,27 @@ async function testPayslips() {
   console.log(`   Status: ${result.status}`);
   
   if (result.status === 500) {
-    console.log('❌ Server error:', result.data);
+    console.log('âŒ Server error:', result.data);
     return false;
   }
   
   if (!result.data.success) {
-    console.log('❌ Failed to fetch payslips:', result.data);
+    console.log('âŒ Failed to fetch payslips:', result.data);
     return false;
   }
   
   if (!result.data.isActive) {
-    console.log('⚠️  Employee is inactive');
+    console.log('âš ï¸  Employee is inactive');
     console.log(`   Message: ${result.data.message}`);
     return true;
   }
   
   if (result.data.data && result.data.data.length > 0) {
-    console.log('✅ Payslips fetched successfully');
+    console.log('âœ… Payslips fetched successfully');
     console.log(`   Total payslips: ${result.data.data.length}`);
     console.log(`   Employee: ${result.data.employee.name}`);
     
-    console.log('\n   📋 Payslip Details (Latest 3):');
+    console.log('\n   ðŸ“‹ Payslip Details (Latest 3):');
     result.data.data.slice(0, 3).forEach((payslip, idx) => {
       console.log(`\n   ${idx + 1}. ${payslip.monthYear}`);
       console.log(`      Pay Date: ${payslip.payDate}`);
@@ -226,7 +226,7 @@ async function testPayslips() {
     
     return true;
   } else {
-    console.log('⚠️  No payslips found for this employee');
+    console.log('âš ï¸  No payslips found for this employee');
     console.log('   This might be expected if employee has no payslip records');
     return true;
   }
@@ -234,14 +234,14 @@ async function testPayslips() {
 
 async function runAllTests() {
   console.log('\n');
-  console.log('╔══════════════════════════════════════════════════════════════════╗');
-  console.log('║  COMPREHENSIVE TESTING - THREE ISSUES FIX VERIFICATION           ║');
-  console.log('╚══════════════════════════════════════════════════════════════════╝');
+  console.log('â•”â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•—');
+  console.log('â•‘  COMPREHENSIVE TESTING - THREE ISSUES FIX VERIFICATION           â•‘');
+  console.log('â•šâ•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•');
   
   try {
     const loginSuccess = await testLogin();
     if (!loginSuccess) {
-      console.log('\n❌ Cannot proceed without successful login');
+      console.log('\nâŒ Cannot proceed without successful login');
       return;
     }
     
@@ -250,15 +250,17 @@ async function runAllTests() {
     await testPayslips();
     
     console.log('\n');
-    console.log('╔══════════════════════════════════════════════════════════════════╗');
-    console.log('║  TESTING COMPLETE                                                ║');
-    console.log('╚══════════════════════════════════════════════════════════════════╝');
+    console.log('â•”â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•—');
+    console.log('â•‘  TESTING COMPLETE                                                â•‘');
+    console.log('â•šâ•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•');
     console.log('\n');
     
   } catch (error) {
-    console.error('\n❌ Test error:', error.message);
+    console.error('\nâŒ Test error:', error.message);
     console.error(error.stack);
   }
 }
 
 runAllTests();
+
+

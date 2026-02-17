@@ -1,4 +1,4 @@
-import dotenv from 'dotenv';
+﻿import dotenv from 'dotenv';
 dotenv.config();
 
 import { query } from './src/dbconn.js';
@@ -13,7 +13,7 @@ console.log(`Testing Leave Balance for Employee: ${employeeNumber} (ID: ${employ
 console.log('='.repeat(80));
 
 // First, let's check the table structure
-console.log('\n📋 STEP 0: Checking hr_leave_allocation table structure...\n');
+console.log('\nðŸ“‹ STEP 0: Checking hr_leave_allocation table structure...\n');
 
 const tableStructureQuery = `
   SELECT column_name, data_type 
@@ -24,7 +24,7 @@ const tableStructureQuery = `
 
 query(tableStructureQuery, [], (error, result) => {
   if (error) {
-    console.error('❌ Error checking table structure:', error);
+    console.error('âŒ Error checking table structure:', error);
     return;
   }
 
@@ -34,7 +34,7 @@ query(tableStructureQuery, [], (error, result) => {
   });
 
   // Step 1: Check hr_leave_allocation for this employee
-  console.log('\n📋 STEP 1: Checking hr_leave_allocation table...\n');
+  console.log('\nðŸ“‹ STEP 1: Checking hr_leave_allocation table...\n');
 
   const allocationQuery = `
     SELECT *
@@ -45,7 +45,7 @@ query(tableStructureQuery, [], (error, result) => {
 
 query(allocationQuery, [employeeId], (error, result) => {
   if (error) {
-    console.error('❌ Error querying hr_leave_allocation:', error);
+    console.error('âŒ Error querying hr_leave_allocation:', error);
     return;
   }
 
@@ -61,7 +61,7 @@ query(allocationQuery, [employeeId], (error, result) => {
   });
 
   // Step 2: Check hr_leave for applied leaves
-  console.log('\n📋 STEP 2: Checking hr_leave table (applied leaves)...\n');
+  console.log('\nðŸ“‹ STEP 2: Checking hr_leave table (applied leaves)...\n');
 
   const leaveQuery = `
     SELECT 
@@ -80,7 +80,7 @@ query(allocationQuery, [employeeId], (error, result) => {
 
   query(leaveQuery, [employeeId], (error2, result2) => {
     if (error2) {
-      console.error('❌ Error querying hr_leave:', error2);
+      console.error('âŒ Error querying hr_leave:', error2);
       return;
     }
 
@@ -100,7 +100,7 @@ query(allocationQuery, [employeeId], (error, result) => {
     }
 
     // Step 3: Calculate balance manually
-    console.log('\n📊 STEP 3: Calculating Leave Balance...\n');
+    console.log('\nðŸ“Š STEP 3: Calculating Leave Balance...\n');
 
     const balanceQuery = `
       WITH leave_allocations AS (
@@ -138,14 +138,14 @@ query(allocationQuery, [employeeId], (error, result) => {
 
     query(balanceQuery, [employeeId], (error3, result3) => {
       if (error3) {
-        console.error('❌ Error calculating balance:', error3);
+        console.error('âŒ Error calculating balance:', error3);
         return;
       }
 
       console.log('Leave Balance Summary:\n');
       
       if (result3.rows.length === 0) {
-        console.log('   ⚠️  No active leave allocations found for current period.\n');
+        console.log('   âš ï¸  No active leave allocations found for current period.\n');
       } else {
         result3.rows.forEach((row, index) => {
           console.log(`${index + 1}. ${row.leave_type_name}`);
@@ -157,7 +157,7 @@ query(allocationQuery, [employeeId], (error, result) => {
       }
 
       // Step 4: Test the API endpoint
-      console.log('\n🔌 STEP 4: Testing /api/leave/balance endpoint...\n');
+      console.log('\nðŸ”Œ STEP 4: Testing /api/leave/balance endpoint...\n');
 
       // Generate JWT token for this employee
       const token = jwt.sign(
@@ -171,19 +171,21 @@ query(allocationQuery, [employeeId], (error, result) => {
 
       console.log('Generated JWT Token for testing:');
       console.log(token);
-      console.log('\n📝 To test the endpoint, use this curl command:\n');
-      console.log(`curl -X GET "http://localhost:3001/api/leave/balance" \\`);
+      console.log('\nðŸ“ To test the endpoint, use this curl command:\n');
+      console.log(`curl -X GET "http://192.168.1.5:7012/api/leave/balance" \\`);
       console.log(`  -H "Authorization: Bearer ${token}"`);
       console.log('\n');
       console.log('Or test in browser/Postman:');
-      console.log('URL: http://localhost:3001/api/leave/balance');
+      console.log('URL: http://192.168.1.5:7012/api/leave/balance');
       console.log(`Authorization Header: Bearer ${token}`);
       console.log('\n');
       console.log('='.repeat(80));
-      console.log('✅ Test Complete!');
+      console.log('âœ… Test Complete!');
       console.log('='.repeat(80));
 
       process.exit(0);
     });
   });
 });
+
+

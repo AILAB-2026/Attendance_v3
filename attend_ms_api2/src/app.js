@@ -1,4 +1,4 @@
-import "./initEnv.js";
+﻿import "./initEnv.js";
 import dotenv from "dotenv";
 dotenv.config();
 import { createRequire } from "module";
@@ -98,6 +98,7 @@ import settingsRoutes from "./settingsRoutes.js";
 import companyRoutes from "./companyRoutes.js";
 import surveyRoutes from "./surveyRoutes.js";
 import feedbackRoutes from "./feedbackRoutes.js";
+import auditRoutes from "./auditRoutes.js"; // New Audit Routes for Client Logs
 
 // Mount routes on the attendanceApiRouter
 attendanceApiRouter.use("/activities", activitiesRoutes);
@@ -117,6 +118,7 @@ attendanceApiRouter.use("/settings", settingsRoutes);
 attendanceApiRouter.use("/company", companyRoutes);
 attendanceApiRouter.use("/surveys", surveyRoutes);
 attendanceApiRouter.use("/feedback", feedbackRoutes);
+attendanceApiRouter.use("/audit", auditRoutes); // Mount client logging endpoint
 
 // Health check endpoint
 attendanceApiRouter.get("/health", (req, res) => {

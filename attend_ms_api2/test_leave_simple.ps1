@@ -1,4 +1,4 @@
-# Test the fixed leave requests endpoint
+﻿# Test the fixed leave requests endpoint
 Write-Host "Testing /leave/requests endpoint for employee B1-E079..." -ForegroundColor Cyan
 
 try {
@@ -10,7 +10,7 @@ try {
     } | ConvertTo-Json
 
     Write-Host "Getting fresh login token..." -ForegroundColor Yellow
-    $loginResponse = Invoke-RestMethod -Uri "http://localhost:3001/auth/login" -Method POST -Body $loginBody -ContentType "application/json"
+    $loginResponse = Invoke-RestMethod -Uri "http://192.168.1.5:7012/auth/login" -Method POST -Body $loginBody -ContentType "application/json"
     
     if ($loginResponse.success) {
         Write-Host "Login successful" -ForegroundColor Green
@@ -23,7 +23,7 @@ try {
         }
         
         Write-Host "Fetching leave requests..." -ForegroundColor Yellow
-        $leaveResponse = Invoke-RestMethod -Uri "http://localhost:3001/leave/requests" -Method GET -Headers $headers
+        $leaveResponse = Invoke-RestMethod -Uri "http://192.168.1.5:7012/leave/requests" -Method GET -Headers $headers
         
         Write-Host "Leave requests response:" -ForegroundColor Green
         $leaveResponse | ConvertTo-Json -Depth 3 | Write-Host
@@ -42,3 +42,5 @@ try {
 } catch {
     Write-Host "Error occurred: $($_.Exception.Message)" -ForegroundColor Red
 }
+
+
