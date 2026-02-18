@@ -8,7 +8,7 @@ async function emergencyFixSites() {
     
     // Test login first
     console.log("1. ðŸ” Testing login...");
-    const loginResponse = await fetch("http://192.168.1.5:7012/auth/login", {
+    const loginResponse = await fetch("http://192.168.1.4:7012/auth/login", {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -30,7 +30,7 @@ async function emergencyFixSites() {
     // Test the original sites endpoint that the APK is probably calling
     console.log("\n2. ðŸ¢ Testing sites endpoint that APK is calling...");
     
-    const sitesResponse = await fetch("http://192.168.1.5:7012/sites", {
+    const sitesResponse = await fetch("http://192.168.1.4:7012/sites", {
       method: 'GET',
       headers: {
         'Authorization': `Bearer ${sessionToken}`,
@@ -78,7 +78,7 @@ async function emergencyFixSites() {
     // Also test the attendance endpoints to see if they're working
     console.log("\n3. ðŸ• Testing attendance endpoints...");
     
-    const attendanceStatusResponse = await fetch("http://192.168.1.5:7012/attendance/status", {
+    const attendanceStatusResponse = await fetch("http://192.168.1.4:7012/attendance/status", {
       method: 'GET',
       headers: {
         'Authorization': `Bearer ${sessionToken}`,
@@ -114,5 +114,6 @@ async function emergencyFixSites() {
 }
 
 emergencyFixSites();
+
 
 

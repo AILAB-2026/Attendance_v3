@@ -10,7 +10,7 @@ try {
     } | ConvertTo-Json
 
     Write-Host "Getting login token..." -ForegroundColor Yellow
-    $loginResponse = Invoke-RestMethod -Uri "http://192.168.1.5:7012/auth/login" -Method POST -Body $loginBody -ContentType "application/json"
+    $loginResponse = Invoke-RestMethod -Uri "http://192.168.1.4:7012/auth/login" -Method POST -Body $loginBody -ContentType "application/json"
     
     if ($loginResponse.success) {
         Write-Host "Login successful" -ForegroundColor Green
@@ -24,7 +24,7 @@ try {
         # Test /attendance/today endpoint
         Write-Host "Testing /attendance/today..." -ForegroundColor Yellow
         try {
-            $todayResponse = Invoke-RestMethod -Uri "http://192.168.1.5:7012/attendance/today?companyCode=1&employeeNo=B1-E079" -Method GET -Headers $headers
+            $todayResponse = Invoke-RestMethod -Uri "http://192.168.1.4:7012/attendance/today?companyCode=1&employeeNo=B1-E079" -Method GET -Headers $headers
             Write-Host "Today's attendance:" -ForegroundColor Green
             $todayResponse | ConvertTo-Json -Depth 3 | Write-Host
         } catch {
@@ -34,7 +34,7 @@ try {
         # Test /attendance/history endpoint
         Write-Host "Testing /attendance/history..." -ForegroundColor Yellow
         try {
-            $historyResponse = Invoke-RestMethod -Uri "http://192.168.1.5:7012/attendance/history?startDate=2025-11-10&endDate=2025-11-12" -Method GET -Headers $headers
+            $historyResponse = Invoke-RestMethod -Uri "http://192.168.1.4:7012/attendance/history?startDate=2025-11-10&endDate=2025-11-12" -Method GET -Headers $headers
             Write-Host "Attendance history:" -ForegroundColor Green
             $historyResponse | ConvertTo-Json -Depth 3 | Write-Host
         } catch {
@@ -47,5 +47,6 @@ try {
 } catch {
     Write-Host "Error: $($_.Exception.Message)" -ForegroundColor Red
 }
+
 
 

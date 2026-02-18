@@ -56,11 +56,12 @@ query(`SELECT * FROM hr_leave_allocation WHERE employee_id = $1`, [employeeId], 
     console.log('Generated JWT Token:');
     console.log(token);
     console.log('\nðŸ“ Test with curl:\n');
-    console.log(`curl -X GET "http://192.168.1.5:7012/api/leave/balance" -H "Authorization: Bearer ${token}"`);
+    console.log(`curl -X GET "http://192.168.1.4:7012/api/leave/balance" -H "Authorization: Bearer ${token}"`);
     console.log('\n' + '='.repeat(80));
 
     process.exit(0);
   });
 });
+
 
 

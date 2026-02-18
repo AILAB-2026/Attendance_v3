@@ -7,7 +7,7 @@ Write-Host ""
 # Test 1: Check AIAttend_v2 Backend
 Write-Host "Test 1: AIAttend_v2 Backend Health Check" -ForegroundColor Yellow
 try {
-    $result = Invoke-RestMethod -Method GET -Uri "http://192.168.1.5:7012/health" -ErrorAction Stop
+    $result = Invoke-RestMethod -Method GET -Uri "http://192.168.1.4:7012/health" -ErrorAction Stop
     Write-Host "âœ… AIAttend_v2 backend is running" -ForegroundColor Green
     Write-Host "   Uptime: $($result.uptime) seconds" -ForegroundColor Gray
 } catch {
@@ -21,7 +21,7 @@ Write-Host ""
 # Test 2: Check Face Recognition API
 Write-Host "Test 2: Face Recognition API Health Check" -ForegroundColor Yellow
 try {
-    $result = Invoke-RestMethod -Method GET -Uri "http://192.168.1.5:7012/health" -ErrorAction Stop
+    $result = Invoke-RestMethod -Method GET -Uri "http://192.168.1.4:7012/health" -ErrorAction Stop
     Write-Host "âœ… Face Recognition API is running (port 3001)" -ForegroundColor Green
     Write-Host "   Status: $($result.status)" -ForegroundColor Gray
 } catch {
@@ -35,7 +35,7 @@ Write-Host ""
 # Test 3: Check Face Health Endpoint
 Write-Host "Test 3: Face Health Integration Check" -ForegroundColor Yellow
 try {
-    $result = Invoke-RestMethod -Method GET -Uri "http://192.168.1.5:7012/v1/face-health" -ErrorAction Stop
+    $result = Invoke-RestMethod -Method GET -Uri "http://192.168.1.4:7012/v1/face-health" -ErrorAction Stop
     if ($result.healthy) {
         Write-Host "âœ… Face API integration is healthy" -ForegroundColor Green
     } else {
@@ -62,8 +62,8 @@ Write-Host ""
 # Summary
 Write-Host "=== Integration Status Summary ===" -ForegroundColor Cyan
 Write-Host ""
-Write-Host "âœ… AIAttend_v2 Backend:        http://192.168.1.5:7012" -ForegroundColor Green
-Write-Host "âœ… Face Recognition API:       http://192.168.1.5:7012" -ForegroundColor Green
+Write-Host "âœ… AIAttend_v2 Backend:        http://192.168.1.4:7012" -ForegroundColor Green
+Write-Host "âœ… Face Recognition API:       http://192.168.1.4:7012" -ForegroundColor Green
 Write-Host ""
 Write-Host "ðŸ“‹ Next Steps:" -ForegroundColor Yellow
 Write-Host "   1. Test face enrollment with a real user" -ForegroundColor White
@@ -72,5 +72,6 @@ Write-Host "   3. Check logs for any errors" -ForegroundColor White
 Write-Host ""
 Write-Host "For detailed testing, see: INTEGRATION_SETUP_GUIDE.md" -ForegroundColor Cyan
 Write-Host ""
+
 
 

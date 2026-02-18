@@ -9,7 +9,7 @@ try {
         password = "Test@123"
     } | ConvertTo-Json
 
-    $loginResponse = Invoke-RestMethod -Uri "http://192.168.1.5:7012/auth/login" -Method POST -Body $loginBody -ContentType "application/json"
+    $loginResponse = Invoke-RestMethod -Uri "http://192.168.1.4:7012/auth/login" -Method POST -Body $loginBody -ContentType "application/json"
     
     if ($loginResponse.success) {
         Write-Host "Login successful" -ForegroundColor Green
@@ -23,7 +23,7 @@ try {
         # Test /attendance/today endpoint
         Write-Host "Testing /attendance/today for site names..." -ForegroundColor Yellow
         try {
-            $todayResponse = Invoke-RestMethod -Uri "http://192.168.1.5:7012/attendance/today?companyCode=1&employeeNo=B1-E079" -Method GET -Headers $headers
+            $todayResponse = Invoke-RestMethod -Uri "http://192.168.1.4:7012/attendance/today?companyCode=1&employeeNo=B1-E079" -Method GET -Headers $headers
             
             Write-Host "Today's attendance response:" -ForegroundColor Green
             if ($todayResponse.entries -and $todayResponse.entries.Count -gt 0) {
@@ -55,5 +55,6 @@ try {
 Write-Host "EXPECTED RESULT AFTER FIX:" -ForegroundColor Cyan
 Write-Host "- Site names should show project names like 'tower', 'yard', 'T2C' etc." -ForegroundColor White
 Write-Host "- Should NOT show addresses like '15, Thanjavur, Tamil Nadu, 613...'" -ForegroundColor White
+
 
 

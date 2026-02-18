@@ -9,6 +9,7 @@ import {
   KeyboardAvoidingView,
   Platform,
   ScrollView,
+  Image,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -16,6 +17,9 @@ import { Ionicons } from '@expo/vector-icons';
 import { router } from 'expo-router';
 import { useAuth } from '@/hooks/use-auth';
 import colors from '@/constants/colors';
+import * as SecureStore from 'expo-secure-store';
+import FastFacialClocking from '@/components/FastFacialClocking';
+import { apiService } from '@/lib/api';
 import CustomLoader from '@/components/CustomLoader';
 
 // Define the expected error response type
@@ -34,7 +38,9 @@ export default function LoginScreen() {
   const [showPassword, setShowPassword] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
   const passwordRef = useRef<TextInput>(null);
-
+  const [showFaceModal, setShowFaceModal] = useState(false);
+  const [faceMode, setFaceMode] = useState<'register' | 'verify'>('register');
+  const [pendingFaceReg, setPendingFaceReg] = useState<{ companyCode: string; employeeNo: string } | null>(null);
 
   const validateForm = () => {
     const newErrors: Record<string, string> = {};
@@ -71,13 +77,35 @@ export default function LoginScreen() {
         password: formData.password,
       });
 
-      // Login successful — navigate to dashboard.
-      // Face verification/registration is handled on the clock in/out page only.
+      // After successful credential login, check face registration status
+      const companyCode = formData.companyCode.trim().toUpperCase();
+      const employeeNo = formData.employeeNo.trim();
+      try {
+        const status = await apiService.getFaceStatus(companyCode, employeeNo);
+        if (status?.success) {
+          if (!status.data?.registered) {
+            setPendingFaceReg({ companyCode, employeeNo });
+            setFaceMode('register');
+            setShowFaceModal(true);
+            Alert.alert(
+              'Face Registration',
+              'For secure login, please register your face. This is required only once.'
+            );
+          } else {
+            // Enforce verification when already registered
+            setPendingFaceReg({ companyCode, employeeNo });
+            setFaceMode('verify');
+            setShowFaceModal(true);
+            Alert.alert('Face Verification', 'Please verify your face to finish login.');
+          }
+        }
+      } catch (e) {
+        // Non-blocking: proceed even if status check fails (no console output)
+      }
     } catch (error: any) {
       // Show specific validation popup
       const errorMessage = error?.message || 'Invalid company code, employee number, or password.';
-      const errorTitle = error?.title || 'Validation';
-      Alert.alert(errorTitle, errorMessage, [
+      Alert.alert('Validation', errorMessage, [
         {
           text: 'OK',
           onPress: () => {
@@ -118,16 +146,29 @@ export default function LoginScreen() {
               <View style={{ alignItems: 'center', marginBottom: 48 }}>
                 <View
                   style={{
-                    width: 80,
-                    height: 80,
-                    backgroundColor: 'rgba(255, 255, 255, 0.2)',
-                    borderRadius: 40,
+                    width: 76,
+                    height: 76,
+                    backgroundColor: 'white',
+                    borderRadius: 30,
                     alignItems: 'center',
                     justifyContent: 'center',
                     marginBottom: 16,
+                    shadowColor: '#000',
+                    shadowOffset: { width: 0, height: 4 },
+                    shadowOpacity: 0.25,
+                    shadowRadius: 3.84,
+                    elevation: 5,
                   }}
                 >
-                  <Ionicons name="finger-print" size={40} color="white" />
+                  <Image
+                    source={require('@/assets/images/ai_lab_logo.jpg')}
+                    style={{
+                      width: '100%',
+                      height: '100%',
+                      resizeMode: 'contain',
+                      borderRadius: 30,
+                    }}
+                  />
                 </View>
                 <Text
                   style={{
@@ -137,7 +178,7 @@ export default function LoginScreen() {
                     marginBottom: 8,
                   }}
                 >
-                  AI Attend Tracker
+                  ATLAS
                 </Text>
                 <Text
                   style={{
@@ -146,7 +187,7 @@ export default function LoginScreen() {
                     textAlign: 'center',
                   }}
                 >
-                  Secure Employee Attendance Management
+                  AI-Powered Attendance Tracking, Leave & Administration System
                 </Text>
               </View>
 
@@ -178,16 +219,7 @@ export default function LoginScreen() {
 
                 {/* Company Code Field */}
                 <View style={{ marginBottom: 16 }}>
-                  <Text
-                    style={{
-                      fontSize: 16,
-                      fontWeight: '600',
-                      color: colors.text,
-                      marginBottom: 8,
-                    }}
-                  >
-                    Company Code
-                  </Text>
+
                   <View
                     style={{
                       flexDirection: 'row',
@@ -230,16 +262,7 @@ export default function LoginScreen() {
 
                 {/* Employee Number Field */}
                 <View style={{ marginBottom: 16 }}>
-                  <Text
-                    style={{
-                      fontSize: 16,
-                      fontWeight: '600',
-                      color: colors.text,
-                      marginBottom: 8,
-                    }}
-                  >
-                    Employee Number
-                  </Text>
+
                   <View
                     style={{
                       flexDirection: 'row',
@@ -282,16 +305,7 @@ export default function LoginScreen() {
 
                 {/* Password Field */}
                 <View style={{ marginBottom: 24 }}>
-                  <Text
-                    style={{
-                      fontSize: 16,
-                      fontWeight: '600',
-                      color: colors.text,
-                      marginBottom: 8,
-                    }}
-                  >
-                    Password
-                  </Text>
+
                   <View
                     style={{
                       flexDirection: 'row',
@@ -376,10 +390,25 @@ export default function LoginScreen() {
                     </Text>
                   )}
                 </TouchableOpacity>
+
+                {/* Forgot Password Link */}
+                <TouchableOpacity
+                  onPress={() => {
+                    Alert.alert(
+                      'Forgot Password',
+                      'This is a one-time password and cannot be changed. For any assistance, please contact your HR Administrator.'
+                    );
+                  }}
+                  style={{ marginTop: 16, alignItems: 'center' }}
+                >
+                  <Text style={{ color: colors.primary, fontWeight: '600' }}>
+                    Forgot Password?
+                  </Text>
+                </TouchableOpacity>
               </View>
 
               {/* Footer */}
-              <View style={{ alignItems: 'center', marginTop: 32 }}>
+              <View style={{ alignItems: 'center', marginTop: 16 }}>
                 <Text
                   style={{
                     color: 'rgba(255, 255, 255, 0.7)',
@@ -389,12 +418,84 @@ export default function LoginScreen() {
                 >
                   Secure authentication with end-to-end encryption
                 </Text>
+                <Text
+                  style={{
+                    color: 'rgba(255, 255, 255, 0.7)',
+                    fontSize: 14,
+                    textAlign: 'center',
+                  }}
+                >
+                  Developed by AI Lab Technologies
+                </Text>
+                <Text
+                  style={{
+                    color: 'rgba(255, 255, 255, 0.7)',
+                    fontSize: 12,
+                    textAlign: 'center',
+                  }}
+                >
+                  Version 3 (1.0.9)
+                </Text>
               </View>
             </View>
           </ScrollView>
         </KeyboardAvoidingView>
       </LinearGradient>
-
+      {/* Face Registration / Verification Modal */}
+      {showFaceModal && (
+        <View
+          style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            backgroundColor: 'rgba(0,0,0,0.9)',
+          }}
+        >
+          <FastFacialClocking
+            intendedAction="in"
+            onClockAction={async (imageUri: string) => {
+              if (!pendingFaceReg) return;
+              try {
+                if (faceMode === 'register') {
+                  const res = await apiService.registerFace(
+                    pendingFaceReg.companyCode,
+                    pendingFaceReg.employeeNo,
+                    { imageUri }
+                  );
+                  if (res.success) {
+                    Alert.alert('Success', 'Face registered successfully.');
+                  } else {
+                    Alert.alert('Face Registration', res.message || 'Failed to register face.');
+                  }
+                } else {
+                  const resV = await apiService.verifyFace(
+                    pendingFaceReg.companyCode,
+                    pendingFaceReg.employeeNo,
+                    { imageUri }
+                  );
+                  if (resV.success) {
+                    Alert.alert('Verified', 'Face verified successfully.');
+                  } else {
+                    Alert.alert('Verification Failed', resV.message || 'Face verification failed.');
+                  }
+                }
+              } catch (e: any) {
+                Alert.alert(faceMode === 'register' ? 'Face Registration' : 'Face Verification', e?.message || 'An error occurred.');
+              } finally {
+                setShowFaceModal(false);
+                setPendingFaceReg(null);
+              }
+            }}
+            onCancel={() => {
+              setShowFaceModal(false);
+              setPendingFaceReg(null);
+            }}
+            mode={faceMode === 'register' ? 'register' : 'clock'}
+          />
+        </View>
+      )}
     </SafeAreaView>
   );
 }

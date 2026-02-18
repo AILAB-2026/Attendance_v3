@@ -6,7 +6,7 @@ const testLoginFlow = async () => {
     // Step 1: Test /auth/login
     console.log('\n1ï¸âƒ£  Testing /auth/login endpoint...\n');
     
-    const loginResponse = await fetch('http://192.168.1.5:7012/auth/login', {
+    const loginResponse = await fetch('http://192.168.1.4:7012/auth/login', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -33,7 +33,7 @@ const testLoginFlow = async () => {
     console.log('\n' + '='.repeat(70));
     console.log('\n2ï¸âƒ£  Testing /users/profile endpoint...\n');
     
-    const profileResponse = await fetch('http://192.168.1.5:7012/users/profile?companyCode=1&employeeNo=B1-W335', {
+    const profileResponse = await fetch('http://192.168.1.4:7012/users/profile?companyCode=1&employeeNo=B1-W335', {
       method: 'GET',
       headers: { 'Content-Type': 'application/json' }
     });
@@ -78,5 +78,6 @@ const testLoginFlow = async () => {
 };
 
 testLoginFlow();
+
 
 

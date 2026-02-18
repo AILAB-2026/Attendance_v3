@@ -153,7 +153,7 @@ async function setupTestUser() {
     console.log('   â”‚  Password:      password123            â”‚');
     console.log('   â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜');
     console.log('\nðŸ”— Service URLs:');
-    console.log(`   AIAttend_v2 Backend:  http://192.168.1.5:7012`);
+    console.log(`   AIAttend_v2 Backend:  http://192.168.1.4:7012`);
     console.log(`   Face Recognition API: http://127.0.0.1:3001`);
     console.log('\nðŸ“ Next Steps:');
     console.log('   1. Test login with above credentials');
@@ -165,7 +165,7 @@ async function setupTestUser() {
     console.log('       employeeNo = "AI-EMP-014"');
     console.log('       password = "password123"');
     console.log('   } | ConvertTo-Json');
-    console.log('   Invoke-RestMethod -Method POST -Uri "http://192.168.1.5:7012/auth/login" `');
+    console.log('   Invoke-RestMethod -Method POST -Uri "http://192.168.1.4:7012/auth/login" `');
     console.log('       -ContentType "application/json" -Body $body');
     console.log('');
 
@@ -186,5 +186,6 @@ async function setupTestUser() {
 
 // Run the setup
 setupTestUser().catch(console.error);
+
 
 

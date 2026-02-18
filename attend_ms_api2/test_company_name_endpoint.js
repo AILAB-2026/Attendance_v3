@@ -5,7 +5,7 @@ async function testCompanyNameEndpoint() {
   
   for (const code of testCodes) {
     try {
-      const url = `http://192.168.1.5:7012/settings/company-name?companyCode=${code}`;
+      const url = `http://192.168.1.4:7012/settings/company-name?companyCode=${code}`;
       console.log(`\nðŸ“¡ Testing: ${url}`);
       
       const response = await fetch(url);
@@ -19,5 +19,6 @@ async function testCompanyNameEndpoint() {
 }
 
 testCompanyNameEndpoint();
+
 
 

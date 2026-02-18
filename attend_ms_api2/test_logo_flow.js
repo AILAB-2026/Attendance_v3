@@ -2,7 +2,7 @@
 const { Pool } = pkg;
 import fetch from 'node-fetch';
 
-const API_BASE_URL = process.env.EXPO_PUBLIC_API_BASE_URL || 'http://192.168.1.5:7012';
+const API_BASE_URL = process.env.EXPO_PUBLIC_API_BASE_URL || 'http://192.168.1.4:7012';
 
 async function testLogoFlow() {
   console.log('\nðŸ§ª Testing Dynamic Company Logo Flow\n');
@@ -142,5 +142,6 @@ async function testLogoFlow() {
 }
 
 testLogoFlow();
+
 
 

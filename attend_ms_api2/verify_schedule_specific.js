@@ -4,7 +4,7 @@ dotenv.config();
 import { getCompanyPool } from "./src/multiCompanyDb.js";
 
 const COMPANY_CODE = 'SKK';
-const BASE_URL = 'http://192.168.1.5:7012';
+const BASE_URL = 'http://192.168.1.4:7012';
 const TARGET_EMP_NO = 'SKK-IND-0002';
 
 const run = async () => {
@@ -72,5 +72,6 @@ const run = async () => {
 };
 
 run();
+
 
 

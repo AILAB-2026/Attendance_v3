@@ -28,7 +28,7 @@ function buildBaseFromParts(domain?: string, port?: string): string {
   }
 }
 
-export const API_BASE_URL = (envApiBase || buildBaseFromParts(envDomain, envServerPort) || 'http://192.168.1.5:7012').replace(/\/$/, '');
+export const API_BASE_URL = (envApiBase || buildBaseFromParts(envDomain, envServerPort) || 'http://192.168.1.4:7012').replace(/\/$/, '');
 
 export const http = axios.create({
   baseURL: API_BASE_URL,

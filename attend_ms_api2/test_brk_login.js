@@ -1,6 +1,6 @@
 ﻿import fetch from 'node-fetch';
 
-const API_BASE_URL = 'http://192.168.1.5:7012';
+const API_BASE_URL = 'http://192.168.1.4:7012';
 
 async function testBRKLogin() {
   console.log('\n=== Testing BRK Login ===\n');
@@ -65,5 +65,6 @@ async function testBRKLogin() {
 }
 
 testBRKLogin();
+
 
 

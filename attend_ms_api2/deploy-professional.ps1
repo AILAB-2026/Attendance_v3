@@ -63,7 +63,7 @@ $apiWebConfig = @"
       <rules>
         <rule name="AttendanceAPI" stopProcessing="true">
           <match url="(.*)" />
-          <action type="Rewrite" url="http://192.168.1.5:7012/{R:1}" />
+          <action type="Rewrite" url="http://192.168.1.4:7012/{R:1}" />
         </rule>
       </rules>
     </rewrite>
@@ -100,5 +100,6 @@ Write-Host "Next Steps:" -ForegroundColor Yellow
 Write-Host "1. Start Node.js API: .\start-api.ps1" -ForegroundColor White
 Write-Host "2. Configure DNS A record: $DomainName -> YOUR_PUBLIC_IP" -ForegroundColor White
 Write-Host "3. Test access from external network" -ForegroundColor White
+
 
 

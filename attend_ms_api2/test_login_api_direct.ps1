@@ -13,7 +13,7 @@ Write-Host $body
 Write-Host ""
 
 try {
-    $response = Invoke-RestMethod -Uri "http://192.168.1.5:7012/auth/login" `
+    $response = Invoke-RestMethod -Uri "http://192.168.1.4:7012/auth/login" `
         -Method Post `
         -ContentType "application/json" `
         -Body $body
@@ -44,5 +44,6 @@ try {
         Write-Host $_.ErrorDetails.Message
     }
 }
+
 
 

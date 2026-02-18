@@ -46,7 +46,7 @@ try {
     
     $requestBytes = $bodyLinesBytes + $fileBytes + $endBytes
     
-    $response = Invoke-RestMethod -Uri "http://192.168.1.5:7012/facial-auth/enroll" `
+    $response = Invoke-RestMethod -Uri "http://192.168.1.4:7012/facial-auth/enroll" `
         -Method Post `
         -ContentType "multipart/form-data; boundary=$boundary" `
         -Body $requestBytes
@@ -65,5 +65,6 @@ try {
         Write-Host "Details: $($_.ErrorDetails.Message)" -ForegroundColor Red
     }
 }
+
 
 

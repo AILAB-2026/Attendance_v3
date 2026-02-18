@@ -4,7 +4,7 @@
     "slug": "ai-attend-tracker-e8j784c",
     "version": "1.0.8",
     "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
+    "icon": "./assets/images/icon_v4.png",
     "scheme": "myapp",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
@@ -13,7 +13,7 @@
       "assets/images/*"
     ],
     "splash": {
-      "image": "./assets/images/splash.png",
+      "image": "./assets/images/splash_v4.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -33,14 +33,14 @@
         "NSPhotoLibraryUsageDescription": "AI Attend Tracker needs access to your photo library to allow you to select profile pictures and upload images for attendance records.",
         "NSFaceIDUsageDescription": "AI Attend Tracker uses Face ID for secure and quick authentication to access your attendance records."
       },
-      "icon": "./assets/images/icon.png"
+      "icon": "./assets/images/icon_v4.png"
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/images/adaptive-icon.png",
+        "foregroundImage": "./assets/images/adaptive-icon_v4.png",
         "backgroundColor": "#ffffff"
       },
-      "icon": "./assets/images/icon.png",
+      "icon": "./assets/images/icon_v4.png",
       "package": "com.ailabtech.aiattendtrackere8j784c",
       "versionCode": 10,
       "permissions": [
@@ -56,7 +56,7 @@
         "android.permission.WRITE_EXTERNAL_STORAGE"
       ],
       "splash": {
-        "image": "./assets/images/splash.png",
+        "image": "./assets/images/splash_v4.png",
         "resizeMode": "contain",
         "backgroundColor": "#ffffff"
       }

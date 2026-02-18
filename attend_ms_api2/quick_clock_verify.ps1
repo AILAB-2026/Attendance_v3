@@ -1,5 +1,5 @@
 ﻿param(
-    [string]$BaseUrl = 'http://192.168.1.5:7012',
+    [string]$BaseUrl = 'http://192.168.1.4:7012',
     [string]$CompanyCode = '1',
     [string]$EmployeeNo = 'B1-E079'
 )
@@ -72,5 +72,6 @@ $today = Invoke-Json -Method GET -Uri ("{0}/attendance/today?companyCode={1}&emp
 $today | ConvertTo-Json -Depth 6
 
 Write-Host "=== Done ===" -ForegroundColor Green
+
 
 

@@ -1,6 +1,6 @@
 ﻿import fetch from 'node-fetch';
 
-const API_BASE_URL = 'http://192.168.1.5:7012';
+const API_BASE_URL = 'http://192.168.1.4:7012';
 
 async function testAILABLogin() {
   console.log('\n=== Testing AILAB Login (AILAB0007) ===\n');
@@ -65,5 +65,6 @@ async function testAILABLogin() {
 }
 
 testAILABLogin();
+
 
 

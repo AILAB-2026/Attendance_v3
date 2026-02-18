@@ -1,6 +1,6 @@
 ﻿import fetch from 'node-fetch';
 
-const API = 'http://192.168.1.5:7012';
+const API = 'http://192.168.1.4:7012';
 let token = '';
 
 console.log('\n=== TESTING ALL 4 ISSUES ===\n');
@@ -43,5 +43,6 @@ const payslipsData = await payslipsRes.json();
 console.log('5. PAYSLIPS:', payslipsData.success && payslipsData.data?.length > 0 ? `âœ… PASS - Found ${payslipsData.data.length} payslips` : 'âŒ FAIL');
 
 console.log('\n=== TEST COMPLETE ===\n');
+
 
 

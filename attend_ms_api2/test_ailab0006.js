@@ -6,7 +6,7 @@ import axios from 'axios';
 
 const COMPANY_CODE = 'AILAB';
 const EMPLOYEE_NO = 'AILAB0006';
-const BASE_URL = 'http://192.168.1.5:7012';
+const BASE_URL = 'http://192.168.1.4:7012';
 
 async function run() {
     console.log(`=== Testing AILAB0006 ===\n`);
@@ -132,5 +132,6 @@ run().catch(err => {
     console.error("Fatal:", err);
     process.exit(1);
 });
+
 
 

@@ -3,7 +3,7 @@
  * Run: node test-strict-login.js
  */
 
-const API_BASE_URL = process.env.API_BASE_URL || 'http://192.168.1.5:7012';
+const API_BASE_URL = process.env.API_BASE_URL || 'http://192.168.1.4:7012';
 
 async function testLogin(companyCode, employeeNo, password, testName) {
   console.log(`\n=== ${testName} ===`);
@@ -84,5 +84,6 @@ async function runTests() {
 
 // Run tests
 runTests().catch(console.error);
+
 
 

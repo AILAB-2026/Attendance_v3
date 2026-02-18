@@ -48,7 +48,7 @@ Write-Host ""
 # Test Node.js direct access
 Write-Host "3. Testing Node.js direct access..." -ForegroundColor Yellow
 try {
-    $nodeResponse = Invoke-WebRequest -Uri "http://192.168.1.5:7012/health" -TimeoutSec 5 -ErrorAction Stop
+    $nodeResponse = Invoke-WebRequest -Uri "http://192.168.1.4:7012/health" -TimeoutSec 5 -ErrorAction Stop
     Write-Host "   âœ… Node.js direct: SUCCESS" -ForegroundColor Green
     Write-Host "   Status: $($nodeResponse.StatusCode)" -ForegroundColor White
 } catch {
@@ -97,7 +97,7 @@ Write-Host ""
 Write-Host "ðŸŒ Test URLs:" -ForegroundColor Green
 Write-Host "   Local:   http://localhost/health" -ForegroundColor White
 Write-Host "   Network: http://$serverIP/health" -ForegroundColor White
-Write-Host "   Direct:  http://192.168.1.5:7012/health" -ForegroundColor White
+Write-Host "   Direct:  http://192.168.1.4:7012/health" -ForegroundColor White
 Write-Host ""
 
 # Show QR code info for easy mobile testing
@@ -108,5 +108,6 @@ Write-Host ""
 
 Write-Host "Press any key to continue..."
 $null = $Host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
+
 
 

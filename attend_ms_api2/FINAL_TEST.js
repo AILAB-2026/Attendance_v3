@@ -8,7 +8,7 @@ console.log("ðŸŽ¯ FINAL COMPLETE API TEST");
 console.log("=" .repeat(60));
 
 async function finalCompleteTest() {
-  const baseUrl = 'http://192.168.1.5:7012';
+  const baseUrl = 'http://192.168.1.4:7012';
   
   try {
     // Step 1: Login
@@ -118,7 +118,7 @@ finalCompleteTest().then((success) => {
     console.log("   âœ“ Face recognition clock-in should work");
     console.log("\n5. API Endpoint:");
     console.log("   Production: https://cx.brk.sg/attendance_api_mobile");
-    console.log("   Local Test: http://192.168.1.5:7012");
+    console.log("   Local Test: http://192.168.1.4:7012");
     console.log("=" .repeat(60));
   } else {
     console.log("âŒ TESTS FAILED - DO NOT REBUILD APK YET");
@@ -128,5 +128,6 @@ finalCompleteTest().then((success) => {
 }).catch(error => {
   console.error("âŒ Test execution failed:", error);
 });
+
 
 

@@ -8,7 +8,7 @@ async function finalProductionTest() {
     
     // Step 1: Login (simulate employee login)
     console.log("\n1. ðŸ‘¤ EMPLOYEE LOGIN TEST");
-    const loginResponse = await fetch("http://192.168.1.5:7012/auth/login", {
+    const loginResponse = await fetch("http://192.168.1.4:7012/auth/login", {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -35,7 +35,7 @@ async function finalProductionTest() {
     
     // Step 2: Get sites for clock in (what APK does)
     console.log("\n2. ðŸ¢ SITES DROPDOWN TEST");
-    const sitesResponse = await fetch("http://192.168.1.5:7012/sites", {
+    const sitesResponse = await fetch("http://192.168.1.4:7012/sites", {
       method: 'GET',
       headers: {
         'Authorization': `Bearer ${sessionToken}`,
@@ -74,7 +74,7 @@ async function finalProductionTest() {
       console.log(`   Employee selects: ${selectedSite.siteLocationName || 'Unknown Site'}`);
       
       // Test clock in API
-      const clockInResponse = await fetch("http://192.168.1.5:7012/attendance/clock-in", {
+      const clockInResponse = await fetch("http://192.168.1.4:7012/attendance/clock-in", {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${sessionToken}`,
@@ -130,5 +130,6 @@ async function finalProductionTest() {
 }
 
 finalProductionTest();
+
 
 

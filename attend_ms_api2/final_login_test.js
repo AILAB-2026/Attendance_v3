@@ -15,7 +15,7 @@ async function finalTest() {
     console.log("- Employee Number:", credentials.employeeNo);
     console.log("- Password:", credentials.password);
     
-    const apiUrl = "http://192.168.1.5:7012/auth/login";
+    const apiUrl = "http://192.168.1.4:7012/auth/login";
     console.log("\nAPI Endpoint:", apiUrl);
     
     const response = await fetch(apiUrl, {
@@ -47,7 +47,7 @@ async function finalTest() {
       
       // Test token validation
       console.log("\n=== Testing Token Validation ===");
-      const validateResponse = await fetch("http://192.168.1.5:7012/auth/validatetoken", {
+      const validateResponse = await fetch("http://192.168.1.4:7012/auth/validatetoken", {
         method: 'GET',
         headers: {
           'Authorization': `Bearer ${result.data.sessionToken}`,
@@ -74,5 +74,6 @@ async function finalTest() {
 }
 
 finalTest();
+
 
 

@@ -15,7 +15,7 @@ try {
     } | ConvertTo-Json
 
     Write-Host "ðŸ” Getting fresh login token..." -ForegroundColor Yellow
-    $loginResponse = Invoke-RestMethod -Uri "http://192.168.1.5:7012/auth/login" -Method POST -Body $loginBody -ContentType "application/json"
+    $loginResponse = Invoke-RestMethod -Uri "http://192.168.1.4:7012/auth/login" -Method POST -Body $loginBody -ContentType "application/json"
     
     if ($loginResponse.success) {
         Write-Host "âœ… Login successful" -ForegroundColor Green
@@ -25,7 +25,7 @@ try {
         $headers['Authorization'] = "Bearer $token"
         Write-Host "ðŸ“‹ Fetching leave requests..." -ForegroundColor Yellow
         
-        $leaveResponse = Invoke-RestMethod -Uri "http://192.168.1.5:7012/leave/requests" -Method GET -Headers $headers
+        $leaveResponse = Invoke-RestMethod -Uri "http://192.168.1.4:7012/leave/requests" -Method GET -Headers $headers
         
         Write-Host "ðŸ“Š Leave requests response:" -ForegroundColor Green
         $leaveResponse | ConvertTo-Json -Depth 3 | Write-Host
@@ -44,5 +44,6 @@ try {
 } catch {
     Write-Host "Error: $($_.Exception.Message)" -ForegroundColor Red
 }
+
 
 

@@ -268,7 +268,7 @@ Write-Info "Verifying services..."
 
 # Test Backend API
 try {
-    $response = Invoke-WebRequest -Uri "http://192.168.1.5:7012/health" -UseBasicParsing -TimeoutSec 10
+    $response = Invoke-WebRequest -Uri "http://192.168.1.4:7012/health" -UseBasicParsing -TimeoutSec 10
     if ($response.StatusCode -eq 200) {
         Write-Success "Backend API is responding"
     } else {
@@ -309,5 +309,6 @@ Quick Restart:
 "@ -ForegroundColor Green
 
 Write-Success "Deployment completed successfully!"
+
 
 

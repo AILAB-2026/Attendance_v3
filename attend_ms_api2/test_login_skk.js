@@ -1,7 +1,7 @@
 ﻿
 import fetch from 'node-fetch';
 
-const BASE_URL = 'http://192.168.1.5:7012'; // Running service port
+const BASE_URL = 'http://192.168.1.4:7012'; // Running service port
 // const BASE_URL = 'https://cx.brk.sg/attend_ms_api_2'; // If we wanted to test the IIS binding locally, but DNS might not be set.
 
 async function testLogin() {
@@ -44,5 +44,6 @@ async function testLogin() {
 }
 
 testLogin();
+
 
 

@@ -7,7 +7,7 @@ async function finalApiTest() {
   console.log("ðŸ” FINAL API TEST - Complete Verification");
   console.log("=" .repeat(50));
   
-  const baseUrl = 'http://192.168.1.5:7012';
+  const baseUrl = 'http://192.168.1.4:7012';
   
   try {
     // Step 1: Login
@@ -137,5 +137,6 @@ finalApiTest().then(() => {
 }).catch(error => {
   console.error("âŒ Test failed:", error);
 });
+
 
 

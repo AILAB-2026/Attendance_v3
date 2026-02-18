@@ -9,7 +9,7 @@ try {
         password = "Test@123"
     } | ConvertTo-Json
 
-    $loginResponse = Invoke-RestMethod -Uri "http://192.168.1.5:7012/auth/login" -Method POST -Body $loginBody -ContentType "application/json"
+    $loginResponse = Invoke-RestMethod -Uri "http://192.168.1.4:7012/auth/login" -Method POST -Body $loginBody -ContentType "application/json"
     
     if ($loginResponse.success) {
         Write-Host "Login successful, token: $($loginResponse.data.sessionToken.Substring(0,20))..." -ForegroundColor Green
@@ -22,7 +22,7 @@ try {
         # Test attendance endpoint with detailed error handling
         Write-Host "Testing attendance endpoint..." -ForegroundColor Yellow
         
-        $uri = "http://192.168.1.5:7012/attendance/today?companyCode=1&employeeNo=B1-E079"
+        $uri = "http://192.168.1.4:7012/attendance/today?companyCode=1&employeeNo=B1-E079"
         Write-Host "URI: $uri" -ForegroundColor Gray
         
         try {
@@ -43,5 +43,6 @@ try {
 } catch {
     Write-Host "Login Error: $($_.Exception.Message)" -ForegroundColor Red
 }
+
 
 

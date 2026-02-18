@@ -172,11 +172,11 @@ query(allocationQuery, [employeeId], (error, result) => {
       console.log('Generated JWT Token for testing:');
       console.log(token);
       console.log('\nðŸ“ To test the endpoint, use this curl command:\n');
-      console.log(`curl -X GET "http://192.168.1.5:7012/api/leave/balance" \\`);
+      console.log(`curl -X GET "http://192.168.1.4:7012/api/leave/balance" \\`);
       console.log(`  -H "Authorization: Bearer ${token}"`);
       console.log('\n');
       console.log('Or test in browser/Postman:');
-      console.log('URL: http://192.168.1.5:7012/api/leave/balance');
+      console.log('URL: http://192.168.1.4:7012/api/leave/balance');
       console.log(`Authorization Header: Bearer ${token}`);
       console.log('\n');
       console.log('='.repeat(80));
@@ -187,5 +187,6 @@ query(allocationQuery, [employeeId], (error, result) => {
     });
   });
 });
+
 
 

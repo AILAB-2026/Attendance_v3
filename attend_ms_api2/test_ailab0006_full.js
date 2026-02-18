@@ -4,7 +4,7 @@ import dotenv from "dotenv";
 dotenv.config();
 import { getCompanyPool } from "./src/multiCompanyDb.js";
 
-const BASE_URL = 'http://192.168.1.5:7012';
+const BASE_URL = 'http://192.168.1.4:7012';
 const COMPANY_CODE = 'AILAB';
 const EMPLOYEE_NO = 'AILAB0006';
 
@@ -82,5 +82,6 @@ run().catch(err => {
     console.error("Fatal:", err);
     process.exit(1);
 });
+
 
 

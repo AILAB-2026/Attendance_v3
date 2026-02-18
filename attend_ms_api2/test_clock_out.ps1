@@ -15,7 +15,7 @@ $clockOutData = @{
     imageUri = "test://image.jpg"
 } | ConvertTo-Json
 
-$url = "http://192.168.1.5:7012/attendance/clock-out"
+$url = "http://192.168.1.4:7012/attendance/clock-out"
 
 try {
     Write-Host "Making clock-out request to: $url" -ForegroundColor Yellow
@@ -34,5 +34,6 @@ try {
         Write-Host "Response body: $responseBody" -ForegroundColor Red
     }
 }
+
 
 

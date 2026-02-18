@@ -9,7 +9,7 @@ try {
         password = "Test@123"
     } | ConvertTo-Json
 
-    $loginResponse = Invoke-RestMethod -Uri "http://192.168.1.5:7012/auth/login" -Method POST -Body $loginBody -ContentType "application/json"
+    $loginResponse = Invoke-RestMethod -Uri "http://192.168.1.4:7012/auth/login" -Method POST -Body $loginBody -ContentType "application/json"
     
     if ($loginResponse.success) {
         Write-Host "Login successful" -ForegroundColor Green
@@ -34,7 +34,7 @@ try {
         }
         
         try {
-            $clockOutResponse = Invoke-RestMethod -Uri "http://192.168.1.5:7012/attendance/clock-out" -Method POST -Body $clockOutBody -Headers $headers
+            $clockOutResponse = Invoke-RestMethod -Uri "http://192.168.1.4:7012/attendance/clock-out" -Method POST -Body $clockOutBody -Headers $headers
             
             Write-Host "Clock Out Response:" -ForegroundColor Green
             $clockOutResponse | ConvertTo-Json -Depth 3 | Write-Host
@@ -59,5 +59,6 @@ try {
 } catch {
     Write-Host "Error: $($_.Exception.Message)" -ForegroundColor Red
 }
+
 
 

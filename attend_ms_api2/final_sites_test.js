@@ -6,7 +6,7 @@ async function finalSitesTest() {
     console.log("Testing both possible endpoints the mobile app might call\n");
     
     // Login
-    const loginResponse = await fetch("http://192.168.1.5:7012/auth/login", {
+    const loginResponse = await fetch("http://192.168.1.4:7012/auth/login", {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -29,7 +29,7 @@ async function finalSitesTest() {
     for (const endpoint of endpoints) {
       console.log(`\nðŸ” Testing: ${endpoint.name} (${endpoint.url})`);
       
-      const response = await fetch(`http://192.168.1.5:7012${endpoint.url}`, {
+      const response = await fetch(`http://192.168.1.4:7012${endpoint.url}`, {
         method: 'GET',
         headers: {
           'Authorization': `Bearer ${sessionToken}`,
@@ -86,5 +86,6 @@ async function finalSitesTest() {
 }
 
 finalSitesTest();
+
 
 

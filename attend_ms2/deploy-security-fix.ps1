@@ -77,7 +77,7 @@ Write-Host ""
 # Step 4: Test backend status
 Write-Host "4. Testing backend status..." -ForegroundColor Cyan
 try {
-    $response = Invoke-WebRequest -Uri "http://192.168.1.5:7012/health" -Method GET -TimeoutSec 5 -ErrorAction Stop
+    $response = Invoke-WebRequest -Uri "http://192.168.1.4:7012/health" -Method GET -TimeoutSec 5 -ErrorAction Stop
     Write-Host "   âœ… Backend is responding" -ForegroundColor Green
 } catch {
     Write-Host "   âš ï¸  Backend health check failed (this may be normal if no /health endpoint)" -ForegroundColor Yellow
@@ -126,5 +126,6 @@ if ($runTest -eq 'y' -or $runTest -eq 'Y') {
 
 Write-Host ""
 Write-Host "ðŸŽ‰ DEPLOYMENT COMPLETE!" -ForegroundColor Green
+
 
 

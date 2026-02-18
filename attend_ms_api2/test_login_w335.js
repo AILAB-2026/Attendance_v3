@@ -38,7 +38,7 @@ const testLogin = async () => {
       console.log('\n2. Testing login API call...\n');
 
       // Test login API
-      const loginResponse = await fetch('http://192.168.1.5:7012/auth/login', {
+      const loginResponse = await fetch('http://192.168.1.4:7012/auth/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -118,5 +118,6 @@ const testLogin = async () => {
 };
 
 testLogin();
+
 
 

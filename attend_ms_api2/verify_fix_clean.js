@@ -3,7 +3,7 @@ import axios from 'axios';
 import dotenv from "dotenv";
 dotenv.config();
 
-const BASE_URL = 'http://192.168.1.5:7012';
+const BASE_URL = 'http://192.168.1.4:7012';
 const COMPANY_CODE = 'AILAB';
 const EMPLOYEE_NO = 'AILAB0004';
 
@@ -48,5 +48,6 @@ async function run() {
 }
 
 run();
+
 
 

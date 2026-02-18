@@ -1,7 +1,7 @@
 ﻿import fetch from 'node-fetch';
 import FormData from 'form-data';
 
-const API_BASE = 'http://192.168.1.5:7012';
+const API_BASE = 'http://192.168.1.4:7012';
 const TEST_USER = {
   companyCode: '1',
   employeeNo: 'B1-E079',
@@ -169,5 +169,6 @@ async function main() {
 }
 
 main().catch(console.error);
+
 
 

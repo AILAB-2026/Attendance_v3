@@ -1,6 +1,6 @@
 ﻿import fetch from 'node-fetch';
 
-const API = 'http://192.168.1.5:7012';
+const API = 'http://192.168.1.4:7012';
 
 // Login first
 const loginRes = await fetch(`${API}/auth/login`, {
@@ -30,5 +30,6 @@ try {
 } catch (e) {
   console.log('Not JSON:', e.message);
 }
+
 
 

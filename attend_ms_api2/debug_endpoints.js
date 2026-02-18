@@ -7,7 +7,7 @@ async function debugEndpoints() {
   console.log("ðŸ” DEBUG: Checking Each Endpoint Individually");
   console.log("=" .repeat(50));
   
-  const baseUrl = 'http://192.168.1.5:7012';
+  const baseUrl = 'http://192.168.1.4:7012';
   
   try {
     // Login first
@@ -73,5 +73,6 @@ debugEndpoints().then(() => {
 }).catch(error => {
   console.error("âŒ Debug failed:", error);
 });
+
 
 

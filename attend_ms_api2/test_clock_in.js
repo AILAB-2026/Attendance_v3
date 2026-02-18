@@ -22,7 +22,7 @@ const testClockIn = async () => {
     console.log('Data:', JSON.stringify(clockInData, null, 2));
     console.log('');
 
-    const response = await fetch('http://192.168.1.5:7012/attendance/clock-in', {
+    const response = await fetch('http://192.168.1.4:7012/attendance/clock-in', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -88,5 +88,6 @@ const testClockIn = async () => {
 };
 
 testClockIn();
+
 
 

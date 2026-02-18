@@ -66,7 +66,7 @@ Write-Host ""
 # Step 5: Test health endpoint
 Write-Host "[5/6] Testing backend health..." -ForegroundColor Yellow
 try {
-    $response = Invoke-WebRequest -Uri "http://192.168.1.5:7012/health" -Method GET -UseBasicParsing -TimeoutSec 5
+    $response = Invoke-WebRequest -Uri "http://192.168.1.4:7012/health" -Method GET -UseBasicParsing -TimeoutSec 5
     if ($response.StatusCode -eq 200) {
         Write-Host "[OK] Backend is responding (HTTP 200)" -ForegroundColor Green
         $content = $response.Content | ConvertFrom-Json
@@ -109,8 +109,9 @@ Write-Host "   .\service\manage-backend-service.ps1 logs" -ForegroundColor Gray
 Write-Host ""
 Write-Host "Configuration Applied:" -ForegroundColor Yellow
 Write-Host "  FACE_ENFORCE_STRICT=true" -ForegroundColor White
-Write-Host "  FACE_VERIFY_WEBHOOK=http://192.168.1.5:7012/v1/verify" -ForegroundColor White
+Write-Host "  FACE_VERIFY_WEBHOOK=http://192.168.1.4:7012/v1/verify" -ForegroundColor White
 Write-Host "  FACE_MATCH_THRESHOLD=0.75" -ForegroundColor White
 Write-Host ""
+
 
 

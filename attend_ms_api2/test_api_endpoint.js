@@ -7,7 +7,7 @@ async function testAttendanceAPI() {
     console.log('==========================================');
     
     // Test the exact API call that the mobile app makes
-    const url = 'http://192.168.1.5:7012/api/attendance/today?companyCode=1&employeeNo=B1-L157';
+    const url = 'http://192.168.1.4:7012/api/attendance/today?companyCode=1&employeeNo=B1-L157';
     
     console.log('ðŸ“¡ Making request to:', url);
     
@@ -60,5 +60,6 @@ async function testAttendanceAPI() {
 }
 
 testAttendanceAPI();
+
 
 

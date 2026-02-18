@@ -30,7 +30,7 @@ query(`UPDATE hr_employee SET active = false WHERE "x_Emp_No" = $1 AND company_i
 
     // Test login
     try {
-      const loginResponse = await fetch('http://192.168.1.5:7012/auth/login', {
+      const loginResponse = await fetch('http://192.168.1.4:7012/auth/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(testEmployee)
@@ -50,7 +50,7 @@ query(`UPDATE hr_employee SET active = false WHERE "x_Emp_No" = $1 AND company_i
         console.log('\n' + '='.repeat(80));
         console.log('\nSTEP 3: Testing CLOCK IN (should BLOCK)...\n');
 
-        const clockInResponse = await fetch('http://192.168.1.5:7012/attendance/clock-in', {
+        const clockInResponse = await fetch('http://192.168.1.4:7012/attendance/clock-in', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
@@ -77,7 +77,7 @@ query(`UPDATE hr_employee SET active = false WHERE "x_Emp_No" = $1 AND company_i
         console.log('\n' + '='.repeat(80));
         console.log('\nSTEP 4: Testing PAYSLIP ACCESS (should show friendly message)...\n');
 
-        const payslipResponse = await fetch('http://192.168.1.5:7012/payroll/payslips', {
+        const payslipResponse = await fetch('http://192.168.1.4:7012/payroll/payslips', {
           method: 'GET',
           headers: { 
             'Authorization': `Bearer ${token}`,
@@ -154,5 +154,6 @@ query(`UPDATE hr_employee SET active = false WHERE "x_Emp_No" = $1 AND company_i
     }
   }
 );
+
 
 

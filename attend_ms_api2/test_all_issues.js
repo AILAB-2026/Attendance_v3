@@ -1,6 +1,6 @@
 ﻿import fetch from 'node-fetch';
 
-const API_BASE = 'http://192.168.1.5:7012/api';
+const API_BASE = 'http://192.168.1.4:7012/api';
 
 // Test credentials - using B1-W422 from memory
 const TEST_USER = {
@@ -200,5 +200,6 @@ async function runAllTests() {
 }
 
 runAllTests();
+
 
 

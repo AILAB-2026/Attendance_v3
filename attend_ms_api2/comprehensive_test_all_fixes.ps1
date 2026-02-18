@@ -11,7 +11,7 @@ try {
         password = "Test@123"
     } | ConvertTo-Json
 
-    $loginResponse = Invoke-RestMethod -Uri "http://192.168.1.5:7012/auth/login" -Method POST -Body $loginBody -ContentType "application/json"
+    $loginResponse = Invoke-RestMethod -Uri "http://192.168.1.4:7012/auth/login" -Method POST -Body $loginBody -ContentType "application/json"
     
     if ($loginResponse.success) {
         Write-Host "   âœ… Login successful for B1-E079" -ForegroundColor Green
@@ -25,7 +25,7 @@ try {
         # Test 2: Leave Requests
         Write-Host "`n2. ðŸ“‹ Testing Leave Requests..." -ForegroundColor Yellow
         try {
-            $leaveResponse = Invoke-RestMethod -Uri "http://192.168.1.5:7012/leave/requests" -Method GET -Headers $headers
+            $leaveResponse = Invoke-RestMethod -Uri "http://192.168.1.4:7012/leave/requests" -Method GET -Headers $headers
             
             if ($leaveResponse -and $leaveResponse.Count -gt 0) {
                 Write-Host "   âœ… Found $($leaveResponse.Count) leave requests" -ForegroundColor Green
@@ -49,7 +49,7 @@ try {
         # Test 3: Leave Balance
         Write-Host "`n3. ðŸ’° Testing Leave Balance..." -ForegroundColor Yellow
         try {
-            $balanceResponse = Invoke-RestMethod -Uri "http://192.168.1.5:7012/leave/balance" -Method GET -Headers $headers
+            $balanceResponse = Invoke-RestMethod -Uri "http://192.168.1.4:7012/leave/balance" -Method GET -Headers $headers
             Write-Host "   âœ… Leave balance retrieved successfully" -ForegroundColor Green
             $balanceResponse | ConvertTo-Json -Depth 2 | Write-Host -ForegroundColor White
         } catch {
@@ -59,7 +59,7 @@ try {
         # Test 4: Today's Attendance
         Write-Host "`n4. ðŸ• Testing Today's Attendance..." -ForegroundColor Yellow
         try {
-            $todayResponse = Invoke-RestMethod -Uri "http://192.168.1.5:7012/attendance/today?companyCode=1&employeeNo=B1-E079" -Method GET -Headers $headers
+            $todayResponse = Invoke-RestMethod -Uri "http://192.168.1.4:7012/attendance/today?companyCode=1&employeeNo=B1-E079" -Method GET -Headers $headers
             Write-Host "   âœ… Today's attendance retrieved successfully" -ForegroundColor Green
             
             if ($todayResponse.entries -and $todayResponse.entries.Count -gt 0) {
@@ -79,7 +79,7 @@ try {
         # Test 5: Attendance History
         Write-Host "`n5. ðŸ“… Testing Attendance History..." -ForegroundColor Yellow
         try {
-            $historyResponse = Invoke-RestMethod -Uri "http://192.168.1.5:7012/attendance/history?startDate=2025-11-10&endDate=2025-11-12&companyCode=1&employeeNo=B1-E079" -Method GET -Headers $headers
+            $historyResponse = Invoke-RestMethod -Uri "http://192.168.1.4:7012/attendance/history?startDate=2025-11-10&endDate=2025-11-12&companyCode=1&employeeNo=B1-E079" -Method GET -Headers $headers
             Write-Host "   âœ… Attendance history retrieved successfully" -ForegroundColor Green
             
             if ($historyResponse -and $historyResponse.Count -gt 0) {
@@ -124,5 +124,6 @@ try {
 } catch {
     Write-Host "âŒ Test Error: $($_.Exception.Message)" -ForegroundColor Red
 }
+
 
 

@@ -15,7 +15,7 @@ Write-Host "Password: Test@123"
 Write-Host ""
 
 try {
-    $response = Invoke-RestMethod -Uri "http://192.168.1.5:7012/auth/login" -Method Post -Body $body -Headers $headers
+    $response = Invoke-RestMethod -Uri "http://192.168.1.4:7012/auth/login" -Method Post -Body $body -Headers $headers
     Write-Host "Login SUCCESSFUL!" -ForegroundColor Green
     Write-Host ""
     Write-Host "Response:" -ForegroundColor Cyan
@@ -30,5 +30,6 @@ try {
         $_.ErrorDetails.Message
     }
 }
+
 
 

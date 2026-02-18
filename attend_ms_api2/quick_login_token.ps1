@@ -10,7 +10,7 @@ $body = @{
 Write-Host "Logging in..." -ForegroundColor Cyan
 
 try {
-    $response = Invoke-RestMethod -Uri "http://192.168.1.5:3000/auth/login" -Method Post -Body $body -ContentType "application/json"
+    $response = Invoke-RestMethod -Uri "http://192.168.1.4:3000/auth/login" -Method Post -Body $body -ContentType "application/json"
     
     Write-Host ""
     Write-Host "✅ LOGIN SUCCESSFUL!" -ForegroundColor Green
@@ -30,4 +30,5 @@ try {
     Write-Host "❌ LOGIN FAILED!" -ForegroundColor Red
     Write-Host "Error: $_" -ForegroundColor Red
 }
+
 

@@ -6,7 +6,7 @@
 require('dotenv').config({ path: '.env.production' });
 const fetch = require('node-fetch');
 
-const API_BASE = process.env.API_BASE_URL || 'http://192.168.1.5:7012';
+const API_BASE = process.env.API_BASE_URL || 'http://192.168.1.4:7012';
 
 async function testClockIn() {
   console.log('=== Testing Clock-In Flow ===\n');
@@ -56,5 +56,6 @@ async function testClockIn() {
 
 // Run test
 testClockIn().catch(console.error);
+
 
 
