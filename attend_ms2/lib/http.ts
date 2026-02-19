@@ -1,4 +1,4 @@
-﻿import axios, { AxiosError } from 'axios';
+import axios, { AxiosError } from 'axios';
 import { secureStorage } from './secure-storage';
 
 // Centralized HTTP client using axios

@@ -52,9 +52,9 @@ export default function LeaveScreen() {
     startDate: format(startOfMonth(today), 'yyyy-MM-dd'),
     endDate: format(endOfMonth(today), 'yyyy-MM-dd'),
   });
-  const [rangePreset, setRangePreset] = useState<'today' | 'this-month' | 'next-month' | 'last-month' | 'last-30'>('this-month');
+  const [rangePreset, setRangePreset] = useState<'today' | 'this-month' | 'next-month' | 'last-month' | 'all-data'>('this-month');
 
-  const applyPreset = (preset: 'today' | 'this-month' | 'next-month' | 'last-month' | 'last-30') => {
+  const applyPreset = (preset: 'today' | 'this-month' | 'next-month' | 'last-month' | 'all-data') => {
     setRangePreset(preset);
     const now = new Date();
     if (preset === 'today') {
@@ -76,8 +76,10 @@ export default function LeaveScreen() {
       setListRange({ startDate: format(startOfMonth(last), 'yyyy-MM-dd'), endDate: format(endOfMonth(last), 'yyyy-MM-dd') });
       return;
     }
-    const start = subDays(now, 29);
-    setListRange({ startDate: format(start, 'yyyy-MM-dd'), endDate: format(now, 'yyyy-MM-dd') });
+    // All data: wide range to show all leave history
+    const past = subMonths(now, 60);
+    const future = addMonths(now, 60);
+    setListRange({ startDate: format(past, 'yyyy-MM-dd'), endDate: format(future, 'yyyy-MM-dd') });
   };
   const [startDate, setStartDate] = useState(format(new Date(), 'yyyy-MM-dd'));
   const [endDate, setEndDate] = useState(format(new Date(), 'yyyy-MM-dd'));
@@ -394,7 +396,7 @@ export default function LeaveScreen() {
             { key: 'this-month', label: 'This Month' },
             { key: 'next-month', label: 'Next Month' },
             { key: 'last-month', label: 'Last Month' },
-            { key: 'last-30', label: 'Last 30 Days' },
+            { key: 'all-data', label: 'All' },
           ] as const).map((p) => (
             <TouchableOpacity
               key={p.key}

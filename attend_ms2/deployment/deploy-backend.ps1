@@ -1,4 +1,4 @@
-﻿# AI Attend Tracker - Automated Backend Deployment Script
+# AI Attend Tracker - Automated Backend Deployment Script
 # This script automates the deployment of backend services on Windows Server 2022
 
 param(

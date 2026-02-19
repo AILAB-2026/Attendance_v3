@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Face Recognition Adapter Service
  * 
  * This adapter bridges AIAttend_v2 with the existing attend_ms_api_2 face recognition API.
@@ -16,10 +16,10 @@ import jwt from 'jsonwebtoken';
 import { pool as aiattendPool } from './db/connection';
 
 // Configuration
-const FACE_API_URL = process.env.FACE_API_URL || 'http://192.168.1.4:7010';
+const FACE_API_URL = process.env.FACE_API_URL || 'http://192.168.1.5:7010';
 const FACE_API_SECRET = process.env.FACE_API_SECRET || 'change-this-dev-secret';
 const ATTENDANCE_DB_CONFIG = {
-  host: process.env.ATTENDANCE_DB_HOST || '192.168.1.4',
+  host: process.env.ATTENDANCE_DB_HOST || '192.168.1.5',
   port: parseInt(process.env.ATTENDANCE_DB_PORT || '5432'),
   database: process.env.ATTENDANCE_DB_NAME || 'CX18AILABDEMO',
   user: process.env.ATTENDANCE_DB_USER || 'postgres',

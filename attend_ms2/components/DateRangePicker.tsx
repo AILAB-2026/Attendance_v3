@@ -102,9 +102,13 @@ const DateRangePicker = ({ value, onChange, disabledDates = [], publicHolidays =
               {buildCalendarDays(currentMonth).map((d) => {
                 const today = new Date();
                 today.setHours(0, 0, 0, 0);
+
+                // Allow selection from Jan 1st of current year
+                const startOfYear = new Date(today.getFullYear(), 0, 1);
+
                 const dayDate = new Date(d);
                 dayDate.setHours(0, 0, 0, 0);
-                const isPastDate = dayDate < today;
+                const isPastDate = dayDate < startOfYear;
                 const isRestricted = disabledDates.includes(format(d, 'yyyy-MM-dd'));
                 const isPublicHoliday = publicHolidays.includes(format(d, 'yyyy-MM-dd'));
                 const isDisabled = isPastDate || isRestricted;
